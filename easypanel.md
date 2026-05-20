@@ -17,10 +17,11 @@ Tudo é deployado a partir do seu repositório GitHub.
 1. **Create Service → App** → conecte seu repositório GitHub
 2. **Source**:
    - Branch: `main`
-   - Build path: `/backend`  <-- Contexto da pasta
+   - Build path: `/` (raiz do repositório)
 3. **Build**: 
    - Selecione **Dockerfile**
-   - Dockerfile path: `Dockerfile`  <-- Caminho relativo ao Build Path acima
+   - Dockerfile path: `backend/Dockerfile`
+
 
 4. **Environment**:
    ```
