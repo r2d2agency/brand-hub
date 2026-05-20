@@ -134,6 +134,17 @@ siteRouter.get("/news-videos", async (_req, res, next) => {
   } catch (e) { next(e); }
 });
 
+// Partners
+siteRouter.get("/partners", async (_req, res, next) => {
+  try {
+    const items = await prisma.partner.findMany({
+      where: { active: true },
+      orderBy: { order: "asc" }
+    });
+    res.json(items);
+  } catch (e) { next(e); }
+});
+
 // FAQ
 siteRouter.get("/faq", async (_req, res, next) => {
   try {

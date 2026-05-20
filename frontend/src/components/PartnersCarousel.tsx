@@ -1,18 +1,24 @@
 import { useEffect, useRef } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { api } from "@/lib/api";
 
-const PARTNERS = [
-  { name: "Partner 1", logo: "https://via.placeholder.com/150x80?text=LOGO+1" },
-  { name: "Partner 2", logo: "https://via.placeholder.com/150x80?text=LOGO+2" },
-  { name: "Partner 3", logo: "https://via.placeholder.com/150x80?text=LOGO+3" },
-  { name: "Partner 4", logo: "https://via.placeholder.com/150x80?text=LOGO+4" },
-  { name: "Partner 5", logo: "https://via.placeholder.com/150x80?text=LOGO+5" },
-  { name: "Partner 6", logo: "https://via.placeholder.com/150x80?text=LOGO+6" },
-  { name: "Partner 7", logo: "https://via.placeholder.com/150x80?text=LOGO+7" },
-  { name: "Partner 8", logo: "https://via.placeholder.com/150x80?text=LOGO+8" },
-];
+interface Partner {
+  id: string;
+  name: string;
+  logoUrl: string;
+  displayOrder: number;
+}
 
 export default function PartnersCarousel() {
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const { data: partners = [] } = useQuery<Partner[]>({
+    queryKey: ["site-partners"],
+    queryFn: async () => (await api.get("/site/partners")).data,
+  });
+
+  if (partners.length === 0) return null;
+
+  // Duplicate the list enough times to ensure it covers the screen for the infinite effect
+  const displayPartners = [...partners, ...partners, ...partners, ...partners];
 
   return (
     <section className="py-12 bg-white overflow-hidden border-y border-slate-100">
@@ -23,13 +29,13 @@ export default function PartnersCarousel() {
       
       <div className="relative flex overflow-x-hidden">
         <div className="flex animate-scroll whitespace-nowrap py-4">
-          {[...PARTNERS, ...PARTNERS, ...PARTNERS].map((partner, index) => (
+          {displayPartners.map((partner, index) => (
             <div
-              key={`${partner.name}-${index}`}
+              key={`${partner.id}-${index}`}
               className="mx-8 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100"
             >
               <img
-                src={partner.logo}
+                src={partner.logoUrl}
                 alt={partner.name}
                 className="h-12 md:h-16 w-auto object-contain"
               />
@@ -41,10 +47,10 @@ export default function PartnersCarousel() {
       <style>{`
         @keyframes scroll {
           0% { transform: translateX(0); }
-          100% { transform: translateX(-33.33%); }
+          100% { transform: translateX(-50%); }
         }
         .animate-scroll {
-          animation: scroll 40s linear infinite;
+          animation: scroll 30s linear infinite;
         }
         .animate-scroll:hover {
           animation-play-state: paused;

@@ -134,6 +134,33 @@ export type Database = {
         }
         Relationships: []
       }
+      Partner: {
+        Row: {
+          created_at: string
+          displayOrder: number
+          id: string
+          logoUrl: string
+          name: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          displayOrder?: number
+          id?: string
+          logoUrl: string
+          name: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          displayOrder?: number
+          id?: string
+          logoUrl?: string
+          name?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       stores: {
         Row: {
           address: string
