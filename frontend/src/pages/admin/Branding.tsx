@@ -213,15 +213,24 @@ export default function BrandingAdmin() {
             <div className="space-y-4">
               <div className="space-y-1.5">
                 <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Instagram</label>
-                <input value={form.instagramUrl || ""} onChange={e => handleFieldChange("instagramUrl", e.target.value)} placeholder="https://instagram.com/..." className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-blue-900 focus:outline-none" />
+                <div className="flex gap-2">
+                  <input type="color" value={form.instagramColor || "#e1306c"} onChange={e => handleFieldChange("instagramColor", e.target.value)} className="h-10 w-10 border-none cursor-pointer rounded-lg overflow-hidden" />
+                  <input value={form.instagramUrl || ""} onChange={e => handleFieldChange("instagramUrl", e.target.value)} placeholder="https://instagram.com/..." className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-blue-900 focus:outline-none" />
+                </div>
               </div>
               <div className="space-y-1.5">
                 <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">Facebook</label>
-                <input value={form.facebookUrl || ""} onChange={e => handleFieldChange("facebookUrl", e.target.value)} placeholder="https://facebook.com/..." className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-blue-900 focus:outline-none" />
+                <div className="flex gap-2">
+                  <input type="color" value={form.facebookColor || "#1877f2"} onChange={e => handleFieldChange("facebookColor", e.target.value)} className="h-10 w-10 border-none cursor-pointer rounded-lg overflow-hidden" />
+                  <input value={form.facebookUrl || ""} onChange={e => handleFieldChange("facebookUrl", e.target.value)} placeholder="https://facebook.com/..." className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-blue-900 focus:outline-none" />
+                </div>
               </div>
               <div className="space-y-1.5">
                 <label className="text-[10px] font-black uppercase tracking-widest text-slate-400">YouTube</label>
-                <input value={form.youtubeUrl || ""} onChange={e => handleFieldChange("youtubeUrl", e.target.value)} placeholder="https://youtube.com/c/..." className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-blue-900 focus:outline-none" />
+                <div className="flex gap-2">
+                  <input type="color" value={form.youtubeColor || "#ff0000"} onChange={e => handleFieldChange("youtubeColor", e.target.value)} className="h-10 w-10 border-none cursor-pointer rounded-lg overflow-hidden" />
+                  <input value={form.youtubeUrl || ""} onChange={e => handleFieldChange("youtubeUrl", e.target.value)} placeholder="https://youtube.com/c/..." className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-sm focus:border-blue-900 focus:outline-none" />
+                </div>
               </div>
             </div>
           </div>

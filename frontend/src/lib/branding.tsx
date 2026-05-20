@@ -20,6 +20,9 @@ export interface Branding {
   instagramUrl: string | null;
   facebookUrl: string | null;
   youtubeUrl: string | null;
+  instagramColor: string;
+  facebookColor: string;
+  youtubeColor: string;
   // WhatsApp Floating
   whatsappPhone: string | null;
   whatsappMessage: string | null;
