@@ -14,6 +14,7 @@ import PromotionsAndCourses from "@/components/PromotionsAndCourses";
 import NewsVideosSection from "@/components/NewsVideosSection";
 
 export default function Home() {
+  const branding = useBranding();
   const [selectedCategory, setSelectedCategory] = useState<any>(null);
 
   const { data: categories = [] } = useQuery({
