@@ -14,6 +14,87 @@ export type Database = {
   }
   public: {
     Tables: {
+      Branding: {
+        Row: {
+          accentColor: string
+          backgroundColor: string
+          buttonBgColor: string | null
+          buttonTextColor: string | null
+          facebookUrl: string | null
+          faviconUrl: string | null
+          fontBody: string
+          fontHeading: string
+          footerBgColor: string | null
+          footerLogo: string | null
+          footerText: string | null
+          footerTextColor: string | null
+          foregroundColor: string
+          id: string
+          instagramUrl: string | null
+          logoUrl: string | null
+          primaryColor: string
+          secondaryColor: string
+          siteName: string
+          tagline: string | null
+          updatedAt: string
+          whatsappMessage: string | null
+          whatsappPhone: string | null
+          youtubeUrl: string | null
+        }
+        Insert: {
+          accentColor?: string
+          backgroundColor?: string
+          buttonBgColor?: string | null
+          buttonTextColor?: string | null
+          facebookUrl?: string | null
+          faviconUrl?: string | null
+          fontBody?: string
+          fontHeading?: string
+          footerBgColor?: string | null
+          footerLogo?: string | null
+          footerText?: string | null
+          footerTextColor?: string | null
+          foregroundColor?: string
+          id?: string
+          instagramUrl?: string | null
+          logoUrl?: string | null
+          primaryColor?: string
+          secondaryColor?: string
+          siteName?: string
+          tagline?: string | null
+          updatedAt?: string
+          whatsappMessage?: string | null
+          whatsappPhone?: string | null
+          youtubeUrl?: string | null
+        }
+        Update: {
+          accentColor?: string
+          backgroundColor?: string
+          buttonBgColor?: string | null
+          buttonTextColor?: string | null
+          facebookUrl?: string | null
+          faviconUrl?: string | null
+          fontBody?: string
+          fontHeading?: string
+          footerBgColor?: string | null
+          footerLogo?: string | null
+          footerText?: string | null
+          footerTextColor?: string | null
+          foregroundColor?: string
+          id?: string
+          instagramUrl?: string | null
+          logoUrl?: string | null
+          primaryColor?: string
+          secondaryColor?: string
+          siteName?: string
+          tagline?: string | null
+          updatedAt?: string
+          whatsappMessage?: string | null
+          whatsappPhone?: string | null
+          youtubeUrl?: string | null
+        }
+        Relationships: []
+      }
       NewsVideo: {
         Row: {
           active: boolean
