@@ -19,15 +19,27 @@ const createCrud = (modelName: string, schema: z.ZodObject<any>) => {
       
       let items;
       try {
+        // Safe check for model existence and method
+        if (!model || typeof model.findMany !== 'function') {
+          throw new Error(`Model ${modelName} not found in prisma client`);
+        }
+
         items = await model.findMany({ 
           orderBy: orderByField
         });
       } catch (prismaError: any) {
         console.error(`[CRUD] Error fetching ${modelName}:`, prismaError);
-        // Fallback for missing fields or sorting issues
-        items = await model.findMany({ 
-          orderBy: { createdAt: "desc" }
-        }).catch(() => model.findMany());
+        
+        // Try fallback without custom sorting
+        try {
+          items = await model.findMany({ 
+            orderBy: { createdAt: "desc" }
+          });
+        } catch (fallbackError) {
+          console.error(`[CRUD] Fallback also failed for ${modelName}:`, fallbackError);
+          // Last resort: just get all items and sort in memory if needed
+          items = await model.findMany().catch(() => []);
+        }
       }
       
       res.json(items);
