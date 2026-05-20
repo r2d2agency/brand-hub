@@ -15,7 +15,6 @@ export function Header() {
     { to: "/pegue-monte", label: "Pegue e Monte" },
     { to: "/cursos", label: "Cursos" },
     { to: "/lojas", label: "Lojas" },
-    { to: "/contato", label: "Contato" },
   ];
 
   return (
@@ -105,7 +104,6 @@ export function Footer() {
               <Link to="/sobre" className="hover:opacity-100 transition-colors">Sobre Nós</Link>
               <Link to="/lojas" className="hover:opacity-100 transition-colors">Onde Estamos</Link>
               <Link to="/cursos" className="hover:opacity-100 transition-colors">Cursos</Link>
-              <Link to="/contato" className="hover:opacity-100 transition-colors">Contato</Link>
             </nav>
           </div>
           <div>
