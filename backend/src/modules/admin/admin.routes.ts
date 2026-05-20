@@ -140,6 +140,13 @@ const newsVideoSchema = z.object({
   order: z.number().int().optional(),
 });
 
+const partnerSchema = z.object({
+  name: z.string().min(1),
+  logo: z.string().min(1),
+  active: z.boolean().optional(),
+  order: z.number().int().optional(),
+});
+
 // Register Routes
 // Specific Banner Routes (to handle reordering)
 const bannerCrud = createCrud("seasonalBanner", bannerSchema);
@@ -163,6 +170,7 @@ adminRouter.use("/categories", createCrud("productCategory", categorySchema));
 adminRouter.use("/stores", createCrud("store", storeSchema));
 adminRouter.use("/promotions", createCrud("promotion", promotionSchema));
 adminRouter.use("/news-videos", createCrud("newsVideo", newsVideoSchema));
+adminRouter.use("/partners", createCrud("partner", partnerSchema));
 
 // Dashboard Stats
 adminRouter.get("/stats", async (_req, res, next) => {

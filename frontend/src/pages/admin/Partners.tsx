@@ -15,8 +15,8 @@ import ImageUpload from "@/components/ImageUpload";
 interface Partner {
   id: string;
   name: string;
-  logoUrl: string;
-  displayOrder: number;
+  logo: string;
+  order: number;
 }
 
 export default function PartnersAdmin() {
@@ -29,14 +29,19 @@ export default function PartnersAdmin() {
   const [msg, setMsg] = useState("");
 
   const saveMutation = useMutation({
-    mutationFn: async (payload: Partner[]) => (await api.put("/admin-cms/partners", payload)).data,
+    mutationFn: async (payload: any) => {
+      if (payload.id) {
+        return (await api.put(`/admin-cms/partners/${payload.id}`, payload)).data;
+      }
+      return (await api.post("/admin-cms/partners", payload)).data;
+    },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["admin-partners"] });
-      setMsg("Parceiros salvos com sucesso!");
+      setMsg("Parceiro salvo com sucesso!");
       setTimeout(() => setMsg(""), 3000);
     },
     onError: () => {
-      alert("Erro ao salvar parceiros.");
+      alert("Erro ao salvar parceiro.");
     }
   });
 
@@ -50,11 +55,11 @@ export default function PartnersAdmin() {
   const addPartner = () => {
     const newPartner: any = {
       name: "Novo Parceiro",
-      logoUrl: "",
-      displayOrder: partners.length
+      logo: "",
+      order: partners.length
     };
     // We add locally and then user saves
-    saveMutation.mutate([...partners, newPartner]);
+    saveMutation.mutate(newPartner);
   };
 
   const removePartner = (id: string) => {
@@ -78,9 +83,12 @@ export default function PartnersAdmin() {
     newPartners[index] = newPartners[targetIndex];
     newPartners[targetIndex] = temp;
 
-    // Update display orders
-    const finalPartners = newPartners.map((p, i) => ({ ...p, displayOrder: i }));
-    saveMutation.mutate(finalPartners);
+    // Update display orders in sequence
+    Promise.all(newPartners.map((p, i) => 
+      api.put(`/admin-cms/partners/${p.id}`, { ...p, order: i })
+    )).then(() => {
+      qc.invalidateQueries({ queryKey: ["admin-partners"] });
+    });
   };
 
   if (isLoading) return <div className="p-8 text-slate-500 text-center">Carregando parceiros...</div>;
