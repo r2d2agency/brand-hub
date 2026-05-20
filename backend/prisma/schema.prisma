@@ -24,13 +24,13 @@ model User {
 
 model Branding {
   id              String   @id @default("singleton")
-  siteName        String   @default("Meu Site")
+  siteName        String   @default("Basmar Doces")
   tagline         String?
   logoUrl         String?
   faviconUrl      String?
-  primaryColor    String   @default("#0f172a")
-  secondaryColor  String   @default("#64748b")
-  accentColor     String   @default("#3b82f6")
+  primaryColor    String   @default("#e91e63")
+  secondaryColor  String   @default("#9c27b0")
+  accentColor     String   @default("#ff4081")
   backgroundColor String   @default("#ffffff")
   foregroundColor String   @default("#0f172a")
   fontHeading     String   @default("Inter")
@@ -56,10 +56,170 @@ model Module {
   key         String   @unique
   title       String
   description String?
-  icon        String?
   enabled     Boolean  @default(true)
-  config      Json     @default("{}")
+  showInHome  Boolean  @default(true)
+  showInNav   Boolean  @default(true)
   order       Int      @default(0)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+model SeasonalBanner {
+  id            String    @id @default(cuid())
+  title         String
+  subtitle      String?
+  imageDesktop  String
+  imageMobile   String?
+  buttonText    String?
+  buttonLink    String?
+  startDate     DateTime?
+  endDate       DateTime?
+  active        Boolean   @default(true)
+  order         Int       @default(0)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model ProductCategory {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?
+  coverImage  String?
+  gallery     String[] @default([])
+  whatsappMsg String?
+  active      Boolean  @default(true)
+  order       Int      @default(0)
+  showInHome  Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model PegueMonte {
+  id          String   @id @default(cuid())
+  name        String
+  theme       String?
+  slug        String   @unique
+  description String?
+  items       String[] @default([])
+  coverImage  String?
+  gallery     String[] @default([])
+  partyType   String?
+  peopleCount String?
+  unit        String?
+  obs         String?
+  whatsappMsg String?
+  active      Boolean  @default(true)
+  highlight   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+enum CourseStatus {
+  SOON
+  OPEN
+  CLOSED
+}
+
+model Course {
+  id          String       @id @default(cuid())
+  title       String
+  slug        String       @unique
+  description String?
+  coverImage  String?
+  gallery     String[]     @default([])
+  date        DateTime?
+  time        String?
+  location    String?
+  instructor  String?
+  status      CourseStatus @default(SOON)
+  whatsappMsg String?
+  active      Boolean      @default(true)
+  showInHome  Boolean      @default(true)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+
+model GalleryItem {
+  id          String   @id @default(cuid())
+  title       String
+  category    String?
+  image       String
+  description String?
+  tags        String[] @default([])
+  active      Boolean  @default(true)
+  showInHome  Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Partner {
+  id          String   @id @default(cuid())
+  name        String
+  logo        String
+  description String?
+  gallery     String[] @default([])
+  active      Boolean  @default(true)
+  showInHome  Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Store {
+  id          String   @id @default(cuid())
+  name        String
+  address     String
+  neighborhood String?
+  phone       String?
+  whatsapp    String?
+  hours       String?
+  mapsLink    String?
+  images      String[] @default([])
+  active      Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model CompanyHistory {
+  id          String   @id @default("singleton")
+  title       String   @default("Nossa História")
+  content     String   @db.Text
+  mainImage   String?
+  gallery     String[] @default([])
+  timeline    Json     @default("[]") // [{year, title, desc, image}]
+  updatedAt   DateTime @updatedAt
+}
+
+model FAQ {
+  id        String   @id @default(cuid())
+  question  String
+  answer    String   @db.Text
+  category  String?
+  active    Boolean  @default(true)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  name      String
+  text      String   @db.Text
+  image     String?
+  source    String?
+  active    Boolean  @default(true)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model WhatsAppClick {
+  id        String   @id @default(cuid())
+  type      String   // category, kit, course, general
+  relatedId String?  // ID of the item clicked
+  origin    String?  // page URL
+  createdAt DateTime @default(now())
 }
