@@ -21,6 +21,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 export default function PromotionsAndCourses() {
+  const branding = useBranding();
   const [selectedPromo, setSelectedPromo] = useState<any>(null);
 
   const { data: promotions = [] } = useQuery({
