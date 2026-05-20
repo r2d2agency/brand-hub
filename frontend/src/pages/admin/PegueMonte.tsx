@@ -192,6 +192,13 @@ export default function PegueMonteAdmin() {
                   />
                 </div>
 
+                <GalleryUpload
+                  value={kit.gallery || []}
+                  onChange={(gallery) => updateKit(kit.id, { gallery })}
+                  label="Galeria de Fotos"
+                  max={20}
+                />
+
                 <div className="flex flex-wrap items-center gap-6 pt-2">
                   <label className="flex items-center gap-2 cursor-pointer">
                     <input 
