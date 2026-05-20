@@ -31,6 +31,7 @@ const updateSchema = z.object({
   footerTextColor: z.string().optional(),
   buttonBgColor: z.string().optional(),
   buttonTextColor: z.string().optional(),
+  coursesIntro: z.string().nullish(),
 });
 
 brandingRouter.get("/", async (_req, res, next) => {
