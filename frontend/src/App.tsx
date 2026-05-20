@@ -10,6 +10,7 @@ import PagesAdmin from "./pages/admin/Pages";
 import ModulesAdmin from "./pages/admin/Modules";
 import BannersAdmin from "./pages/admin/Banners";
 import UsersAdmin from "./pages/admin/Users";
+import StoresAdmin from "./pages/admin/Stores";
 import { ProtectedRoute } from "./lib/auth";
 import PublicLayout from "./components/PublicLayout";
 
