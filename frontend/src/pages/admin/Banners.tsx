@@ -12,6 +12,13 @@ interface BannerForm {
   imageMobile: string;
   buttonText: string;
   buttonLink: string;
+  startDate: string;
+  endDate: string;
+  isDefault: boolean;
+  fontFamily: string;
+  fontSize: string;
+  transitionTime: number;
+  transitionType: string;
 }
 
 const EMPTY_FORM: BannerForm = {
@@ -21,6 +28,13 @@ const EMPTY_FORM: BannerForm = {
   imageMobile: "",
   buttonText: "",
   buttonLink: "",
+  startDate: "",
+  endDate: "",
+  isDefault: false,
+  fontFamily: "Inter",
+  fontSize: "4xl md:text-6xl lg:text-8xl",
+  transitionTime: 5,
+  transitionType: "fade",
 };
 
 export default function BannersAdmin() {
@@ -62,12 +76,20 @@ export default function BannersAdmin() {
       imageMobile: banner.imageMobile || "",
       buttonText: banner.buttonText || "",
       buttonLink: banner.buttonLink || "",
+      startDate: banner.startDate ? new Date(banner.startDate).toISOString().slice(0, 16) : "",
+      endDate: banner.endDate ? new Date(banner.endDate).toISOString().slice(0, 16) : "",
+      isDefault: banner.isDefault || false,
+      fontFamily: banner.fontFamily || "Inter",
+      fontSize: banner.fontSize || "4xl md:text-6xl lg:text-8xl",
+      transitionTime: banner.transitionTime || 5,
+      transitionType: banner.transitionType || "fade",
     });
     setIsEditing(true);
   };
 
   const applyTemplate = (template: BannerTemplate) => {
     setForm({
+      ...EMPTY_FORM,
       title: template.data.title,
       subtitle: template.data.subtitle,
       imageDesktop: template.data.imageDesktop,
@@ -89,6 +111,8 @@ export default function BannersAdmin() {
         imageMobile: form.imageMobile || null,
         buttonText: form.buttonText || null,
         buttonLink: form.buttonLink || null,
+        startDate: form.startDate || null,
+        endDate: form.endDate || null,
       };
       if (selectedBanner) {
         await api.put(`/admin-cms/banners/${selectedBanner.id}`, payload);
@@ -333,6 +357,86 @@ export default function BannersAdmin() {
                     placeholder="Ex: Ver Catálogo"
                     className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-blue-900 focus:outline-none" 
                   />
+              </div>
+
+              <div className="grid gap-4 md:grid-cols-3">
+                <div className="space-y-1.5">
+                  <label className="text-sm font-bold text-slate-700">Início da Exibição</label>
+                  <input 
+                    type="datetime-local"
+                    value={form.startDate}
+                    onChange={(e) => setForm({...form, startDate: e.target.value})}
+                    className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-blue-900 focus:outline-none" 
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-sm font-bold text-slate-700">Fim da Exibição</label>
+                  <input 
+                    type="datetime-local"
+                    value={form.endDate}
+                    onChange={(e) => setForm({...form, endDate: e.target.value})}
+                    className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-blue-900 focus:outline-none" 
+                  />
+                </div>
+                <div className="flex items-end pb-2">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input 
+                      type="checkbox"
+                      checked={form.isDefault}
+                      onChange={(e) => setForm({...form, isDefault: e.target.checked})}
+                      className="h-4 w-4 rounded border-slate-300 text-blue-900 focus:ring-blue-900"
+                    />
+                    <span className="text-sm font-bold text-slate-700">Banner Padrão?</span>
+                  </label>
+                </div>
+              </div>
+
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="space-y-1.5">
+                  <label className="text-sm font-bold text-slate-700">Fonte do Título</label>
+                  <select 
+                    value={form.fontFamily}
+                    onChange={(e) => setForm({...form, fontFamily: e.target.value})}
+                    className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-blue-900 focus:outline-none"
+                  >
+                    <option value="Inter">Inter (Padrão)</option>
+                    <option value="Montserrat">Montserrat</option>
+                    <option value="Poppins">Poppins</option>
+                    <option value="Playfair Display">Playfair Display (Serifada)</option>
+                    <option value="Bebas Neue">Bebas Neue (Impactante)</option>
+                  </select>
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-sm font-bold text-slate-700">Classes de Tamanho (Tailwind)</label>
+                  <input 
+                    value={form.fontSize}
+                    onChange={(e) => setForm({...form, fontSize: e.target.value})}
+                    placeholder="Ex: text-4xl md:text-6xl"
+                    className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-blue-900 focus:outline-none" 
+                  />
+                </div>
+              </div>
+
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="space-y-1.5">
+                  <label className="text-sm font-bold text-slate-700">Tempo de Transição (segundos)</label>
+                  <input 
+                    type="number"
+                    value={form.transitionTime}
+                    onChange={(e) => setForm({...form, transitionTime: Number(e.target.value)})}
+                    className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-blue-900 focus:outline-none" 
+                  />
+                </div>
+                <div className="space-y-1.5">
+                  <label className="text-sm font-bold text-slate-700">Tipo de Transição</label>
+                  <select 
+                    value={form.transitionType}
+                    onChange={(e) => setForm({...form, transitionType: e.target.value})}
+                    className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-blue-900 focus:outline-none"
+                  >
+                    <option value="fade">Esmaecer (Fade)</option>
+                    <option value="slide">Deslizar (Slide)</option>
+                  </select>
                 </div>
                 <div className="space-y-1.5">
                   <label className="text-sm font-bold text-slate-700">Link do Botão</label>

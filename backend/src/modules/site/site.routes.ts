@@ -8,10 +8,42 @@ export const siteRouter = Router();
 // Banners
 siteRouter.get("/banners", async (_req, res, next) => {
   try {
-    const items = await prisma.seasonalBanner.findMany({
-      where: { active: true },
+    const now = new Date();
+    
+    // Buscar banners ativos que estão dentro do período programado
+    let items = await prisma.seasonalBanner.findMany({
+      where: {
+        active: true,
+        OR: [
+          {
+            AND: [
+              { startDate: { lte: now } },
+              { endDate: { gte: now } }
+            ]
+          },
+          {
+            AND: [
+              { startDate: null },
+              { endDate: null },
+              { isDefault: false } // Banners normais sem data
+            ]
+          }
+        ]
+      },
       orderBy: { order: "asc" }
     });
+
+    // Se não houver banners programados ativos, buscar o padrão
+    if (items.length === 0) {
+      items = await prisma.seasonalBanner.findMany({
+        where: {
+          active: true,
+          isDefault: true
+        },
+        orderBy: { order: "asc" }
+      });
+    }
+
     res.json(items);
   } catch (e) { next(e); }
 });

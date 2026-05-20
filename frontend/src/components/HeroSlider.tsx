@@ -42,13 +42,17 @@ export default function HeroSlider() {
     );
   }
 
+  const firstBanner = banners[0];
+  const effect = firstBanner?.transitionType === "slide" ? "slide" : "fade";
+  const delay = (firstBanner?.transitionTime || 5) * 1000;
+
   return (
     <section className="relative h-[500px] lg:h-[700px] w-full bg-slate-900 overflow-hidden">
       <Swiper
         modules={[Autoplay, Pagination, EffectFade]}
-        effect="fade"
+        effect={effect}
         pagination={{ clickable: true }}
-        autoplay={{ delay: 6000, disableOnInteraction: false }}
+        autoplay={{ delay: delay, disableOnInteraction: false }}
         loop={banners.length > 1}
         className="h-full w-full hero-swiper"
       >
@@ -88,7 +92,8 @@ export default function HeroSlider() {
                           initial={{ opacity: 0, y: 40 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.5, duration: 0.8 }}
-                          className="text-4xl md:text-6xl lg:text-8xl font-black leading-tight text-white mb-6"
+                          className={`font-black leading-tight text-white mb-6 ${banner.fontSize || "text-4xl md:text-6xl lg:text-8xl"}`}
+                          style={{ fontFamily: banner.fontFamily || "Inter" }}
                         >
                           {banner.title.split(' ').map((word: string, i: number) => (
                             <span key={i} className={i % 3 === 2 ? "text-red-500" : ""}>
