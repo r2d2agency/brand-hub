@@ -26,22 +26,28 @@ export default function PartnersAdmin() {
     queryFn: async () => (await api.get("/admin-cms/partners")).data,
   });
 
-  const [msg, setMsg] = useState("");
-
   const saveMutation = useMutation({
     mutationFn: async (payload: any) => {
+      const data = {
+        name: payload.name || "Novo Parceiro",
+        logo: payload.logo || "https://placehold.co/200x100?text=Logo",
+        order: typeof payload.order === 'number' ? payload.order : partners.length,
+        active: payload.active !== undefined ? payload.active : true
+      };
+
       if (payload.id) {
-        return (await api.put(`/admin-cms/partners/${payload.id}`, payload)).data;
+        return (await api.put(`/admin-cms/partners/${payload.id}`, data)).data;
       }
-      return (await api.post("/admin-cms/partners", payload)).data;
+      return (await api.post("/admin-cms/partners", data)).data;
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["admin-partners"] });
       setMsg("Parceiro salvo com sucesso!");
       setTimeout(() => setMsg(""), 3000);
     },
-    onError: () => {
-      alert("Erro ao salvar parceiro.");
+    onError: (err: any) => {
+      console.error("Erro ao salvar parceiro:", err.response?.data || err.message);
+      alert("Erro ao salvar parceiro. Verifique se o nome e a logo estão preenchidos.");
     }
   });
 
