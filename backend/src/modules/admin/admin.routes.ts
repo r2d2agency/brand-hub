@@ -227,6 +227,60 @@ adminRouter.get("/stats", async (_req, res, next) => {
   } catch (e) { next(e); }
 });
 
+// Visitor Analytics
+adminRouter.get("/analytics", async (req, res, next) => {
+  try {
+    const from = req.query.from ? new Date(String(req.query.from)) : new Date(Date.now() - 7 * 24 * 60 * 60 * 1000);
+    const to = req.query.to ? new Date(String(req.query.to)) : new Date();
+    if (isNaN(from.getTime()) || isNaN(to.getTime())) {
+      return res.status(400).json({ error: "Datas inválidas" });
+    }
+
+    const [totals, byPath, daily, topReferrers, recent] = await Promise.all([
+      prisma.$queryRawUnsafe<any[]>(
+        `SELECT COUNT(*)::int AS views, COUNT(DISTINCT "sessionId")::int AS visitors
+         FROM "PageView" WHERE "createdAt" >= $1 AND "createdAt" <= $2`,
+        from, to
+      ),
+      prisma.$queryRawUnsafe<any[]>(
+        `SELECT "path", COUNT(*)::int AS views, COUNT(DISTINCT "sessionId")::int AS visitors
+         FROM "PageView" WHERE "createdAt" >= $1 AND "createdAt" <= $2
+         GROUP BY "path" ORDER BY views DESC LIMIT 50`,
+        from, to
+      ),
+      prisma.$queryRawUnsafe<any[]>(
+        `SELECT date_trunc('day', "createdAt") AS day,
+                COUNT(*)::int AS views,
+                COUNT(DISTINCT "sessionId")::int AS visitors
+         FROM "PageView" WHERE "createdAt" >= $1 AND "createdAt" <= $2
+         GROUP BY day ORDER BY day ASC`,
+        from, to
+      ),
+      prisma.$queryRawUnsafe<any[]>(
+        `SELECT COALESCE(NULLIF("referrer", ''), 'Direto') AS referrer, COUNT(*)::int AS views
+         FROM "PageView" WHERE "createdAt" >= $1 AND "createdAt" <= $2
+         GROUP BY referrer ORDER BY views DESC LIMIT 10`,
+        from, to
+      ),
+      prisma.$queryRawUnsafe<any[]>(
+        `SELECT "path", "referrer", "userAgent", "createdAt"
+         FROM "PageView" WHERE "createdAt" >= $1 AND "createdAt" <= $2
+         ORDER BY "createdAt" DESC LIMIT 30`,
+        from, to
+      ),
+    ]);
+
+    res.json({
+      range: { from, to },
+      totals: totals[0] || { views: 0, visitors: 0 },
+      byPath,
+      daily,
+      topReferrers,
+      recent,
+    });
+  } catch (e) { next(e); }
+
+
 // Company History (Single)
 adminRouter.get("/history", async (_req, res, next) => {
   try {
