@@ -6,7 +6,7 @@ import { requireAdmin, requireAuth } from "../../middleware/auth.js";
 export const siteRouter = Router();
 
 // Banners
-siteRouter.get("/banners", async (_req, res, next) =\u003e {
+siteRouter.get("/banners", async (_req, res, next) => {
   try {
     const now = new Date();
     
