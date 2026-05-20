@@ -114,6 +114,62 @@ async function main() {
       );
     `);
 
+    console.log("Checking columns in Branding...");
+    const brandingColumns = [
+      { name: 'footerText', type: 'TEXT', default: "'Sua parceira ideal para transformar qualquer comemoração em um momento mágico. Desde o doce até a decoração, estamos com você desde 1991.'" },
+      { name: 'footerLogo', type: 'TEXT', default: 'NULL' },
+      { name: 'instagramUrl', type: 'TEXT', default: 'NULL' },
+      { name: 'facebookUrl', type: 'TEXT', default: 'NULL' },
+      { name: 'youtubeUrl', type: 'TEXT', default: 'NULL' },
+      { name: 'whatsappPhone', type: 'TEXT', default: "'5511999999999'" },
+      { name: 'whatsappMessage', type: 'TEXT', default: "'Olá! Gostaria de saber mais sobre os produtos da Basmar.'" },
+      { name: 'footerBgColor', type: 'TEXT', default: "'#0f172a'" },
+      { name: 'footerTextColor', type: 'TEXT', default: "'#ffffff'" },
+      { name: 'buttonBgColor', type: 'TEXT', default: "'#e91e63'" },
+      { name: 'buttonTextColor', type: 'TEXT', default: "'#ffffff'" }
+    ];
+
+    for (const col of brandingColumns) {
+      await prisma.$executeRawUnsafe(`
+        DO $$ 
+        BEGIN 
+          IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='Branding' AND column_name='${col.name}') THEN
+            ALTER TABLE "Branding" ADD COLUMN "${col.name}" ${col.type} DEFAULT ${col.default};
+          END IF;
+        END $$;
+      `);
+    }
+
+    console.log("Checking table NewsVideo...");
+    await prisma.$executeRawUnsafe(`
+      CREATE TABLE IF NOT EXISTS "NewsVideo" (
+        "id" TEXT NOT NULL,
+        "title" TEXT NOT NULL,
+        "youtubeUrl" TEXT NOT NULL,
+        "thumbnail" TEXT NOT NULL,
+        "tags" TEXT[] DEFAULT ARRAY[]::TEXT[],
+        "orientation" TEXT NOT NULL DEFAULT 'horizontal',
+        "active" BOOLEAN NOT NULL DEFAULT true,
+        "order" INTEGER NOT NULL DEFAULT 0,
+        "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        "updatedAt" TIMESTAMP(3) NOT NULL,
+
+        CONSTRAINT "NewsVideo_pkey" PRIMARY KEY ("id")
+      );
+    `);
+
+    console.log("Checking columns in CompanyHistory...");
+    await prisma.$executeRawUnsafe(`
+      DO $$ 
+      BEGIN 
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='CompanyHistory' AND column_name='gallery') THEN
+          ALTER TABLE "CompanyHistory" ADD COLUMN "gallery" TEXT[] DEFAULT ARRAY[]::TEXT[];
+        END IF;
+      END $$;
+    `);
+
+
+
   } catch (error) {
     console.error("Error updating database schema:", error);
   } finally {
