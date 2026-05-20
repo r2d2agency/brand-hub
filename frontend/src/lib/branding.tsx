@@ -31,6 +31,7 @@ export interface Branding {
   footerTextColor: string;
   buttonBgColor: string;
   buttonTextColor: string;
+  coursesIntro?: string | null;
 }
 
 const BrandingContext = createContext<Branding | null>(null);
