@@ -9,6 +9,7 @@ export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
+    { to: "/", label: "Home" },
     { to: "/sobre", label: "Sobre" },
     { to: "/categorias", label: "Categorias" },
     { to: "/pegue-monte", label: "Pegue e Monte" },
