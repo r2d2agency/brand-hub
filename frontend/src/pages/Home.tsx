@@ -11,6 +11,8 @@ import HeroSlider from "@/components/HeroSlider";
 import CategoryGalleryModal from "@/components/CategoryGalleryModal";
 
 export default function Home() {
+  const [selectedCategory, setSelectedCategory] = useState<any>(null);
+
   const { data: categories = [] } = useQuery({
     queryKey: ["site-categories"],
     queryFn: async () => (await api.get("/site/categories")).data,
