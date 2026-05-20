@@ -24,6 +24,9 @@ export default function Home() {
       {/* Hero Slider */}
       <HeroSlider />
 
+      {/* Promotions & Courses Block */}
+      <PromotionsAndCourses />
+
       {/* Categories Grid */}
       <section className="mx-auto max-w-7xl px-6 py-16 md:py-24">
         <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
