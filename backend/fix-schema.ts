@@ -170,6 +170,36 @@ async function main() {
         END IF;
       END $$;
     `);
+    console.log("Checking columns in PegueMonte...");
+    await prisma.$executeRawUnsafe(`
+      DO $$ 
+      BEGIN 
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='PegueMonte' AND column_name='videoUrl') THEN
+          ALTER TABLE "PegueMonte" ADD COLUMN "videoUrl" TEXT;
+        END IF;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='PegueMonte' AND column_name='theme') THEN
+          ALTER TABLE "PegueMonte" ADD COLUMN "theme" TEXT;
+        END IF;
+      END $$;
+    `);
+
+    console.log("Checking table Partner...");
+    await prisma.$executeRawUnsafe(`
+      CREATE TABLE IF NOT EXISTS "Partner" (
+        "id" TEXT NOT NULL,
+        "name" TEXT NOT NULL,
+        "logo" TEXT NOT NULL,
+        "description" TEXT,
+        "gallery" TEXT[] DEFAULT ARRAY[]::TEXT[],
+        "active" BOOLEAN NOT NULL DEFAULT true,
+        "showInHome" BOOLEAN NOT NULL DEFAULT true,
+        "order" INTEGER NOT NULL DEFAULT 0,
+        "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        "updatedAt" TIMESTAMP(3) NOT NULL,
+
+        CONSTRAINT "Partner_pkey" PRIMARY KEY ("id")
+      );
+    `);
 
 
 
