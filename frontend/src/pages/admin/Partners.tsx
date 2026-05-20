@@ -58,7 +58,6 @@ export default function PartnersAdmin() {
       logo: "",
       order: partners.length
     };
-    // We add locally and then user saves
     saveMutation.mutate(newPartner);
   };
 
@@ -69,13 +68,13 @@ export default function PartnersAdmin() {
   };
 
   const updatePartner = (index: number, field: keyof Partner, value: any) => {
-    const newPartners = [...partners];
-    newPartners[index] = { ...newPartners[index], [field]: value };
-    saveMutation.mutate(newPartners);
+    const partner = partners[index];
+    if (!partner) return;
+    saveMutation.mutate({ ...partner, [field]: value });
   };
 
   const moveItem = (index: number, direction: 'up' | 'down') => {
-    const newPartners = [...partners];
+    const newPartners = [...partners].sort((a, b) => (a.order || 0) - (b.order || 0));
     const targetIndex = direction === 'up' ? index - 1 : index + 1;
     if (targetIndex < 0 || targetIndex >= newPartners.length) return;
 
@@ -83,7 +82,6 @@ export default function PartnersAdmin() {
     newPartners[index] = newPartners[targetIndex];
     newPartners[targetIndex] = temp;
 
-    // Update display orders in sequence
     Promise.all(newPartners.map((p, i) => 
       api.put(`/admin-cms/partners/${p.id}`, { ...p, order: i })
     )).then(() => {
@@ -113,14 +111,14 @@ export default function PartnersAdmin() {
       </div>
 
       <div className="grid gap-6">
-        {partners.sort((a, b) => a.displayOrder - b.displayOrder).map((partner, index) => (
+        {[...partners].sort((a, b) => (a.order || 0) - (b.order || 0)).map((partner, index) => (
           <div key={partner.id || index} className="group relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-all">
             <div className="flex flex-col md:flex-row gap-6 items-center">
               <div className="w-full md:w-48">
                 <ImageUpload 
                   label="Logo"
-                  value={partner.logoUrl}
-                  onChange={url => updatePartner(index, 'logoUrl', url)}
+                  value={partner.logo}
+                  onChange={url => updatePartner(index, 'logo', url)}
                   aspectClass="aspect-video"
                 />
               </div>
@@ -129,8 +127,8 @@ export default function PartnersAdmin() {
                 <div className="space-y-1.5">
                   <label className="text-xs font-black uppercase tracking-widest text-slate-500">Nome da Marca</label>
                   <input 
-                    value={partner.name}
-                    onChange={e => updatePartner(index, 'name', e.target.value)}
+                    defaultValue={partner.name}
+                    onBlur={e => updatePartner(index, 'name', e.target.value)}
                     placeholder="Ex: Nestlé"
                     className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-blue-900 focus:outline-none" 
                   />
