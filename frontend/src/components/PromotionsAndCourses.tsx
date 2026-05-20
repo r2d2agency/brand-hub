@@ -126,57 +126,51 @@ export default function PromotionsAndCourses() {
             <div className="flex items-center gap-2 text-blue-600 font-black uppercase tracking-widest text-xs mb-2">
               <Sparkles size={14} className="fill-blue-600" /> Conhecimento
             </div>
-            <h2 className="text-3xl font-black text-blue-900 mb-8">Aprenda conosco</h2>
+            <h2 className="text-3xl font-black text-blue-900 mb-3">Aprenda conosco</h2>
+            <p className="text-sm text-slate-500 font-medium mb-6 leading-relaxed">
+              {coursesIntro}
+            </p>
 
-            {featuredCourse ? (
-              <div className="flex-1 relative rounded-3xl bg-blue-900 overflow-hidden group shadow-xl">
-                <div className="absolute inset-0">
-                  <img 
-                    src={featuredCourse.coverImage || "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=2070&auto=format&fit=crop"} 
-                    alt={featuredCourse.title} 
-                    className="h-full w-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700" 
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/40 to-transparent" />
-                </div>
-                
-                <div className="relative h-full flex flex-col justify-end p-8 text-white">
-                  <div className="inline-block self-start rounded-lg bg-red-600 px-3 py-1 text-[10px] font-bold uppercase tracking-widest mb-4">
-                    Próximo Curso
-                  </div>
-                  <h3 className="text-2xl font-black mb-4 leading-tight">{featuredCourse.title}</h3>
-                  
-                  <div className="space-y-3 mb-8 text-sm font-medium text-blue-100">
-                    <div className="flex items-center gap-2">
-                      <Calendar size={16} className="text-red-500" />
-                      {featuredCourse.date ? new Date(featuredCourse.date).toLocaleDateString('pt-BR') : "Em breve"}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <User size={16} className="text-red-500" />
-                      {featuredCourse.instructor}
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <MapPin size={16} className="text-red-500" />
-                      {featuredCourse.location}
-                    </div>
-                  </div>
-
-                  <a 
-                    href={`https://wa.me/${branding?.whatsappPhone?.replace(/\D/g, '') || '5511999999999'}?text=${encodeURIComponent(featuredCourse.whatsappMsg || `Olá! Tenho interesse no curso: ${featuredCourse.title}`)}`}
-                    target="_blank"
-                    className="w-full rounded-2xl bg-white py-4 text-center text-sm font-black uppercase tracking-widest text-blue-900 hover:bg-red-600 hover:text-white transition-all shadow-lg"
-                  >
-                    Quero me inscrever
-                  </a>
+            {homeCourses.length > 1 ? (
+              <div className="flex-1 relative group">
+                <Swiper
+                  modules={[Autoplay, SwiperNavigation]}
+                  spaceBetween={16}
+                  slidesPerView={1}
+                  navigation={{ prevEl: ".course-prev", nextEl: ".course-next" }}
+                  autoplay={{ delay: 5000, disableOnInteraction: false }}
+                  loop={homeCourses.length > 1}
+                  className="h-full rounded-3xl"
+                >
+                  {homeCourses.map((course: any) => (
+                    <SwiperSlide key={course.id}>
+                      <CourseCard course={course} branding={branding} />
+                    </SwiperSlide>
+                  ))}
+                </Swiper>
+                <button className="course-prev absolute top-1/2 -translate-y-1/2 left-3 z-10 p-2 rounded-full bg-white/90 text-blue-900 shadow-lg hover:bg-red-600 hover:text-white transition-all opacity-0 group-hover:opacity-100">
+                  <ChevronLeft size={18} />
+                </button>
+                <button className="course-next absolute top-1/2 -translate-y-1/2 right-3 z-10 p-2 rounded-full bg-white/90 text-blue-900 shadow-lg hover:bg-red-600 hover:text-white transition-all opacity-0 group-hover:opacity-100">
+                  <ChevronRight size={18} />
+                </button>
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 px-3 py-1 rounded-full bg-white/90 text-[10px] font-black text-blue-900 shadow">
+                  {homeCourses.length} cursos
                 </div>
               </div>
+            ) : featuredCourse ? (
+              <div className="flex-1">
+                <CourseCard course={featuredCourse} branding={branding} />
+              </div>
             ) : (
-              <div className="flex-1 rounded-3xl bg-slate-100 flex items-center justify-center border-2 border-dashed border-slate-200">
+              <div className="flex-1 rounded-3xl bg-slate-100 flex items-center justify-center border-2 border-dashed border-slate-200 min-h-[300px]">
                 <p className="text-slate-400 font-bold uppercase tracking-widest text-xs">Novos cursos em breve</p>
               </div>
             )}
           </div>
         </div>
       </div>
+
 
       {/* PROMO MODAL */}
       <AnimatePresence>
