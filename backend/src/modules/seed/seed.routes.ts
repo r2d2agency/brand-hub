@@ -1,11 +1,28 @@
 import { Router } from "express";
 import { prisma } from "../../prisma.js";
+import { exec } from "child_process";
+import { promisify } from "util";
+
+const execAsync = promisify(exec);
 
 export const seedRouter = Router();
 
 seedRouter.post("/", async (req, res, next) => {
   try {
     console.log('Populando banco de dados via endpoint...');
+
+    // Tentativa de rodar db push para garantir que as tabelas existam
+    try {
+      console.log('Tentando sincronizar tabelas com db push...');
+      // Note: Em ambientes serverless isso pode falhar dependendo das restrições
+      // No Easypanel (Docker), deve funcionar se o npx estiver disponível
+      await execAsync("npx prisma db push --accept-data-loss");
+      console.log('Tabelas sincronizadas com sucesso.');
+    } catch (dbErr) {
+      console.error('Erro ao rodar db push:', dbErr);
+      // Continuamos mesmo se falhar, pois o erro P2021 pode ser resolvido se o Easypanel 
+      // rodar as migrações que criamos manualmente agora.
+    }
 
     // Categorias
     const categories = [
@@ -80,3 +97,4 @@ seedRouter.post("/", async (req, res, next) => {
     next(e);
   }
 });
+
