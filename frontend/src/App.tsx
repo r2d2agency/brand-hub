@@ -23,7 +23,9 @@ import PegueMonteDetails from "./pages/PegueMonteDetails";
 import PegueMonteAdmin from "./pages/admin/PegueMonte";
 import CoursesAdmin from "./pages/admin/Courses";
 import SeoAdmin from "./pages/admin/Seo";
+import Analytics from "./pages/admin/Analytics";
 import Courses from "./pages/Courses";
+
 import { ProtectedRoute } from "./lib/auth";
 import PublicLayout from "./components/PublicLayout";
 
