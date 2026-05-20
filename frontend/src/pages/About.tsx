@@ -86,7 +86,7 @@ export default function About() {
       )}
 
       {/* Stores */}
-      <section className="mx-auto max-w-7xl px-6 py-16 md:py-24">
+      <section id="lojas" className="mx-auto max-w-7xl px-6 py-16 md:py-24">
         <h2 className="text-center text-3xl md:text-5xl font-black text-blue-900 mb-4">Nossas Unidades</h2>
         <p className="text-center text-slate-500 font-medium mb-12 max-w-2xl mx-auto">
           Encontre a Basmar mais próxima de você e venha transformar sua festa em um momento inesquecível.
