@@ -229,8 +229,22 @@ model Testimonial {
 
 model WhatsAppClick {
   id        String   @id @default(cuid())
-  type      String   // category, kit, course, general
+  type      String   // category, kit, course, general, promotion
   relatedId String?  // ID of the item clicked
   origin    String?  // page URL
   createdAt DateTime @default(now())
+}
+
+model Promotion {
+  id          String   @id @default(cuid())
+  title       String
+  image       String
+  price       String?
+  oldPrice    String?
+  description String?
+  whatsappMsg String?
+  active      Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
