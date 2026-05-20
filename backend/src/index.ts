@@ -18,12 +18,13 @@ app.use(
       
       const allowedOrigins = env.CORS_ORIGIN.split(",").map((s) => s.trim());
       
-      // Permite se a origem estiver na lista ou se não houver origem (ex: apps mobile, curl)
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(null, false);
+      const isAllowed = !origin || allowedOrigins.includes(origin);
+      
+      if (!isAllowed && origin) {
+        console.warn(`[CORS] Bloqueado: ${origin}. Permitidos: ${allowedOrigins.join(", ")}`);
       }
+      
+      callback(null, isAllowed);
     },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
