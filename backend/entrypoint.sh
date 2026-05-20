@@ -14,6 +14,9 @@ else
   npx prisma migrate deploy
 fi
 
+echo "🔧 Executando fix-schema para garantir colunas extras..."
+npx tsx fix-schema.ts || echo "⚠️ Falha ao rodar fix-schema."
+
 echo "🌱 Rodando seed..."
 npx tsx prisma/seed.ts
 
