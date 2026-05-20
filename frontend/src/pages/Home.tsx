@@ -26,7 +26,11 @@ export default function Home() {
   });
 
   return (
-    <div className="bg-slate-50">
+    <div className="bg-slate-50 overflow-hidden">
+      {/* Decorative Blobs */}
+      <div className="fixed top-0 right-0 w-[500px] h-[500px] bg-red-100/30 rounded-full blur-3xl -z-10 translate-x-1/2 -translate-y-1/2" />
+      <div className="fixed bottom-0 left-0 w-[600px] h-[600px] bg-blue-100/20 rounded-full blur-3xl -z-10 -translate-x-1/2 translate-y-1/2" />
+
       {/* Hero Slider */}
       <HeroSlider />
 
