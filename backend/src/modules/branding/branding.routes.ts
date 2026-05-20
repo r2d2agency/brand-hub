@@ -17,6 +17,17 @@ const updateSchema = z.object({
   foregroundColor: z.string().optional(),
   fontHeading: z.string().optional(),
   fontBody: z.string().optional(),
+  footerText: z.string().nullish(),
+  footerLogo: z.string().nullish(),
+  instagramUrl: z.string().nullish(),
+  facebookUrl: z.string().nullish(),
+  youtubeUrl: z.string().nullish(),
+  whatsappPhone: z.string().nullish(),
+  whatsappMessage: z.string().nullish(),
+  footerBgColor: z.string().optional(),
+  footerTextColor: z.string().optional(),
+  buttonBgColor: z.string().optional(),
+  buttonTextColor: z.string().optional(),
 });
 
 brandingRouter.get("/", async (_req, res, next) => {
