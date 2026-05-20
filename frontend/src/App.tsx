@@ -35,7 +35,7 @@ export default function App() {
         <Route path="/categorias" element={<Categories />} />
         <Route path="/pegue-monte" element={<Placeholder title="Pegue e Monte" />} />
         <Route path="/cursos" element={<Placeholder title="Cursos" />} />
-        <Route path="/lojas" element={<About />} />
+        <Route path="/lojas" element={<Stores />} />
       </Route>
 
       <Route path="/login" element={<Login />} />
