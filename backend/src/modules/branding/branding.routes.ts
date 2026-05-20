@@ -8,8 +8,8 @@ export const brandingRouter = Router();
 const updateSchema = z.object({
   siteName: z.string().min(1).optional(),
   tagline: z.string().nullish(),
-  logoUrl: z.string().url().nullish(),
-  faviconUrl: z.string().url().nullish(),
+  logoUrl: z.string().nullish(),
+  faviconUrl: z.string().nullish(),
   primaryColor: z.string().optional(),
   secondaryColor: z.string().optional(),
   accentColor: z.string().optional(),
