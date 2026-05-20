@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/api";
+import { useBranding } from "@/lib/branding";
 import { 
   MapPin, 
   Store,
