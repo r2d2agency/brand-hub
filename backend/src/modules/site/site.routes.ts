@@ -112,6 +112,17 @@ siteRouter.get("/stores", async (_req, res, next) => {
   } catch (e) { next(e); }
 });
 
+// Promotions
+siteRouter.get("/promotions", async (_req, res, next) => {
+  try {
+    const items = await prisma.promotion.findMany({
+      where: { active: true },
+      orderBy: { order: "asc" }
+    });
+    res.json(items);
+  } catch (e) { next(e); }
+});
+
 // FAQ
 siteRouter.get("/faq", async (_req, res, next) => {
   try {
