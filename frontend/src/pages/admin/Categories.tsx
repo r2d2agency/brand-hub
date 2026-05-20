@@ -276,7 +276,8 @@ export default function CategoriesAdmin() {
                 </button>
                 <button 
                   type="submit"
-                  className="flex items-center gap-2 rounded-xl bg-blue-900 px-8 py-2.5 text-sm font-bold text-white hover:bg-blue-800 transition-all shadow-lg shadow-blue-900/20"
+                  className="flex items-center gap-2 rounded-xl px-8 py-2.5 text-sm font-bold text-white transition-all shadow-lg"
+                  style={{ backgroundColor: branding?.buttonBgColor || '#1e3a8a', color: branding?.buttonTextColor || '#ffffff' }}
                 >
                   <Save size={18} />
                   Salvar Categoria
