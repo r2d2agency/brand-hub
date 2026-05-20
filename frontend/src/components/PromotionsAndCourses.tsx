@@ -159,7 +159,7 @@ export default function PromotionsAndCourses() {
                   </div>
 
                   <a 
-                    href={`https://wa.me/5511999999999?text=${encodeURIComponent(featuredCourse.whatsappMsg || `Olá! Tenho interesse no curso: ${featuredCourse.title}`)}`}
+                    href={`https://wa.me/${branding?.whatsappPhone?.replace(/\D/g, '') || '5511999999999'}?text=${encodeURIComponent(featuredCourse.whatsappMsg || `Olá! Tenho interesse no curso: ${featuredCourse.title}`)}`}
                     target="_blank"
                     className="w-full rounded-2xl bg-white py-4 text-center text-sm font-black uppercase tracking-widest text-blue-900 hover:bg-red-600 hover:text-white transition-all shadow-lg"
                   >
