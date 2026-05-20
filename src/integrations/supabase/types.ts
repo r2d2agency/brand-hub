@@ -134,29 +134,41 @@ export type Database = {
         }
         Relationships: []
       }
-      Partner: {
+      partner: {
         Row: {
+          active: boolean | null
           created_at: string
-          displayOrder: number
+          description: string | null
+          gallery: string[] | null
           id: string
-          logoUrl: string
+          logo: string
           name: string
+          order: number
+          showInHome: boolean | null
           updated_at: string
         }
         Insert: {
+          active?: boolean | null
           created_at?: string
-          displayOrder?: number
+          description?: string | null
+          gallery?: string[] | null
           id?: string
-          logoUrl: string
+          logo: string
           name: string
+          order?: number
+          showInHome?: boolean | null
           updated_at?: string
         }
         Update: {
+          active?: boolean | null
           created_at?: string
-          displayOrder?: number
+          description?: string | null
+          gallery?: string[] | null
           id?: string
-          logoUrl?: string
+          logo?: string
           name?: string
+          order?: number
+          showInHome?: boolean | null
           updated_at?: string
         }
         Relationships: []
