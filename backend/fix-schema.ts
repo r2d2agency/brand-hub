@@ -158,6 +158,17 @@ async function main() {
       );
     `);
 
+    console.log("Checking columns in CompanyHistory...");
+    await prisma.$executeRawUnsafe(`
+      DO $$ 
+      BEGIN 
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='CompanyHistory' AND column_name='gallery') THEN
+          ALTER TABLE "CompanyHistory" ADD COLUMN "gallery" TEXT[] DEFAULT ARRAY[]::TEXT[];
+        END IF;
+      END $$;
+    `);
+
+
 
   } catch (error) {
     console.error("Error updating database schema:", error);
