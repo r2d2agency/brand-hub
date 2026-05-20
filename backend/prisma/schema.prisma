@@ -36,6 +36,24 @@ model Branding {
   foregroundColor String   @default("#0f172a")
   fontHeading     String   @default("Inter")
   fontBody        String   @default("Inter")
+  
+  // Footer & Social
+  footerText      String?  @default("Sua parceira ideal para transformar qualquer comemoração em um momento mágico. Desde o doce até a decoração, estamos com você desde 1991.")
+  footerLogo      String?
+  instagramUrl    String?
+  facebookUrl     String?
+  youtubeUrl      String?
+  
+  // WhatsApp Floating
+  whatsappPhone   String?  @default("5511999999999")
+  whatsappMessage String?  @default("Olá! Gostaria de saber mais sobre os produtos da Basmar.")
+  
+  // UI Colors
+  footerBgColor   String   @default("#0f172a")
+  footerTextColor String   @default("#ffffff")
+  buttonBgColor   String   @default("#e91e63")
+  buttonTextColor String   @default("#ffffff")
+  
   updatedAt       DateTime @updatedAt
 }
 
