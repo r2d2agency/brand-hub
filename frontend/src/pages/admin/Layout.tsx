@@ -17,7 +17,8 @@ import {
   Briefcase,
   PartyPopper,
   GraduationCap,
-  Search
+  Search,
+  BarChart3
 } from "lucide-react";
 
 export default function AdminLayout() {
