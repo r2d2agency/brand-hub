@@ -117,6 +117,30 @@ export default function About() {
         </section>
       )}
 
+      {/* Gallery Section */}
+      {history?.gallery && history.gallery.length > 0 && (
+        <section className="bg-slate-50 py-16 md:py-24">
+          <div className="mx-auto max-w-7xl px-6">
+            <div className="mb-12 text-center">
+              <div className="text-xs font-black uppercase tracking-widest text-red-600 mb-2">Momentos Basmar</div>
+              <h2 className="text-3xl md:text-4xl font-black text-blue-900">Nossa Galeria</h2>
+            </div>
+            
+            <div className="grid gap-4 grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+              {history.gallery.map((img: string, idx: number) => (
+                <div key={idx} className="group relative aspect-square overflow-hidden rounded-3xl bg-white shadow-md transition-all hover:shadow-xl">
+                  <img 
+                    src={img} 
+                    alt={`Galeria ${idx}`} 
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                  />
+                  <div className="absolute inset-0 bg-blue-900/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 }
