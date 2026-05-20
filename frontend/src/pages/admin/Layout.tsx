@@ -16,7 +16,8 @@ import {
   Video,
   Briefcase,
   PartyPopper,
-  GraduationCap
+  GraduationCap,
+  Search
 } from "lucide-react";
 
 export default function AdminLayout() {
@@ -34,6 +35,7 @@ export default function AdminLayout() {
     { to: "/admin/stores", label: "Lojas", icon: Store, role: "ADMIN" },
     { to: "/admin/history", label: "História", icon: History, role: "ADMIN" },
     { to: "/admin/branding", label: "Branding", icon: Palette, role: "ADMIN" },
+    { to: "/admin/seo", label: "SEO & Analytics", icon: Search, role: "ADMIN" },
     { to: "/admin/pages", label: "Páginas", icon: Files, role: "ADMIN" },
     { to: "/admin/modules", label: "Módulos", icon: Settings, role: "ADMIN" },
     { to: "/admin/users", label: "Usuários", icon: Users, role: "ADMIN" },
