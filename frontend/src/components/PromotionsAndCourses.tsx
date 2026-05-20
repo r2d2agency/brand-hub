@@ -220,7 +220,7 @@ export default function PromotionsAndCourses() {
                   </div>
                   {selectedPromo.oldPrice && (
                     <div className="text-slate-400 line-through font-bold text-xl decoration-2 decoration-red-600/30">
-                      R$ {selectedPromotion.oldPrice}
+                      R$ {selectedPromo.oldPrice}
                     </div>
                   )}
                 </div>
