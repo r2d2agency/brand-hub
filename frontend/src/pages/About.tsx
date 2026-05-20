@@ -5,7 +5,10 @@ import {
   ChevronRight, 
   Clock, 
   MapPin, 
-  Info
+  Info,
+  Store,
+  MessageCircle,
+  Navigation
 } from "lucide-react";
 
 export default function About() {
