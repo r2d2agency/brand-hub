@@ -27,7 +27,7 @@ services:
       ADMIN_NAME: Administrador
     ports:
       - "3333:3333"
-    command: sh -c "npx prisma migrate deploy && npx tsx prisma/seed.ts && node dist/index.js"
+    command: ./entrypoint.sh
 
   frontend:
     build:
