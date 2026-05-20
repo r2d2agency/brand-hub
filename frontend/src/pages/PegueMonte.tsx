@@ -42,8 +42,8 @@ export default function PegueMonte() {
       </section>
 
       {/* Grid */}
-      <section className="mx-auto max-w-7xl px-6 py-16 md:py-24">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <section className="mx-auto max-w-7xl px-6 py-12 md:py-20">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {kits.map((kit: any) => (
             <Link 
               key={kit.id} 
@@ -59,28 +59,28 @@ export default function PegueMonte() {
                   />
                 ) : (
                   <div className="flex h-full w-full items-center justify-center bg-blue-50 text-blue-900/10">
-                    <PartyPopper size={80} />
+                    <PartyPopper size={60} />
                   </div>
                 )}
                 
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-                  <span className="bg-white text-blue-900 px-6 py-2 rounded-full text-xs font-black uppercase tracking-widest shadow-lg flex items-center gap-2">
-                    Ver detalhes <ChevronRight size={16} />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                  <span className="bg-white/90 backdrop-blur-md text-blue-900 px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg flex items-center gap-2">
+                    Explorar <ChevronRight size={14} />
                   </span>
                 </div>
 
                 {kit.theme && (
-                  <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-md text-blue-900 text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-sm">
+                  <div className="absolute top-5 left-5 bg-white/90 backdrop-blur-md text-blue-900 text-[9px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-sm">
                     {kit.theme}
                   </div>
                 )}
               </div>
-              <div className="p-10">
-                <h3 className="text-2xl font-black text-blue-900 group-hover:text-red-600 transition-colors leading-tight">
+              <div className="p-8">
+                <h3 className="text-lg font-black text-blue-900 group-hover:text-red-600 transition-colors leading-tight line-clamp-1">
                   {kit.name}
                 </h3>
-                <p className="mt-4 text-sm text-slate-500 font-medium line-clamp-2 leading-relaxed">
-                  {kit.description || "Transforme sua celebração com este kit exclusivo pensado em cada detalhe."}
+                <p className="mt-2 text-xs text-slate-400 font-bold uppercase tracking-widest">
+                  Ver Coleção
                 </p>
               </div>
             </Link>

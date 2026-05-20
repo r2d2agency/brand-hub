@@ -141,8 +141,8 @@ export default function PegueMonteAdmin() {
               </div>
 
               <div className="flex-1 space-y-6">
-                <div className="grid gap-4 md:grid-cols-2">
-                  <div className="space-y-1.5">
+                <div className="grid gap-4 md:grid-cols-3">
+                  <div className="md:col-span-1 space-y-1.5">
                     <label className="text-xs font-black uppercase tracking-widest text-slate-500">Nome</label>
                     <input 
                       defaultValue={kit.name}
@@ -150,12 +150,21 @@ export default function PegueMonteAdmin() {
                       className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-blue-900 focus:outline-none" 
                     />
                   </div>
-                  <div className="space-y-1.5">
+                  <div className="md:col-span-1 space-y-1.5">
                     <label className="text-xs font-black uppercase tracking-widest text-slate-500">Tema</label>
                     <input 
                       defaultValue={kit.theme}
                       onBlur={e => updateKit(kit.id, { theme: e.target.value })}
-                      placeholder="Ex: Realeza, Safari..."
+                      placeholder="Ex: Realeza..."
+                      className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-blue-900 focus:outline-none" 
+                    />
+                  </div>
+                  <div className="md:col-span-1 space-y-1.5">
+                    <label className="text-xs font-black uppercase tracking-widest text-slate-500">YouTube Video URL</label>
+                    <input 
+                      defaultValue={kit.videoUrl}
+                      onBlur={e => updateKit(kit.id, { videoUrl: e.target.value })}
+                      placeholder="https://youtube.com/..."
                       className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-blue-900 focus:outline-none" 
                     />
                   </div>
