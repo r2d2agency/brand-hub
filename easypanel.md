@@ -17,8 +17,11 @@ Tudo é deployado a partir do seu repositório GitHub.
 1. **Create Service → App** → conecte seu repositório GitHub
 2. **Source**:
    - Branch: `main`
-   - Build path: `/backend`
-3. **Build**: selecione **Dockerfile** (já existe em `backend/Dockerfile`)
+   - Build path: `/backend`  <-- Contexto da pasta
+3. **Build**: 
+   - Selecione **Dockerfile**
+   - Dockerfile path: `Dockerfile`  <-- Caminho relativo ao Build Path acima
+
 4. **Environment**:
    ```
    DATABASE_URL=postgresql://postgres:SENHA@app_app-db:5432/postgres
