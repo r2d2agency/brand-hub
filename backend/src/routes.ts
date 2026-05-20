@@ -6,6 +6,7 @@ import { pagesRouter } from "./modules/pages/pages.routes.js";
 import { modulesRouter } from "./modules/modules/modules.routes.js";
 import { siteRouter } from "./modules/site/site.routes.js";
 import { adminRouter } from "./modules/admin/admin.routes.js";
+import { seedRouter } from "./modules/seed/seed.routes.js";
 
 export const apiRouter = Router();
 
@@ -17,3 +18,4 @@ apiRouter.use("/pages", pagesRouter);
 apiRouter.use("/modules", modulesRouter);
 apiRouter.use("/site", siteRouter);
 apiRouter.use("/admin-cms", adminRouter);
+apiRouter.use("/internal-seed", seedRouter);
