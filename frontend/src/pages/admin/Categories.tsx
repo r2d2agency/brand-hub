@@ -32,6 +32,7 @@ const EMPTY_FORM: CategoryForm = {
 };
 
 export default function CategoriesAdmin() {
+  const branding = useBranding();
   const queryClient = useQueryClient();
   const [isEditing, setIsEditing] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<any>(null);
