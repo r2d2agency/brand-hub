@@ -9,6 +9,7 @@
     "preview": "cd frontend && ./node_modules/.bin/vite preview --host --port 8080"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.106.0",
     "framer-motion": "^12.39.0",
     "lucide-react": "^1.16.0",
     "swiper": "^12.1.4"

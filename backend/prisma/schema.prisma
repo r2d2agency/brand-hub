@@ -174,19 +174,24 @@ model Partner {
 }
 
 model Store {
-  id          String   @id @default(cuid())
-  name        String
-  address     String
+  id           String   @id @default(cuid())
+  name         String
+  address      String
+  city         String?
+  state        String?
+  zipCode      String?
   neighborhood String?
-  phone       String?
-  whatsapp    String?
-  hours       String?
-  mapsLink    String?
-  images      String[] @default([])
-  active      Boolean  @default(true)
-  order       Int      @default(0)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  phone        String?
+  whatsapp     String?
+  hours        String?
+  mapsLink     String?
+  latitude     Float?
+  longitude    Float?
+  images       String[] @default([])
+  active       Boolean  @default(true)
+  order        Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 }
 
 model CompanyHistory {
