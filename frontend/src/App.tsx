@@ -50,7 +50,7 @@ export default function App() {
         <Route path="users" element={<UsersAdmin />} />
         <Route path="banners" element={<BannersAdmin />} />
         <Route path="categories" element={<Placeholder title="Categorias" />} />
-        <Route path="stores" element={<Placeholder title="Lojas" />} />
+        <Route path="stores" element={<StoresAdmin />} />
         <Route path="history" element={<Placeholder title="História" />} />
       </Route>
 
