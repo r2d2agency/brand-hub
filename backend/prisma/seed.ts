@@ -128,6 +128,8 @@ async function main() {
   ]
 
   for (const promo of promos) {
+    // Usar upsert ou verificar existência se possível, mas como Promotion não tem campo único óbvio além do id cuid,
+    // vamos manter o create para seguir o padrão do arquivo original, ou deletar antes para evitar duplicatas em re-seeds
     await prisma.promotion.create({ data: promo })
   }
 
