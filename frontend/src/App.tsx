@@ -24,6 +24,7 @@ import PegueMonteAdmin from "./pages/admin/PegueMonte";
 import CoursesAdmin from "./pages/admin/Courses";
 import Courses from "./pages/Courses";
 import { ProtectedRoute } from "./lib/auth";
+import PublicLayout from "./components/PublicLayout";
 
 // Placeholder components for new routes
 const Placeholder = ({ title }: { title: string }) => (
