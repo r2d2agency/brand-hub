@@ -38,10 +38,10 @@ export default function Home() {
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {categories.length > 0 ? categories.map((cat: any) => (
-            <Link 
+            <button 
               key={cat.id} 
-              to={`/categoria/${cat.slug}`}
-              className="group relative overflow-hidden rounded-3xl bg-white shadow-md border-2 border-transparent hover:border-red-600 hover:shadow-2xl transition-all"
+              onClick={() => setSelectedCategory(cat)}
+              className="group text-left relative overflow-hidden rounded-3xl bg-white shadow-md border-2 border-transparent hover:border-red-600 hover:shadow-2xl transition-all"
             >
               <div className="h-48 overflow-hidden bg-blue-50">
                 {cat.coverImage && (
