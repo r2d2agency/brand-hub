@@ -102,7 +102,8 @@ export default function CategoriesAdmin() {
         </div>
         <button 
           onClick={openNew}
-          className="flex items-center gap-2 rounded-lg bg-blue-900 px-4 py-2 text-sm font-bold text-white hover:bg-blue-800 transition-colors"
+          className="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-bold text-white transition-colors"
+          style={{ backgroundColor: branding?.buttonBgColor || '#1e3a8a' }}
         >
           <Plus size={18} />
           Nova Categoria
