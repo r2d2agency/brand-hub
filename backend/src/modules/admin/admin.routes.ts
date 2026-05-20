@@ -151,6 +151,7 @@ bannerCrud.post("/reorder", async (req, res, next) => {
 adminRouter.use("/banners", bannerCrud);
 adminRouter.use("/categories", createCrud("productCategory", categorySchema));
 adminRouter.use("/stores", createCrud("store", storeSchema));
+adminRouter.use("/promotions", createCrud("promotion", promotionSchema));
 
 // Dashboard Stats
 adminRouter.get("/stats", async (_req, res, next) => {
