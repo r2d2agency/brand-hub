@@ -32,6 +32,16 @@ const updateSchema = z.object({
   buttonBgColor: z.string().optional(),
   buttonTextColor: z.string().optional(),
   coursesIntro: z.string().nullish(),
+  seoTitle: z.string().nullish(),
+  seoDescription: z.string().nullish(),
+  seoKeywords: z.string().nullish(),
+  seoOgImage: z.string().nullish(),
+  seoAuthor: z.string().nullish(),
+  gtmId: z.string().nullish(),
+  gaId: z.string().nullish(),
+  facebookPixelId: z.string().nullish(),
+  headCode: z.string().nullish(),
+  bodyCode: z.string().nullish(),
 });
 
 brandingRouter.get("/", async (_req, res, next) => {
