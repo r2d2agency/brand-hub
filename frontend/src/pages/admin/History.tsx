@@ -224,6 +224,7 @@ export default function HistoryAdmin() {
               <h2 className="font-black text-blue-900 uppercase tracking-wider text-sm">Imagem de Destaque</h2>
             </div>
             <ImageUpload 
+              label="Imagem Principal"
               value={form.mainImage}
               onChange={url => setForm({...form, mainImage: url})}
               aspectClass="aspect-square"
