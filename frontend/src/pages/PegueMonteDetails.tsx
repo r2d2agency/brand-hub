@@ -137,5 +137,4 @@ export default function PegueMonteDetails() {
       </div>
     </div>
   );
-  );
 }
