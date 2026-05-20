@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  role         Role     @default(EDITOR)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Branding {
+  id              String   @id @default("singleton")
+  siteName        String   @default("Meu Site")
+  tagline         String?
+  logoUrl         String?
+  faviconUrl      String?
+  primaryColor    String   @default("#0f172a")
+  secondaryColor  String   @default("#64748b")
+  accentColor     String   @default("#3b82f6")
+  backgroundColor String   @default("#ffffff")
+  foregroundColor String   @default("#0f172a")
+  fontHeading     String   @default("Inter")
+  fontBody        String   @default("Inter")
+  updatedAt       DateTime @updatedAt
+}
+
+model Page {
+  id             String   @id @default(cuid())
+  slug           String   @unique
+  title          String
+  content        Json     @default("{}")
+  published      Boolean  @default(true)
+  seoTitle       String?
+  seoDescription String?
+  order          Int      @default(0)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Module {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  title       String
+  description String?
+  icon        String?
+  enabled     Boolean  @default(true)
+  config      Json     @default("{}")
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
