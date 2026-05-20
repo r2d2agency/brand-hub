@@ -11,7 +11,8 @@ import {
   Settings,
   History,
   LogOut,
-  ExternalLink
+  ExternalLink,
+  Tag
 } from "lucide-react";
 
 export default function AdminLayout() {
@@ -20,6 +21,7 @@ export default function AdminLayout() {
   const links = [
     { to: "/admin", label: "Dashboard", icon: LayoutDashboard, end: true, role: "ANY" },
     { to: "/admin/banners", label: "Banners", icon: ImageIcon, role: "ADMIN" },
+    { to: "/admin/promotions", label: "Promoções", icon: Tag, role: "ADMIN" },
     { to: "/admin/categories", label: "Categorias", icon: Grid2X2, role: "ADMIN" },
     { to: "/admin/stores", label: "Lojas", icon: Store, role: "ADMIN" },
     { to: "/admin/history", label: "História", icon: History, role: "ADMIN" },

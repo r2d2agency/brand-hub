@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import HeroSlider from "@/components/HeroSlider";
 import CategoryGalleryModal from "@/components/CategoryGalleryModal";
+import PromotionsAndCourses from "@/components/PromotionsAndCourses";
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<any>(null);
@@ -22,6 +23,9 @@ export default function Home() {
     <div className="bg-slate-50">
       {/* Hero Slider */}
       <HeroSlider />
+
+      {/* Promotions & Courses Block */}
+      <PromotionsAndCourses />
 
       {/* Categories Grid */}
       <section className="mx-auto max-w-7xl px-6 py-16 md:py-24">

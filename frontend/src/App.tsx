@@ -12,6 +12,7 @@ import BannersAdmin from "./pages/admin/Banners";
 import UsersAdmin from "./pages/admin/Users";
 import StoresAdmin from "./pages/admin/Stores";
 import CategoriesAdmin from "./pages/admin/Categories";
+import PromotionsAdmin from "./pages/admin/Promotions";
 import { ProtectedRoute } from "./lib/auth";
 import PublicLayout from "./components/PublicLayout";
 
@@ -52,6 +53,7 @@ export default function App() {
         <Route path="banners" element={<BannersAdmin />} />
         <Route path="categories" element={<CategoriesAdmin />} />
         <Route path="stores" element={<StoresAdmin />} />
+        <Route path="promotions" element={<PromotionsAdmin />} />
         <Route path="history" element={<Placeholder title="História" />} />
       </Route>
 

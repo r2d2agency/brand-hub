@@ -119,6 +119,17 @@ const storeSchema = z.object({
   order: z.number().int().optional(),
 });
 
+const promotionSchema = z.object({
+  title: z.string().min(1),
+  image: z.string().min(1),
+  price: z.string().nullish(),
+  oldPrice: z.string().nullish(),
+  description: z.string().nullish(),
+  whatsappMsg: z.string().nullish(),
+  active: z.boolean().optional(),
+  order: z.number().int().optional(),
+});
+
 // Register Routes
 // Specific Banner Routes (to handle reordering)
 const bannerCrud = createCrud("seasonalBanner", bannerSchema);
@@ -140,6 +151,7 @@ bannerCrud.post("/reorder", async (req, res, next) => {
 adminRouter.use("/banners", bannerCrud);
 adminRouter.use("/categories", createCrud("productCategory", categorySchema));
 adminRouter.use("/stores", createCrud("store", storeSchema));
+adminRouter.use("/promotions", createCrud("promotion", promotionSchema));
 
 // Dashboard Stats
 adminRouter.get("/stats", async (_req, res, next) => {

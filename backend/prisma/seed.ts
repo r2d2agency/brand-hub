@@ -112,6 +112,18 @@ async function main() {
     },
   })
 
+  // Promoções
+  const promos = [
+    { title: 'Chocolate Nestlé 1kg', price: '49,90', oldPrice: '59,90', image: 'https://images.unsplash.com/photo-1548907040-4baa42d10919?q=80&w=1935&auto=format&fit=crop' },
+    { title: 'Balas de Goma 500g', price: '12,90', oldPrice: '15,90', image: 'https://images.unsplash.com/photo-1581798459219-318e76aecc7b?q=80&w=2030&auto=format&fit=crop' },
+    { title: 'Kit Confeiteiro Iniciante', price: '89,90', oldPrice: '119,90', image: 'https://images.unsplash.com/photo-1510255394145-78e727829497?q=80&w=1974&auto=format&fit=crop' },
+    { title: 'Marshmallow 250g', price: '9,90', oldPrice: '12,90', image: 'https://images.unsplash.com/photo-1551323568-d069b2751433?q=80&w=2070&auto=format&fit=crop' },
+  ]
+
+  for (const promo of promos) {
+    await prisma.promotion.create({ data: promo })
+  }
+
   console.log('População finalizada com sucesso!')
 }
 
