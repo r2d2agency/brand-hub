@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/api";
+import { useBranding } from "@/lib/branding";
 import { Grid2X2 } from "lucide-react";
 import CategoryGalleryModal from "@/components/CategoryGalleryModal";
 
