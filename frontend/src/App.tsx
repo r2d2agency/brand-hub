@@ -29,7 +29,7 @@ export default function App() {
         <Route path="/categorias" element={<Placeholder title="Categorias" />} />
         <Route path="/pegue-monte" element={<Placeholder title="Pegue e Monte" />} />
         <Route path="/cursos" element={<Placeholder title="Cursos" />} />
-        <Route path="/lojas" element={<Placeholder title="Lojas" />} />
+        <Route path="/lojas" element={<PageView />} />
       </Route>
 
       <Route path="/login" element={<Login />} />
