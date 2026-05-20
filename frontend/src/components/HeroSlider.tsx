@@ -54,7 +54,7 @@ export default function HeroSlider() {
       >
         {banners.map((banner: any, index: number) => (
           <SwiperSlide key={banner.id}>
-            {({ isActive }) => (
+            {({ isActive }: { isActive: boolean }) => (
               <div className="relative h-full w-full flex items-center">
                 {/* Background Image */}
                 <div className="absolute inset-0">
