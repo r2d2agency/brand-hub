@@ -76,12 +76,20 @@ export default function BannersAdmin() {
       imageMobile: banner.imageMobile || "",
       buttonText: banner.buttonText || "",
       buttonLink: banner.buttonLink || "",
+      startDate: banner.startDate ? new Date(banner.startDate).toISOString().slice(0, 16) : "",
+      endDate: banner.endDate ? new Date(banner.endDate).toISOString().slice(0, 16) : "",
+      isDefault: banner.isDefault || false,
+      fontFamily: banner.fontFamily || "Inter",
+      fontSize: banner.fontSize || "4xl md:text-6xl lg:text-8xl",
+      transitionTime: banner.transitionTime || 5,
+      transitionType: banner.transitionType || "fade",
     });
     setIsEditing(true);
   };
 
   const applyTemplate = (template: BannerTemplate) => {
     setForm({
+      ...EMPTY_FORM,
       title: template.data.title,
       subtitle: template.data.subtitle,
       imageDesktop: template.data.imageDesktop,
