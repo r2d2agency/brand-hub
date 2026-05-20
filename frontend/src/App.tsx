@@ -13,6 +13,7 @@ import BannersAdmin from "./pages/admin/Banners";
 import UsersAdmin from "./pages/admin/Users";
 import StoresAdmin from "./pages/admin/Stores";
 import CategoriesAdmin from "./pages/admin/Categories";
+import Stores from "./pages/Stores";
 import PromotionsAdmin from "./pages/admin/Promotions";
 import NewsVideosAdmin from "./pages/admin/NewsVideos";
 import { ProtectedRoute } from "./lib/auth";
