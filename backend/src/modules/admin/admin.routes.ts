@@ -204,7 +204,8 @@ adminRouter.put("/history", async (req, res, next) => {
     const schema = z.object({
       title: z.string().optional(),
       content: z.string().optional(),
-      mainImage: z.string().url().nullish(),
+      mainImage: z.string().nullish(),
+      gallery: z.array(z.string()).optional(),
       timeline: z.any().optional(),
     });
     const data = schema.parse(req.body);

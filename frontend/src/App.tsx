@@ -16,6 +16,7 @@ import CategoriesAdmin from "./pages/admin/Categories";
 import Stores from "./pages/Stores";
 import PromotionsAdmin from "./pages/admin/Promotions";
 import NewsVideosAdmin from "./pages/admin/NewsVideos";
+import HistoryAdmin from "./pages/admin/History";
 import { ProtectedRoute } from "./lib/auth";
 import PublicLayout from "./components/PublicLayout";
 
@@ -58,7 +59,7 @@ export default function App() {
         <Route path="stores" element={<StoresAdmin />} />
         <Route path="promotions" element={<PromotionsAdmin />} />
         <Route path="news-videos" element={<NewsVideosAdmin />} />
-        <Route path="history" element={<Placeholder title="História" />} />
+        <Route path="history" element={<HistoryAdmin />} />
       </Route>
 
       <Route
