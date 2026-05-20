@@ -10,6 +10,11 @@ import ModulesAdmin from "./pages/admin/Modules";
 import UsersAdmin from "./pages/admin/Users";
 import { ProtectedRoute } from "./lib/auth";
 
+// Placeholder components for new routes
+const Placeholder = ({ title }: { title: string }) => (
+  <div className="p-4 border rounded bg-white">Gerenciamento de {title} (Em breve)</div>
+);
+
 export default function App() {
   return (
     <Routes>
@@ -29,6 +34,10 @@ export default function App() {
         <Route path="pages" element={<PagesAdmin />} />
         <Route path="modules" element={<ModulesAdmin />} />
         <Route path="users" element={<UsersAdmin />} />
+        <Route path="banners" element={<Placeholder title="Banners" />} />
+        <Route path="categories" element={<Placeholder title="Categorias" />} />
+        <Route path="stores" element={<Placeholder title="Lojas" />} />
+        <Route path="history" element={<Placeholder title="História" />} />
       </Route>
       <Route
         path="*"

@@ -7,5 +7,8 @@
     "dev": "frontend/node_modules/.bin/vite --config frontend/vite.config.ts --host --port 8080 frontend",
     "build": "cd frontend && ./node_modules/.bin/vite build",
     "preview": "cd frontend && ./node_modules/.bin/vite preview --host --port 8080"
+  },
+  "dependencies": {
+    "lucide-react": "^1.16.0"
   }
 }

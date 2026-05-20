@@ -1,0 +1,141 @@
+import { Router } from "express";
+import { z } from "zod";
+import { prisma } from "../../prisma.js";
+import { requireAdmin, requireAuth } from "../../middleware/auth.js";
+
+export const adminRouter = Router();
+adminRouter.use(requireAuth, requireAdmin);
+
+// Utility for generic CRUD
+const createCrud = (modelName: string, schema: z.ZodObject<any>) => {
+  const router = Router();
+  const model = (prisma as any)[modelName];
+
+  router.get("/", async (_req, res, next) => {
+    try {
+      const items = await model.findMany({ orderBy: { createdAt: "desc" } });
+      res.json(items);
+    } catch (e) { next(e); }
+  });
+
+  router.post("/", async (req, res, next) => {
+    try {
+      const data = schema.parse(req.body);
+      const item = await model.create({ data });
+      res.status(201).json(item);
+    } catch (e) { next(e); }
+  });
+
+  router.put("/:id", async (req, res, next) => {
+    try {
+      const data = schema.partial().parse(req.body);
+      const item = await model.update({ where: { id: req.params.id }, data });
+      res.json(item);
+    } catch (e) { next(e); }
+  });
+
+  router.delete("/:id", async (req, res, next) => {
+    try {
+      await model.delete({ where: { id: req.params.id } });
+      res.status(204).end();
+    } catch (e) { next(e); }
+  });
+
+  return router;
+};
+
+// Schemas
+const bannerSchema = z.object({
+  title: z.string().min(1),
+  subtitle: z.string().nullish(),
+  imageDesktop: z.string().url(),
+  imageMobile: z.string().url().nullish(),
+  buttonText: z.string().nullish(),
+  buttonLink: z.string().nullish(),
+  startDate: z.string().datetime().nullish().transform(v => v ? new Date(v) : null),
+  endDate: z.string().datetime().nullish().transform(v => v ? new Date(v) : null),
+  active: z.boolean().optional(),
+  order: z.number().int().optional(),
+});
+
+const categorySchema = z.object({
+  name: z.string().min(1),
+  slug: z.string().min(1),
+  description: z.string().nullish(),
+  coverImage: z.string().url().nullish(),
+  gallery: z.array(z.string().url()).optional(),
+  whatsappMsg: z.string().nullish(),
+  active: z.boolean().optional(),
+  order: z.number().int().optional(),
+  showInHome: z.boolean().optional(),
+});
+
+const storeSchema = z.object({
+  name: z.string().min(1),
+  address: z.string().min(1),
+  neighborhood: z.string().nullish(),
+  phone: z.string().nullish(),
+  whatsapp: z.string().nullish(),
+  hours: z.string().nullish(),
+  mapsLink: z.string().nullish(),
+  images: z.array(z.string().url()).optional(),
+  active: z.boolean().optional(),
+  order: z.number().int().optional(),
+});
+
+// Register Routes
+adminRouter.use("/banners", createCrud("seasonalBanner", bannerSchema));
+adminRouter.use("/categories", createCrud("productCategory", categorySchema));
+adminRouter.use("/stores", createCrud("store", storeSchema));
+
+// Dashboard Stats
+adminRouter.get("/stats", async (_req, res, next) => {
+  try {
+    const [
+      modules, banners, categories, stores, clicks
+    ] = await Promise.all([
+      prisma.module.count({ where: { enabled: true } }),
+      prisma.seasonalBanner.count({ where: { active: true } }),
+      prisma.productCategory.count(),
+      prisma.store.count(),
+      prisma.whatsappClick.count()
+    ]);
+
+    res.json({
+      activeModules: modules,
+      activeBanners: banners,
+      totalCategories: categories,
+      totalStores: stores,
+      whatsappClicks: clicks
+    });
+  } catch (e) { next(e); }
+});
+
+// Company History (Single)
+adminRouter.get("/history", async (_req, res, next) => {
+  try {
+    const history = await prisma.companyHistory.upsert({
+      where: { id: "singleton" },
+      update: {},
+      create: { id: "singleton", content: "" }
+    });
+    res.json(history);
+  } catch (e) { next(e); }
+});
+
+adminRouter.put("/history", async (req, res, next) => {
+  try {
+    const schema = z.object({
+      title: z.string().optional(),
+      content: z.string().optional(),
+      mainImage: z.string().url().nullish(),
+      timeline: z.any().optional(),
+    });
+    const data = schema.parse(req.body);
+    const history = await prisma.companyHistory.update({
+      where: { id: "singleton" },
+      data
+    });
+    res.json(history);
+  } catch (e) { next(e); }
+});
