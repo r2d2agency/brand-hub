@@ -18,6 +18,8 @@ import PromotionsAdmin from "./pages/admin/Promotions";
 import NewsVideosAdmin from "./pages/admin/NewsVideos";
 import HistoryAdmin from "./pages/admin/History";
 import PartnersAdmin from "./pages/admin/Partners";
+import PegueMonte from "./pages/PegueMonte";
+import PegueMonteDetails from "./pages/PegueMonteDetails";
 import PegueMonteAdmin from "./pages/admin/PegueMonte";
 import { ProtectedRoute } from "./lib/auth";
 import PublicLayout from "./components/PublicLayout";
@@ -36,7 +38,8 @@ export default function App() {
         <Route path="/sobre" element={<About />} />
         <Route path="/contato" element={<Placeholder title="Contato" />} />
         <Route path="/categorias" element={<Categories />} />
-        <Route path="/pegue-monte" element={<Placeholder title="Pegue e Monte" />} />
+        <Route path="/pegue-monte" element={<PegueMonte />} />
+        <Route path="/pegue-monte/:slug" element={<PegueMonteDetails />} />
         <Route path="/cursos" element={<Placeholder title="Cursos" />} />
         <Route path="/lojas" element={<Stores />} />
       </Route>
