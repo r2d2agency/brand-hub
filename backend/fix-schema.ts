@@ -245,6 +245,23 @@ async function main() {
       END $$;
     `);
 
+    // PageView analytics table
+    await prisma.$executeRawUnsafe(`
+      CREATE TABLE IF NOT EXISTS "PageView" (
+        "id" SERIAL PRIMARY KEY,
+        "path" TEXT NOT NULL,
+        "sessionId" TEXT NOT NULL,
+        "userAgent" TEXT,
+        "referrer" TEXT,
+        "createdAt" TIMESTAMPTZ NOT NULL DEFAULT now()
+      );
+    `);
+    await prisma.$executeRawUnsafe(`CREATE INDEX IF NOT EXISTS "PageView_createdAt_idx" ON "PageView" ("createdAt");`);
+    await prisma.$executeRawUnsafe(`CREATE INDEX IF NOT EXISTS "PageView_path_idx" ON "PageView" ("path");`);
+    await prisma.$executeRawUnsafe(`CREATE INDEX IF NOT EXISTS "PageView_session_idx" ON "PageView" ("sessionId");`);
+
+
+
   } catch (error) {
     console.error("Error updating database schema:", error);
   } finally {
