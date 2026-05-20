@@ -44,6 +44,11 @@ model Branding {
   facebookUrl     String?
   youtubeUrl      String?
   
+  // Social Colors
+  instagramColor  String   @default("#e1306c")
+  facebookColor   String   @default("#1877f2")
+  youtubeColor    String   @default("#ff0000")
+  
   // WhatsApp Floating
   whatsappPhone   String?  @default("5511999999999")
   whatsappMessage String?  @default("Olá! Gostaria de saber mais sobre os produtos da Basmar.")

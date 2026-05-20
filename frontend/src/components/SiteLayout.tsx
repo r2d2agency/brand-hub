@@ -111,17 +111,17 @@ export function Footer() {
             <h4 className="font-black mb-6 uppercase text-xs tracking-widest" style={{ color: branding?.primaryColor || '#ef4444' }}>Redes Sociais</h4>
             <div className="flex gap-4">
               {branding?.instagramUrl && (
-                <a href={branding.instagramUrl} target="_blank" rel="noopener noreferrer" className="h-12 w-12 rounded-full flex items-center justify-center transition-colors cursor-pointer hover:bg-red-600" style={{ backgroundColor: branding.primaryColor || '#1e3a8a' }}>
+                <a href={branding.instagramUrl} target="_blank" rel="noopener noreferrer" className="h-12 w-12 rounded-full flex items-center justify-center transition-all cursor-pointer hover:scale-110 shadow-lg" style={{ backgroundColor: branding.instagramColor || '#1e3a8a' }}>
                   <Instagram size={20} />
                 </a>
               )}
               {branding?.facebookUrl && (
-                <a href={branding.facebookUrl} target="_blank" rel="noopener noreferrer" className="h-12 w-12 rounded-full flex items-center justify-center transition-colors cursor-pointer hover:bg-red-600" style={{ backgroundColor: branding.primaryColor || '#1e3a8a' }}>
+                <a href={branding.facebookUrl} target="_blank" rel="noopener noreferrer" className="h-12 w-12 rounded-full flex items-center justify-center transition-all cursor-pointer hover:scale-110 shadow-lg" style={{ backgroundColor: branding.facebookColor || '#1e3a8a' }}>
                   <Facebook size={20} />
                 </a>
               )}
               {branding?.youtubeUrl && (
-                <a href={branding.youtubeUrl} target="_blank" rel="noopener noreferrer" className="h-12 w-12 rounded-full flex items-center justify-center transition-colors cursor-pointer hover:bg-red-600" style={{ backgroundColor: branding.primaryColor || '#1e3a8a' }}>
+                <a href={branding.youtubeUrl} target="_blank" rel="noopener noreferrer" className="h-12 w-12 rounded-full flex items-center justify-center transition-all cursor-pointer hover:scale-110 shadow-lg" style={{ backgroundColor: branding.youtubeColor || '#1e3a8a' }}>
                   <Youtube size={20} />
                 </a>
               )}
