@@ -542,13 +542,45 @@ export default function BannersAdmin() {
                     </select>
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-sm font-bold text-slate-700">Classes de Tamanho (Tailwind)</label>
-                    <input 
-                      value={form.fontSize}
-                      onChange={(e) => setForm({...form, fontSize: e.target.value})}
-                      placeholder="Ex: text-4xl md:text-6xl"
-                      className="w-full rounded-lg border border-slate-200 px-4 py-2 text-sm focus:border-blue-900 focus:outline-none" 
-                    />
+                    <label className="text-sm font-bold text-slate-700">Tamanho do Título</label>
+                    {(() => {
+                      const SIZE_PRESETS = [
+                        { label: "PP", name: "Muito Pequeno", value: "text-xl md:text-2xl lg:text-3xl" },
+                        { label: "P",  name: "Pequeno",        value: "text-2xl md:text-3xl lg:text-4xl" },
+                        { label: "M",  name: "Médio",          value: "text-3xl md:text-4xl lg:text-5xl" },
+                        { label: "G",  name: "Grande",         value: "text-4xl md:text-6xl lg:text-7xl" },
+                        { label: "GG", name: "Muito Grande",   value: "text-5xl md:text-7xl lg:text-8xl" },
+                        { label: "XG", name: "Enorme",         value: "text-6xl md:text-8xl lg:text-9xl" },
+                      ];
+                      const currentIdx = Math.max(0, SIZE_PRESETS.findIndex(s => s.value === form.fontSize));
+                      const idx = currentIdx === -1 ? 3 : currentIdx;
+                      const setIdx = (i: number) => {
+                        const clamped = Math.min(SIZE_PRESETS.length - 1, Math.max(0, i));
+                        setForm({ ...form, fontSize: SIZE_PRESETS[clamped].value });
+                      };
+                      return (
+                        <div className="flex items-center gap-2">
+                          <button
+                            type="button"
+                            onClick={() => setIdx(idx - 1)}
+                            disabled={idx === 0}
+                            className="h-10 w-10 rounded-lg border border-slate-200 bg-white text-lg font-bold text-slate-700 hover:bg-slate-50 disabled:opacity-40"
+                            title="Diminuir"
+                          >−</button>
+                          <div className="flex-1 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2 text-center">
+                            <div className="text-xs text-slate-500">{SIZE_PRESETS[idx].label}</div>
+                            <div className="text-sm font-bold text-slate-800">{SIZE_PRESETS[idx].name}</div>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => setIdx(idx + 1)}
+                            disabled={idx === SIZE_PRESETS.length - 1}
+                            className="h-10 w-10 rounded-lg border border-slate-200 bg-white text-lg font-bold text-slate-700 hover:bg-slate-50 disabled:opacity-40"
+                            title="Aumentar"
+                          >+</button>
+                        </div>
+                      );
+                    })()}
                   </div>
                 </div>
 
