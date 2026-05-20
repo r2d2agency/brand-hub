@@ -116,6 +116,14 @@ export default function Home() {
           </button>
         </div>
       </section>
+
+      {/* Gallery Modal */}
+      {selectedCategory && (
+        <CategoryGalleryModal 
+          category={selectedCategory} 
+          onClose={() => setSelectedCategory(null)} 
+        />
+      )}
     </div>
   );
 }
