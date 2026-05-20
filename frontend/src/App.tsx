@@ -74,6 +74,8 @@ export default function App() {
         <Route path="pegue-monte" element={<PegueMonteAdmin />} />
         <Route path="courses" element={<CoursesAdmin />} />
         <Route path="seo" element={<SeoAdmin />} />
+        <Route path="analytics" element={<Analytics />} />
+
       </Route>
 
       <Route
