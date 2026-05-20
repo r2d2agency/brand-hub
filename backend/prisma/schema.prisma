@@ -58,7 +58,10 @@ model Branding {
   footerTextColor String   @default("#ffffff")
   buttonBgColor   String   @default("#e91e63")
   buttonTextColor String   @default("#ffffff")
-  
+
+  // Section intro texts
+  coursesIntro    String?  @default("Aprenda com quem entende do assunto: workshops, oficinas e cursos para todos os níveis.")
+
   updatedAt       DateTime @updatedAt
 }
 
