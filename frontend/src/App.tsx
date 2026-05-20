@@ -21,6 +21,7 @@ import PartnersAdmin from "./pages/admin/Partners";
 import PegueMonte from "./pages/PegueMonte";
 import PegueMonteDetails from "./pages/PegueMonteDetails";
 import PegueMonteAdmin from "./pages/admin/PegueMonte";
+import CoursesAdmin from "./pages/admin/Courses";
 import { ProtectedRoute } from "./lib/auth";
 import PublicLayout from "./components/PublicLayout";
 
