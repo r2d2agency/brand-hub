@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/api";
+import { useBranding } from "@/lib/branding";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation as SwiperNavigation } from "swiper/modules";
 import { 
