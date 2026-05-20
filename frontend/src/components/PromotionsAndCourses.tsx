@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/api";
+import { useBranding } from "@/lib/branding";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation as SwiperNavigation } from "swiper/modules";
 import { 
@@ -20,6 +21,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 export default function PromotionsAndCourses() {
+  const branding = useBranding();
   const [selectedPromo, setSelectedPromo] = useState<any>(null);
 
   const { data: promotions = [] } = useQuery({
@@ -36,7 +38,7 @@ export default function PromotionsAndCourses() {
 
   const handlePromoWhatsApp = (promo: any) => {
     const msg = encodeURIComponent(promo.whatsappMsg || `Olá! Tenho interesse na oferta: ${promo.title}`);
-    window.open(`https://wa.me/5511999999999?text=${msg}`, "_blank");
+    window.open(`https://wa.me/${branding?.whatsappPhone?.replace(/\D/g, '') || '5511999999999'}?text=${msg}`, "_blank");
   };
 
   return (
@@ -157,7 +159,7 @@ export default function PromotionsAndCourses() {
                   </div>
 
                   <a 
-                    href={`https://wa.me/5511999999999?text=${encodeURIComponent(featuredCourse.whatsappMsg || `Olá! Tenho interesse no curso: ${featuredCourse.title}`)}`}
+                    href={`https://wa.me/${branding?.whatsappPhone?.replace(/\D/g, '') || '5511999999999'}?text=${encodeURIComponent(featuredCourse.whatsappMsg || `Olá! Tenho interesse no curso: ${featuredCourse.title}`)}`}
                     target="_blank"
                     className="w-full rounded-2xl bg-white py-4 text-center text-sm font-black uppercase tracking-widest text-blue-900 hover:bg-red-600 hover:text-white transition-all shadow-lg"
                   >

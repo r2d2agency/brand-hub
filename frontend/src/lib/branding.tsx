@@ -14,6 +14,20 @@ export interface Branding {
   foregroundColor: string;
   fontHeading: string;
   fontBody: string;
+  // Footer & Social
+  footerText: string | null;
+  footerLogo: string | null;
+  instagramUrl: string | null;
+  facebookUrl: string | null;
+  youtubeUrl: string | null;
+  // WhatsApp Floating
+  whatsappPhone: string | null;
+  whatsappMessage: string | null;
+  // UI Colors
+  footerBgColor: string;
+  footerTextColor: string;
+  buttonBgColor: string;
+  buttonTextColor: string;
 }
 
 const BrandingContext = createContext<Branding | null>(null);
@@ -35,6 +49,13 @@ export function BrandingProvider({ children }: { children: ReactNode }) {
     r.setProperty("--color-fg", data.foregroundColor);
     r.setProperty("--font-heading", `"${data.fontHeading}", system-ui, sans-serif`);
     r.setProperty("--font-body", `"${data.fontBody}", system-ui, sans-serif`);
+    
+    // UI Theme variables
+    r.setProperty("--footer-bg", data.footerBgColor);
+    r.setProperty("--footer-text", data.footerTextColor);
+    r.setProperty("--btn-bg", data.buttonBgColor);
+    r.setProperty("--btn-text", data.buttonTextColor);
+    
     document.title = data.siteName;
     if (data.faviconUrl) {
       let link = document.querySelector<HTMLLinkElement>("link[rel~='icon']");

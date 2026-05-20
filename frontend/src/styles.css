@@ -1,13 +1,18 @@
 @import "tailwindcss";
 
 :root {
-  --color-primary: #0f172a;
-  --color-secondary: #64748b;
-  --color-accent: #3b82f6;
+  --color-primary: #e91e63;
+  --color-secondary: #9c27b0;
+  --color-accent: #ff4081;
   --color-bg: #ffffff;
   --color-fg: #0f172a;
   --font-heading: "Inter", system-ui, sans-serif;
   --font-body: "Inter", system-ui, sans-serif;
+  
+  --footer-bg: #0f172a;
+  --footer-text: #ffffff;
+  --btn-bg: #e91e63;
+  --btn-text: #ffffff;
 }
 
 html,

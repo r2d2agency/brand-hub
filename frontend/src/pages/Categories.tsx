@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/api";
+import { useBranding } from "@/lib/branding";
 import { Grid2X2 } from "lucide-react";
 import CategoryGalleryModal from "@/components/CategoryGalleryModal";
 
 export default function Categories() {
+  const branding = useBranding();
   const [selectedCategory, setSelectedCategory] = useState<any>(null);
 
   const { data: categories = [], isLoading } = useQuery({
@@ -23,10 +25,10 @@ export default function Categories() {
   return (
     <div className="min-h-screen bg-slate-50">
       {/* Header */}
-      <section className="bg-blue-900 py-16 md:py-24 text-white">
+      <section className="py-16 md:py-24 text-white" style={{ backgroundColor: branding?.primaryColor || '#1e3a8a' }}>
         <div className="mx-auto max-w-7xl px-6 text-center">
           <h1 className="text-4xl md:text-5xl font-black lg:text-7xl">Nossas Vitrines</h1>
-          <p className="mx-auto mt-6 max-w-2xl text-base md:text-lg text-blue-100 font-medium">
+          <p className="mx-auto mt-6 max-w-2xl text-base md:text-lg font-medium opacity-90">
             Explore a variedade completa de produtos e artigos para sua festa em todas as nossas categorias.
           </p>
         </div>
