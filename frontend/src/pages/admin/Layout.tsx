@@ -26,6 +26,7 @@ export default function AdminLayout() {
 
   const links = [
     { to: "/admin", label: "Dashboard", icon: LayoutDashboard, end: true, role: "ANY" },
+    { to: "/admin/analytics", label: "Analytics", icon: BarChart3, role: "ADMIN" },
     { to: "/admin/banners", label: "Banners", icon: ImageIcon, role: "ADMIN" },
     { to: "/admin/partners", label: "Parceiros", icon: Briefcase, role: "ADMIN" },
     { to: "/admin/pegue-monte", label: "Pegue e Monte", icon: PartyPopper, role: "ADMIN" },
