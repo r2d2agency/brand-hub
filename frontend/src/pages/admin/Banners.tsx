@@ -12,6 +12,13 @@ interface BannerForm {
   imageMobile: string;
   buttonText: string;
   buttonLink: string;
+  startDate: string;
+  endDate: string;
+  isDefault: boolean;
+  fontFamily: string;
+  fontSize: string;
+  transitionTime: number;
+  transitionType: string;
 }
 
 const EMPTY_FORM: BannerForm = {
@@ -21,6 +28,13 @@ const EMPTY_FORM: BannerForm = {
   imageMobile: "",
   buttonText: "",
   buttonLink: "",
+  startDate: "",
+  endDate: "",
+  isDefault: false,
+  fontFamily: "Inter",
+  fontSize: "4xl md:text-6xl lg:text-8xl",
+  transitionTime: 5,
+  transitionType: "fade",
 };
 
 export default function BannersAdmin() {
@@ -89,6 +103,8 @@ export default function BannersAdmin() {
         imageMobile: form.imageMobile || null,
         buttonText: form.buttonText || null,
         buttonLink: form.buttonLink || null,
+        startDate: form.startDate || null,
+        endDate: form.endDate || null,
       };
       if (selectedBanner) {
         await api.put(`/admin-cms/banners/${selectedBanner.id}`, payload);
