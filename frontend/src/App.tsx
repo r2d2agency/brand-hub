@@ -30,7 +30,7 @@ export default function App() {
         <Route path="/p/:slug" element={<PageView />} />
         <Route path="/sobre" element={<About />} />
         <Route path="/contato" element={<Placeholder title="Contato" />} />
-        <Route path="/categorias" element={<Placeholder title="Categorias" />} />
+        <Route path="/categorias" element={<Categories />} />
         <Route path="/pegue-monte" element={<Placeholder title="Pegue e Monte" />} />
         <Route path="/cursos" element={<Placeholder title="Cursos" />} />
         <Route path="/lojas" element={<About />} />
