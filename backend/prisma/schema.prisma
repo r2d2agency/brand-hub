@@ -130,6 +130,7 @@ model PegueMonte {
   theme       String?
   slug        String   @unique
   description String?
+  theme       String?
   items       String[] @default([])
   coverImage  String?
   gallery     String[] @default([])

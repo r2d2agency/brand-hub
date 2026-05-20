@@ -147,6 +147,17 @@ const partnerSchema = z.object({
   order: z.number().int().optional(),
 });
 
+const pegueMonteSchema = z.object({
+  name: z.string().min(1),
+  slug: z.string().min(1),
+  description: z.string().nullish(),
+  theme: z.string().nullish(),
+  coverImage: z.string().nullish(),
+  gallery: z.array(z.string()).optional(),
+  active: z.boolean().optional(),
+  highlight: z.boolean().optional(),
+});
+
 // Register Routes
 // Specific Banner Routes (to handle reordering)
 const bannerCrud = createCrud("seasonalBanner", bannerSchema);
@@ -171,6 +182,7 @@ adminRouter.use("/stores", createCrud("store", storeSchema));
 adminRouter.use("/promotions", createCrud("promotion", promotionSchema));
 adminRouter.use("/news-videos", createCrud("newsVideo", newsVideoSchema));
 adminRouter.use("/partners", createCrud("partner", partnerSchema));
+adminRouter.use("/pegue-monte", createCrud("pegueMonte", pegueMonteSchema));
 
 // Dashboard Stats
 adminRouter.get("/stats", async (_req, res, next) => {
