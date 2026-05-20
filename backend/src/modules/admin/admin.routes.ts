@@ -279,6 +279,7 @@ adminRouter.get("/analytics", async (req, res, next) => {
       recent,
     });
   } catch (e) { next(e); }
+});
 
 
 // Company History (Single)
