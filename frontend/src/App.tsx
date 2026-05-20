@@ -1,6 +1,7 @@
 import { Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import PageView from "./pages/PageView";
+import About from "./pages/About";
 import Login from "./pages/Login";
 import AdminLayout from "./pages/admin/Layout";
 import Dashboard from "./pages/admin/Dashboard";
@@ -20,6 +21,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/p/:slug" element={<PageView />} />
+      <Route path="/sobre" element={<About />} />
       <Route path="/login" element={<Login />} />
       <Route
         path="/admin"
