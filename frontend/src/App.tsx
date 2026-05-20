@@ -10,6 +10,7 @@ import PagesAdmin from "./pages/admin/Pages";
 import ModulesAdmin from "./pages/admin/Modules";
 import UsersAdmin from "./pages/admin/Users";
 import { ProtectedRoute } from "./lib/auth";
+import PublicLayout from "./components/PublicLayout";
 
 // Placeholder components for new routes
 const Placeholder = ({ title }: { title: string }) => (
@@ -19,10 +20,19 @@ const Placeholder = ({ title }: { title: string }) => (
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/p/:slug" element={<PageView />} />
-      <Route path="/sobre" element={<About />} />
+      <Route element={<PublicLayout />}>
+        <Route path="/" element={<Home />} />
+        <Route path="/p/:slug" element={<PageView />} />
+        <Route path="/sobre" element={<About />} />
+        <Route path="/contato" element={<Placeholder title="Contato" />} />
+        <Route path="/categorias" element={<Placeholder title="Categorias" />} />
+        <Route path="/pegue-monte" element={<Placeholder title="Pegue e Monte" />} />
+        <Route path="/cursos" element={<Placeholder title="Cursos" />} />
+        <Route path="/lojas" element={<Placeholder title="Lojas" />} />
+      </Route>
+
       <Route path="/login" element={<Login />} />
+      
       <Route
         path="/admin"
         element={
@@ -41,12 +51,13 @@ export default function App() {
         <Route path="stores" element={<Placeholder title="Lojas" />} />
         <Route path="history" element={<Placeholder title="História" />} />
       </Route>
+
       <Route
         path="*"
         element={
           <div className="flex h-screen flex-col items-center justify-center gap-2">
-            <h1 className="text-3xl font-bold">404</h1>
-            <Link to="/" className="text-blue-600 underline">
+            <h1 className="text-3xl font-bold text-blue-900">404</h1>
+            <Link to="/" className="text-red-600 underline">
               Voltar
             </Link>
           </div>
