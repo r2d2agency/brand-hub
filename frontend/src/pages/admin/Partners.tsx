@@ -117,7 +117,7 @@ export default function PartnersAdmin() {
       </div>
 
       <div className="grid gap-6">
-        {[...partners].sort((a, b) => (a.order || 0) - (b.order || 0)).map((partner, index) => (
+        {[...partners].sort((a, b) => (a.order ?? 0) - (b.order ?? 0)).map((partner, index) => (
           <div key={partner.id || index} className="group relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-all">
             <div className="flex flex-col md:flex-row gap-6 items-center">
               <div className="w-full md:w-48">
