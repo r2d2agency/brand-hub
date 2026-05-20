@@ -15,7 +15,8 @@ import {
   Tag,
   Video,
   Briefcase,
-  PartyPopper
+  PartyPopper,
+  GraduationCap
 } from "lucide-react";
 
 export default function AdminLayout() {
