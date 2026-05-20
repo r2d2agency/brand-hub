@@ -4,8 +4,8 @@
   "private": true,
   "workspaces": ["frontend", "backend"],
   "scripts": {
-    "dev": "bun --cwd frontend run dev -- --host --port 8080",
-    "build": "bun --cwd frontend run build",
-    "preview": "bun --cwd frontend run preview"
+    "dev": "frontend/node_modules/.bin/vite --config frontend/vite.config.ts --host --port 8080 frontend",
+    "build": "cd frontend && ./node_modules/.bin/vite build",
+    "preview": "cd frontend && ./node_modules/.bin/vite preview --host --port 8080"
   }
 }
