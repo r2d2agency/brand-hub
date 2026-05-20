@@ -13,10 +13,12 @@ const createCrud = (modelName: string, schema: z.ZodObject<any>) => {
 
   router.get("/", async (_req, res, next) => {
     try {
+      const orderByField = modelName.toLowerCase().includes('banner') || modelName.toLowerCase().includes('category') || modelName.toLowerCase().includes('store') 
+        ? { order: "asc" } 
+        : { createdAt: "desc" };
+      console.log(`[CRUD] Fetching ${modelName} with order:`, orderByField);
       const items = await model.findMany({ 
-        orderBy: modelName.toLowerCase().includes('banner') || modelName.toLowerCase().includes('category') || modelName.toLowerCase().includes('store') 
-          ? { order: "asc" } 
-          : { createdAt: "desc" } 
+        orderBy: orderByField
       });
       res.json(items);
     } catch (e) { next(e); }
