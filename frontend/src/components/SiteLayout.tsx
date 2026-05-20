@@ -5,6 +5,7 @@ import { useBranding } from "@/lib/branding";
 import logoBasmar from "@/assets/logo-basmar.png";
 
 export function Header() {
+  const branding = useBranding();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
