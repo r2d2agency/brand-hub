@@ -123,7 +123,7 @@ siteRouter.post("/whatsapp-click", async (req, res, next) => {
       origin: z.string().optional(),
     });
     const data = schema.parse(req.body);
-    const click = await prisma.whatsappClick.create({ data });
+    const click = await prisma.whatsAppClick.create({ data });
     res.status(201).json(click);
   } catch (e) { next(e); }
 });

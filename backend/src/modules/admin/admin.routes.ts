@@ -98,7 +98,7 @@ adminRouter.get("/stats", async (_req, res, next) => {
       prisma.seasonalBanner.count({ where: { active: true } }),
       prisma.productCategory.count(),
       prisma.store.count(),
-      prisma.whatsappClick.count()
+      prisma.whatsAppClick.count()
     ]);
 
     res.json({
