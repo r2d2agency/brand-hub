@@ -38,7 +38,7 @@ export default function PromotionsAndCourses() {
 
   const handlePromoWhatsApp = (promo: any) => {
     const msg = encodeURIComponent(promo.whatsappMsg || `Olá! Tenho interesse na oferta: ${promo.title}`);
-    window.open(`https://wa.me/5511999999999?text=${msg}`, "_blank");
+    window.open(`https://wa.me/${branding?.whatsappPhone?.replace(/\D/g, '') || '5511999999999'}?text=${msg}`, "_blank");
   };
 
   return (
