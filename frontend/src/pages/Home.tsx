@@ -94,11 +94,13 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Pegue e Monte Home Section */}
+      <PegueMonteHome />
+
       {/* Partners Carousel */}
       <PartnersCarousel />
 
-      {/* Pegue e Monte Home Section */}
-      <PegueMonteHome />
+
 
 
       {/* Videos Section */}
