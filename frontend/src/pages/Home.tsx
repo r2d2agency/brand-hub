@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { api } from "@/lib/api";
@@ -7,6 +8,7 @@ import {
   Play
 } from "lucide-react";
 import HeroSlider from "@/components/HeroSlider";
+import CategoryGalleryModal from "@/components/CategoryGalleryModal";
 
 export default function Home() {
   const { data: categories = [] } = useQuery({
