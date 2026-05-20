@@ -11,6 +11,7 @@ import ModulesAdmin from "./pages/admin/Modules";
 import BannersAdmin from "./pages/admin/Banners";
 import UsersAdmin from "./pages/admin/Users";
 import StoresAdmin from "./pages/admin/Stores";
+import CategoriesAdmin from "./pages/admin/Categories";
 import { ProtectedRoute } from "./lib/auth";
 import PublicLayout from "./components/PublicLayout";
 
