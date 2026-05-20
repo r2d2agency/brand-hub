@@ -11,6 +11,8 @@ import {
   Navigation
 } from "lucide-react";
 
+import { useState, useEffect } from "react";
+
 export default function About() {
   const { data: history } = useQuery({
     queryKey: ["site-history"],
