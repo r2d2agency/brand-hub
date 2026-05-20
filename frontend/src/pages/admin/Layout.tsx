@@ -11,7 +11,8 @@ import {
   Settings,
   History,
   LogOut,
-  ExternalLink
+  ExternalLink,
+  Tag
 } from "lucide-react";
 
 export default function AdminLayout() {
