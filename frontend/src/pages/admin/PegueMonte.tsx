@@ -11,6 +11,7 @@ import {
   Filter
 } from "lucide-react";
 import ImageUpload from "@/components/ImageUpload";
+import GalleryUpload from "@/components/GalleryUpload";
 
 interface PegueMonteKit {
   id: string;
