@@ -48,8 +48,8 @@ const createCrud = (modelName: string, schema: z.ZodObject<any>) => {
 const bannerSchema = z.object({
   title: z.string().min(1),
   subtitle: z.string().nullish(),
-  imageDesktop: z.string().url(),
-  imageMobile: z.string().url().nullish(),
+  imageDesktop: z.string().min(1),
+  imageMobile: z.string().nullish(),
   buttonText: z.string().nullish(),
   buttonLink: z.string().nullish(),
   startDate: z.string().datetime().nullish().transform(v => v ? new Date(v) : null),
