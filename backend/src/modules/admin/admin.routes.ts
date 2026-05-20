@@ -16,10 +16,20 @@ const createCrud = (modelName: string, schema: z.ZodObject<any>) => {
       const orderByField = modelName.toLowerCase().includes('banner') || modelName.toLowerCase().includes('category') || modelName.toLowerCase().includes('store') 
         ? { order: "asc" } 
         : { createdAt: "desc" };
-      console.log(`[CRUD] Fetching ${modelName} with order:`, orderByField);
-      const items = await model.findMany({ 
-        orderBy: orderByField
-      });
+      
+      let items;
+      try {
+        items = await model.findMany({ 
+          orderBy: orderByField
+        });
+      } catch (prismaError: any) {
+        console.error(`[CRUD] Error fetching ${modelName}:`, prismaError);
+        // Fallback for missing fields or sorting issues
+        items = await model.findMany({ 
+          orderBy: { createdAt: "desc" }
+        }).catch(() => model.findMany());
+      }
+      
       res.json(items);
     } catch (e) { next(e); }
   });
