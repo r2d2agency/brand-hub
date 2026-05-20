@@ -26,6 +26,9 @@ export default function PartnersAdmin() {
     queryFn: async () => (await api.get("/admin-cms/partners")).data,
   });
 
+  const [msg, setMsg] = useState("");
+
+
   const saveMutation = useMutation({
     mutationFn: async (payload: any) => {
       const data = {
