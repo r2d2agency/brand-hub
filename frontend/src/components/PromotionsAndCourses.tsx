@@ -34,7 +34,9 @@ export default function PromotionsAndCourses() {
     queryFn: async () => (await api.get("/site/courses")).data,
   });
 
-  const featuredCourse = courses.find((c: any) => c.active && c.showInHome) || courses[0];
+  const homeCourses = courses.filter((c: any) => c.active && c.showInHome);
+  const featuredCourse = homeCourses[0] || courses[0];
+  const coursesIntro = branding?.coursesIntro || "Aprenda com quem entende do assunto: workshops, oficinas e cursos para todos os níveis.";
 
   const handlePromoWhatsApp = (promo: any) => {
     const msg = encodeURIComponent(promo.whatsappMsg || `Olá! Tenho interesse na oferta: ${promo.title}`);
