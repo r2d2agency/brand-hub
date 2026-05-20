@@ -49,6 +49,13 @@ export function BrandingProvider({ children }: { children: ReactNode }) {
     r.setProperty("--color-fg", data.foregroundColor);
     r.setProperty("--font-heading", `"${data.fontHeading}", system-ui, sans-serif`);
     r.setProperty("--font-body", `"${data.fontBody}", system-ui, sans-serif`);
+    
+    // UI Theme variables
+    r.setProperty("--footer-bg", data.footerBgColor);
+    r.setProperty("--footer-text", data.footerTextColor);
+    r.setProperty("--btn-bg", data.buttonBgColor);
+    r.setProperty("--btn-text", data.buttonTextColor);
+    
     document.title = data.siteName;
     if (data.faviconUrl) {
       let link = document.querySelector<HTMLLinkElement>("link[rel~='icon']");
