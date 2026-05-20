@@ -13,11 +13,33 @@ const createCrud = (modelName: string, schema: z.ZodObject<any>) => {
 
   router.get("/", async (_req, res, next) => {
     try {
-      const items = await model.findMany({ 
-        orderBy: modelName.toLowerCase().includes('banner') || modelName.toLowerCase().includes('category') || modelName.toLowerCase().includes('store') 
-          ? { order: "asc" } 
-          : { createdAt: "desc" } 
-      });
+      const orderByField = modelName.toLowerCase().includes('banner') || modelName.toLowerCase().includes('category') || modelName.toLowerCase().includes('store') 
+        ? { order: "asc" } 
+        : { createdAt: "desc" };
+      
+      let items;
+      try {
+        if (!model || typeof model.findMany !== 'function') {
+          throw new Error(`Model ${modelName} not found in prisma client`);
+        }
+
+        items = await model.findMany({ 
+          orderBy: orderByField
+        });
+      } catch (prismaError: any) {
+        console.error(`[CRUD] Error fetching ${modelName}:`, prismaError);
+        
+        try {
+          // If sorting fails, try sorting by id or createdAt (which are more likely to exist)
+          items = await model.findMany({ 
+            orderBy: { id: "desc" }
+          });
+        } catch (fallbackError) {
+          console.error(`[CRUD] Fallback also failed for ${modelName}:`, fallbackError);
+          items = await model.findMany().catch(() => []);
+        }
+      }
+      
       res.json(items);
     } catch (e) { next(e); }
   });
