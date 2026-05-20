@@ -14,6 +14,20 @@ export interface Branding {
   foregroundColor: string;
   fontHeading: string;
   fontBody: string;
+  // Footer & Social
+  footerText: string | null;
+  footerLogo: string | null;
+  instagramUrl: string | null;
+  facebookUrl: string | null;
+  youtubeUrl: string | null;
+  // WhatsApp Floating
+  whatsappPhone: string | null;
+  whatsappMessage: string | null;
+  // UI Colors
+  footerBgColor: string;
+  footerTextColor: string;
+  buttonBgColor: string;
+  buttonTextColor: string;
 }
 
 const BrandingContext = createContext<Branding | null>(null);
