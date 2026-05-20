@@ -142,12 +142,16 @@ export function Footer() {
 }
 
 export function WhatsAppButton() {
+  const branding = useBranding();
+  
+  if (!branding?.whatsappPhone) return null;
+
   return (
     <a 
-      href="https://wa.me/5511999999999" 
+      href={`https://wa.me/${branding.whatsappPhone.replace(/\D/g, '')}?text=${encodeURIComponent(branding.whatsappMessage || '')}`} 
       target="_blank" 
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-green-500 text-white shadow-2xl shadow-green-500/40 hover:scale-110 transition-transform"
+      className="fixed bottom-6 right-6 z-50 flex h-16 w-16 items-center justify-center rounded-full text-white shadow-2xl shadow-green-500/40 hover:scale-110 transition-transform bg-green-500"
     >
       <MessageCircle size={32} />
     </a>
