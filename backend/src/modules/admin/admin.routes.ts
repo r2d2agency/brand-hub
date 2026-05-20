@@ -160,6 +160,23 @@ const pegueMonteSchema = z.object({
   highlight: z.boolean().optional(),
 });
 
+const courseSchema = z.object({
+  title: z.string().min(1),
+  slug: z.string().min(1),
+  description: z.string().nullish(),
+  coverImage: z.string().nullish(),
+  gallery: z.array(z.string()).optional(),
+  date: z.string().nullish().transform(v => v ? new Date(v) : null),
+  time: z.string().nullish(),
+  location: z.string().nullish(),
+  instructor: z.string().nullish(),
+  status: z.enum(["SOON", "OPEN", "CLOSED"]).optional(),
+  whatsappMsg: z.string().nullish(),
+  active: z.boolean().optional(),
+  showInHome: z.boolean().optional(),
+});
+
+
 // Register Routes
 // Specific Banner Routes (to handle reordering)
 const bannerCrud = createCrud("seasonalBanner", bannerSchema);
