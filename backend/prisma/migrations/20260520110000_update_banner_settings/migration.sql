@@ -1,0 +1,8 @@
+-- AlterTable
+ALTER TABLE "SeasonalBanner" ADD COLUMN IF NOT EXISTS "isDefault" BOOLEAN DEFAULT false;
+ALTER TABLE "SeasonalBanner" ADD COLUMN IF NOT EXISTS "fontFamily" TEXT DEFAULT 'Inter';
+ALTER TABLE "SeasonalBanner" ADD COLUMN IF NOT EXISTS "fontSize" TEXT DEFAULT '4xl md:text-6xl lg:text-8xl';
+ALTER TABLE "SeasonalBanner" ADD COLUMN IF NOT EXISTS "transitionTime" INTEGER DEFAULT 5000;
+ALTER TABLE "SeasonalBanner" ADD COLUMN IF NOT EXISTS "transitionType" TEXT DEFAULT 'fade';
+ALTER TABLE "SeasonalBanner" ADD COLUMN IF NOT EXISTS "active" BOOLEAN DEFAULT true;
+ALTER TABLE "SeasonalBanner" ADD COLUMN IF NOT EXISTS "order" INTEGER DEFAULT 0;

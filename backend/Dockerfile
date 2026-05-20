@@ -23,5 +23,6 @@ COPY --from=build /app/prisma ./prisma
 COPY package.json ./
 EXPOSE 3333
 COPY --from=build /app/entrypoint.sh ./
+COPY --from=build /app/fix-schema.ts ./
 RUN chmod +x entrypoint.sh
 CMD ["./entrypoint.sh"]
