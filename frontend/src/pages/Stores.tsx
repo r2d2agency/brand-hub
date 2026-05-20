@@ -12,6 +12,7 @@ import {
 import { useState, useEffect } from "react";
 
 export default function Stores() {
+  const branding = useBranding();
   const { data: stores = [] } = useQuery({
     queryKey: ["site-stores"],
     queryFn: async () => (await api.get("/site/stores")).data,
