@@ -10,47 +10,51 @@ import {
   Store, 
   Settings,
   History,
-  HelpCircle,
-  MessageSquare,
   LogOut,
   ExternalLink
 } from "lucide-react";
 
-const links = [
-  { to: "/admin", label: "Dashboard", icon: LayoutDashboard, end: true },
-  { to: "/admin/banners", label: "Banners", icon: ImageIcon },
-  { to: "/admin/categories", label: "Categorias", icon: Grid2X2 },
-  { to: "/admin/stores", label: "Lojas", icon: Store },
-  { to: "/admin/history", label: "História", icon: History },
-  { to: "/admin/branding", label: "Branding", icon: Palette },
-  { to: "/admin/pages", label: "Páginas", icon: Files },
-  { to: "/admin/modules", label: "Módulos", icon: Settings },
-  { to: "/admin/users", label: "Usuários", icon: Users },
-];
-
 export default function AdminLayout() {
   const { user, logout } = useAuth();
 
+  const links = [
+    { to: "/admin", label: "Dashboard", icon: LayoutDashboard, end: true, role: "ANY" },
+    { to: "/admin/banners", label: "Banners", icon: ImageIcon, role: "ADMIN" },
+    { to: "/admin/categories", label: "Categorias", icon: Grid2X2, role: "ADMIN" },
+    { to: "/admin/stores", label: "Lojas", icon: Store, role: "ADMIN" },
+    { to: "/admin/history", label: "História", icon: History, role: "ADMIN" },
+    { to: "/admin/branding", label: "Branding", icon: Palette, role: "ADMIN" },
+    { to: "/admin/pages", label: "Páginas", icon: Files, role: "ADMIN" },
+    { to: "/admin/modules", label: "Módulos", icon: Settings, role: "ADMIN" },
+    { to: "/admin/users", label: "Usuários", icon: Users, role: "ADMIN" },
+  ];
+
+  const filteredLinks = links.filter(link => 
+    link.role === "ANY" || (user?.role === "ADMIN")
+  );
+
   return (
-    <div className="flex min-h-screen bg-slate-50">
-      <aside className="fixed inset-y-0 left-0 w-64 border-r border-slate-200 bg-white">
+    <div className="flex min-h-screen bg-slate-50 font-sans">
+      <aside className="fixed inset-y-0 left-0 w-64 border-r border-slate-200 bg-white shadow-xl z-50">
         <div className="flex h-full flex-col">
-          <div className="flex h-16 items-center border-b border-slate-100 px-6 bg-blue-900">
-            <span className="text-lg font-black text-white">BASMAR <span className="text-red-400">Admin</span></span>
+          <div className="flex h-20 items-center border-b border-slate-100 px-6 bg-blue-900">
+            <span className="text-xl font-black text-white tracking-tighter uppercase">
+              BASMAR <span className="text-red-500">Admin</span>
+            </span>
           </div>
 
           <div className="flex-1 overflow-y-auto p-4">
             <nav className="space-y-1">
-              {links.map((l) => (
+              {filteredLinks.map((l) => (
                 <NavLink
                   key={l.to}
                   to={l.to}
                   end={l.end}
                   className={({ isActive }) =>
-                    `flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+                    `flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-bold transition-all ${
                       isActive 
-                        ? "bg-pink-50 text-pink-600" 
-                        : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
+                        ? "bg-red-50 text-red-600 shadow-sm" 
+                        : "text-slate-600 hover:bg-slate-50 hover:text-blue-900"
                     }`
                   }
                 >
@@ -61,40 +65,48 @@ export default function AdminLayout() {
             </nav>
           </div>
 
-          <div className="border-t border-slate-100 p-4">
-            <div className="flex items-center gap-3 px-3 py-2">
-              <div className="h-8 w-8 rounded-full bg-slate-100 flex items-center justify-center text-xs font-bold text-slate-600">
+          <div className="border-t border-slate-100 p-6 bg-slate-50/50">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-10 w-10 rounded-full bg-blue-900 flex items-center justify-center text-sm font-black text-white shadow-lg">
                 {user?.name?.charAt(0)}
               </div>
               <div className="flex-1 overflow-hidden">
-                <div className="truncate text-sm font-medium text-slate-900">{user?.name}</div>
-                <div className="truncate text-xs text-slate-500">{user?.email}</div>
+                <div className="truncate text-sm font-bold text-slate-900">{user?.name}</div>
+                <div className="truncate text-[10px] font-bold text-slate-500 uppercase tracking-wider">
+                  Nível: {user?.role}
+                </div>
               </div>
             </div>
             
-            <div className="mt-4 grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 gap-2">
               <Link
                 to="/"
                 target="_blank"
-                className="flex items-center justify-center gap-2 rounded-md border border-slate-200 px-3 py-2 text-xs font-medium text-slate-600 hover:bg-slate-50"
+                className="flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-2 text-[10px] font-black uppercase tracking-widest text-slate-600 hover:bg-slate-50 transition-colors"
               >
                 <ExternalLink size={14} />
                 Site
               </Link>
               <button
                 onClick={logout}
-                className="flex items-center justify-center gap-2 rounded-md border border-slate-200 px-3 py-2 text-xs font-medium text-red-600 hover:bg-red-50 hover:border-red-100"
+                className="flex items-center justify-center gap-2 rounded-lg border border-red-100 bg-red-50 px-3 py-2 text-[10px] font-black uppercase tracking-widest text-red-600 hover:bg-red-100 transition-colors"
               >
                 <LogOut size={14} />
                 Sair
               </button>
+            </div>
+
+            <div className="mt-8 text-center">
+              <div className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-400">
+                Design by <span className="text-red-600">TNS R2D2</span>
+              </div>
             </div>
           </div>
         </div>
       </aside>
 
       <main className="flex-1 pl-64">
-        <div className="p-8">
+        <div className="p-10 max-w-7xl mx-auto">
           <Outlet />
         </div>
       </main>
