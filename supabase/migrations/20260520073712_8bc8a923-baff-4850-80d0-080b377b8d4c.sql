@@ -1,0 +1,1 @@
+ALTER TABLE public."PegueMonte" ADD COLUMN "videoUrl" TEXT;

@@ -131,6 +131,7 @@ model PegueMonte {
   slug        String   @unique
   description String?
   items       String[] @default([])
+  videoUrl    String?
   coverImage  String?
   gallery     String[] @default([])
   partyType   String?

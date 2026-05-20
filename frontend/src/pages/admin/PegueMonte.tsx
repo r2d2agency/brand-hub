@@ -23,6 +23,8 @@ interface PegueMonteKit {
   highlight: boolean;
   theme?: string;
   partyType?: string;
+  videoUrl?: string;
+  items?: string[];
 }
 
 export default function PegueMonteAdmin() {
@@ -73,7 +75,9 @@ export default function PegueMonteAdmin() {
       coverImage: "",
       gallery: [],
       active: true,
-      highlight: false
+      highlight: false,
+      videoUrl: "",
+      items: []
     });
   };
 
@@ -162,8 +166,19 @@ export default function PegueMonteAdmin() {
                   <textarea 
                     defaultValue={kit.description}
                     onBlur={e => updateKit(kit.id, { description: e.target.value })}
+                    rows={2}
+                    className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-blue-900 focus:outline-none resize-none" 
+                  />
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-black uppercase tracking-widest text-slate-500">Itens Inclusos (um por linha)</label>
+                  <textarea 
+                    defaultValue={kit.items?.join('\n')}
+                    onBlur={e => updateKit(kit.id, { items: e.target.value.split('\n').filter(i => i.trim()) })}
                     rows={3}
                     className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-blue-900 focus:outline-none resize-none" 
+                    placeholder="Mesa rústica&#10;Painel de balões..."
                   />
                 </div>
 
