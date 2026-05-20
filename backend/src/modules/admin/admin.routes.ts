@@ -202,6 +202,7 @@ adminRouter.use("/promotions", createCrud("promotion", promotionSchema));
 adminRouter.use("/news-videos", createCrud("newsVideo", newsVideoSchema));
 adminRouter.use("/partners", createCrud("partner", partnerSchema));
 adminRouter.use("/pegue-monte", createCrud("pegueMonte", pegueMonteSchema));
+adminRouter.use("/courses", createCrud("course", courseSchema));
 
 // Dashboard Stats
 adminRouter.get("/stats", async (_req, res, next) => {
