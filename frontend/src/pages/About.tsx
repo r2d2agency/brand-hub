@@ -15,6 +15,7 @@ import {
 import { useState, useEffect } from "react";
 
 export default function About() {
+  const branding = useBranding();
   const { data: history } = useQuery({
     queryKey: ["site-history"],
     queryFn: async () => (await api.get("/site/history")).data,
