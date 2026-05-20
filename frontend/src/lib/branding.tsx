@@ -32,6 +32,17 @@ export interface Branding {
   buttonBgColor: string;
   buttonTextColor: string;
   coursesIntro?: string | null;
+  // SEO & Analytics
+  seoTitle?: string | null;
+  seoDescription?: string | null;
+  seoKeywords?: string | null;
+  seoOgImage?: string | null;
+  seoAuthor?: string | null;
+  gtmId?: string | null;
+  gaId?: string | null;
+  facebookPixelId?: string | null;
+  headCode?: string | null;
+  bodyCode?: string | null;
 }
 
 const BrandingContext = createContext<Branding | null>(null);

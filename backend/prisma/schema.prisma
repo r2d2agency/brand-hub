@@ -62,6 +62,18 @@ model Branding {
   // Section intro texts
   coursesIntro    String?  @default("Aprenda com quem entende do assunto: workshops, oficinas e cursos para todos os níveis.")
 
+  // SEO & Analytics
+  seoTitle         String?
+  seoDescription   String?
+  seoKeywords      String?
+  seoOgImage       String?
+  seoAuthor        String?
+  gtmId            String?
+  gaId             String?
+  facebookPixelId  String?
+  headCode         String?  @db.Text
+  bodyCode         String?  @db.Text
+
   updatedAt       DateTime @updatedAt
 }
 

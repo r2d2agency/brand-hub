@@ -201,15 +201,30 @@ async function main() {
       );
     `);
 
-    console.log("Checking columns in Branding...");
-    await prisma.$executeRawUnsafe(`
-      DO $$
-      BEGIN
-        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='Branding' AND column_name='coursesIntro') THEN
-          ALTER TABLE "Branding" ADD COLUMN "coursesIntro" TEXT DEFAULT 'Aprenda com quem entende do assunto: workshops, oficinas e cursos para todos os níveis.';
-        END IF;
-      END $$;
-    `);
+    console.log("Checking columns in Branding (extras)...");
+    const extraBrandingCols = [
+      { name: 'coursesIntro', type: 'TEXT', default: "'Aprenda com quem entende do assunto: workshops, oficinas e cursos para todos os níveis.'" },
+      { name: 'seoTitle', type: 'TEXT', default: 'NULL' },
+      { name: 'seoDescription', type: 'TEXT', default: 'NULL' },
+      { name: 'seoKeywords', type: 'TEXT', default: 'NULL' },
+      { name: 'seoOgImage', type: 'TEXT', default: 'NULL' },
+      { name: 'seoAuthor', type: 'TEXT', default: 'NULL' },
+      { name: 'gtmId', type: 'TEXT', default: 'NULL' },
+      { name: 'gaId', type: 'TEXT', default: 'NULL' },
+      { name: 'facebookPixelId', type: 'TEXT', default: 'NULL' },
+      { name: 'headCode', type: 'TEXT', default: 'NULL' },
+      { name: 'bodyCode', type: 'TEXT', default: 'NULL' },
+    ];
+    for (const col of extraBrandingCols) {
+      await prisma.$executeRawUnsafe(`
+        DO $$
+        BEGIN
+          IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='Branding' AND column_name='${col.name}') THEN
+            ALTER TABLE "Branding" ADD COLUMN "${col.name}" TEXT DEFAULT ${col.default};
+          END IF;
+        END $$;
+      `);
+    }
 
     console.log("Checking columns in Course...");
     await prisma.$executeRawUnsafe(`
