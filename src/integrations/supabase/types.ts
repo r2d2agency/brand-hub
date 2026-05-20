@@ -191,6 +191,7 @@ export type Database = {
           theme: string | null
           unit: string | null
           updated_at: string
+          videoUrl: string | null
           whatsappMsg: string | null
         }
         Insert: {
@@ -210,6 +211,7 @@ export type Database = {
           theme?: string | null
           unit?: string | null
           updated_at?: string
+          videoUrl?: string | null
           whatsappMsg?: string | null
         }
         Update: {
@@ -229,6 +231,7 @@ export type Database = {
           theme?: string | null
           unit?: string | null
           updated_at?: string
+          videoUrl?: string | null
           whatsappMsg?: string | null
         }
         Relationships: []

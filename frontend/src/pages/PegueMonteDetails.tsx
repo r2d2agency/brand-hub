@@ -39,67 +39,78 @@ export default function PegueMonteDetails() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-slate-50/30">
       <div className="mx-auto max-w-7xl px-6 py-12">
-        <Link to="/pegue-monte" className="inline-flex items-center gap-2 text-slate-400 hover:text-blue-900 font-bold uppercase text-xs tracking-widest transition-colors mb-8">
-          <ChevronLeft size={16} />
-          Voltar para kits
+        <Link to="/pegue-monte" className="inline-flex items-center gap-2 text-slate-400 hover:text-blue-900 font-bold uppercase text-[10px] tracking-[0.2em] transition-all mb-12 hover:-translate-x-1">
+          <ChevronLeft size={14} />
+          Explorar Coleções
         </Link>
 
-        <div className="grid gap-12 lg:grid-cols-2">
-          {/* Image Gallery Side */}
-          <div className="space-y-6">
-            <div className="aspect-square rounded-[3rem] overflow-hidden bg-slate-100 border border-slate-100 shadow-2xl">
+        <div className="grid gap-16 lg:grid-cols-2 lg:items-start">
+          {/* Image & Video Gallery Side */}
+          <div className="space-y-6 sticky top-32">
+            <div className="aspect-[4/5] rounded-[2.5rem] overflow-hidden bg-white shadow-2xl shadow-blue-900/5 group relative">
               {kit.coverImage ? (
-                <img src={kit.coverImage} alt={kit.name} className="h-full w-full object-cover" />
+                <img src={kit.coverImage} alt={kit.name} className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
               ) : (
-                <div className="flex h-full w-full items-center justify-center text-blue-900/10">
-                  <PartyPopper size={120} />
+                <div className="flex h-full w-full items-center justify-center text-blue-900/5">
+                  <PartyPopper size={80} />
+                </div>
+              )}
+              
+              {kit.theme && (
+                <div className="absolute top-8 left-8 bg-white/90 backdrop-blur-md text-blue-900 text-[10px] font-black uppercase tracking-widest px-4 py-2 rounded-full shadow-sm">
+                  {kit.theme}
                 </div>
               )}
             </div>
             
-            {kit.gallery && kit.gallery.length > 0 && (
-              <div className="grid grid-cols-3 gap-4">
+            {(kit.gallery && kit.gallery.length > 0) && (
+              <div className="grid grid-cols-4 gap-4">
                 {kit.gallery.map((img: string, idx: number) => (
-                  <div key={idx} className="aspect-square rounded-2xl overflow-hidden bg-slate-100 border border-slate-100">
-                    <img src={img} className="h-full w-full object-cover hover:scale-110 transition-transform duration-500" />
-                  </div>
+                  <button key={idx} className="aspect-square rounded-2xl overflow-hidden bg-white border border-slate-100 hover:ring-2 ring-red-500/50 transition-all">
+                    <img src={img} className="h-full w-full object-cover" />
+                  </button>
                 ))}
+              </div>
+            )}
+
+            {/* Video Support Placeholder/Info */}
+            {kit.videoUrl && (
+              <div className="aspect-video rounded-[2rem] overflow-hidden bg-slate-900 shadow-xl relative group">
+                <iframe 
+                  src={`https://www.youtube.com/embed/${kit.videoUrl.split('v=')[1] || kit.videoUrl.split('/').pop()}`}
+                  className="w-full h-full"
+                  allowFullScreen
+                ></iframe>
               </div>
             )}
           </div>
 
-          {/* Info Side */}
-          <div className="flex flex-col">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 text-red-600 text-xs font-black uppercase tracking-widest mb-6 self-start">
-              <Sparkles size={14} />
-              Kit Exclusivo
+          {/* Info Side - More Compact & Refined */}
+          <div className="flex flex-col pt-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 text-red-600 text-[10px] font-black uppercase tracking-widest mb-6 self-start">
+              <Sparkles size={12} />
+              Curadoria Exclusiva
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-black text-blue-900 leading-tight mb-4">{kit.name}</h1>
+            <h1 className="text-4xl md:text-5xl font-black text-blue-900 leading-[1.1] mb-6 tracking-tight">{kit.name}</h1>
             
-            {kit.theme && (
-              <div className="text-blue-600 font-bold uppercase text-sm tracking-widest mb-6">
-                Tema: {kit.theme}
-              </div>
-            )}
+            <div className="h-1 w-12 bg-red-600 rounded-full mb-10"></div>
 
-            <div className="h-1.5 w-20 bg-red-600 rounded-full mb-8"></div>
-
-            <div className="prose prose-slate max-w-none mb-10">
-              <p className="text-slate-600 text-lg leading-relaxed font-medium">
-                {kit.description || "Este kit foi cuidadosamente planejado para trazer magia e sofisticação à sua celebração. Cada item foi selecionado para garantir uma decoração harmoniosa e encantadora."}
+            <div className="prose prose-slate max-w-none mb-12">
+              <p className="text-slate-500 text-lg leading-relaxed font-medium">
+                {kit.description || "Uma composição harmônica desenvolvida para elevar o nível da sua celebração com sofisticação e praticidade."}
               </p>
             </div>
 
             {kit.items && kit.items.length > 0 && (
-              <div className="mb-10 bg-slate-50 rounded-[2.5rem] p-8 md:p-10 border border-slate-100">
-                <h3 className="text-xl font-black text-blue-900 mb-6 uppercase tracking-tight">O que está incluso:</h3>
-                <ul className="grid gap-4 sm:grid-cols-2">
+              <div className="mb-12 bg-white rounded-[2rem] p-10 border border-slate-100 shadow-sm">
+                <h3 className="text-sm font-black text-blue-900 mb-8 uppercase tracking-[0.2em]">Composição do Kit</h3>
+                <ul className="grid gap-5">
                   {kit.items.map((item: string, idx: number) => (
-                    <li key={idx} className="flex items-start gap-3 text-slate-600 font-medium">
-                      <CheckCircle2 className="text-green-500 shrink-0 mt-0.5" size={18} />
+                    <li key={idx} className="flex items-center gap-4 text-slate-600 font-medium text-sm">
+                      <div className="h-1.5 w-1.5 rounded-full bg-red-500" />
                       {item}
                     </li>
                   ))}
@@ -107,21 +118,24 @@ export default function PegueMonteDetails() {
               </div>
             )}
 
-            <div className="mt-auto space-y-4">
+            <div className="space-y-6 bg-blue-900 rounded-[2.5rem] p-10 text-white shadow-2xl shadow-blue-900/20">
+              <div className="space-y-2">
+                <h4 className="text-blue-200 text-[10px] font-black uppercase tracking-[0.2em]">Disponibilidade</h4>
+                <p className="text-xl font-bold">Reserve para sua data</p>
+              </div>
+              
               <button 
                 onClick={handleWhatsApp}
-                className="w-full flex items-center justify-center gap-3 rounded-2xl bg-green-500 py-6 text-sm font-black uppercase tracking-[0.15em] text-white hover:bg-green-600 transition-all shadow-xl shadow-green-500/20 active:scale-95"
+                className="w-full flex items-center justify-center gap-3 rounded-2xl bg-white py-5 text-sm font-black uppercase tracking-[0.1em] text-blue-900 hover:bg-red-600 hover:text-white transition-all active:scale-95 group"
               >
-                <MessageCircle size={22} />
-                Solicitar Orçamento / Reservar
+                <MessageCircle size={20} className="group-hover:rotate-12 transition-transform" />
+                Consultar via WhatsApp
               </button>
-              <p className="text-center text-xs text-slate-400 font-bold uppercase tracking-widest">
-                Atendimento personalizado via WhatsApp
-              </p>
             </div>
           </div>
         </div>
       </div>
     </div>
+  );
   );
 }

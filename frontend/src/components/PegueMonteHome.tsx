@@ -48,12 +48,12 @@ export default function PegueMonteHome() {
           </Link>
         </div>
 
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {displayKits.map((kit: any) => (
             <Link 
               key={kit.id}
               to={`/pegue-monte/${kit.slug || kit.id}`}
-              className="group relative flex flex-col bg-white rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-500 border border-slate-100"
+              className="group relative flex flex-col bg-white rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-slate-100"
             >
               <div className="aspect-[4/5] overflow-hidden relative">
                 {kit.coverImage ? (
@@ -64,30 +64,29 @@ export default function PegueMonteHome() {
                   />
                 ) : (
                   <div className="h-full w-full bg-gradient-to-br from-blue-50 to-red-50 flex items-center justify-center">
-                    <PartyPopper size={48} className="text-blue-900/20" />
+                    <PartyPopper size={40} className="text-blue-900/20" />
                   </div>
                 )}
                 
-                {/* Overlay on hover */}
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-                  <span className="text-white font-bold flex items-center gap-2">
-                    Ver detalhes <ChevronRight size={18} />
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                  <span className="bg-white/90 backdrop-blur-md text-blue-900 px-4 py-2 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg flex items-center gap-2">
+                    Explorar <ChevronRight size={14} />
                   </span>
                 </div>
 
                 {kit.highlight && (
-                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md text-red-600 text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-sm">
+                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md text-red-600 text-[9px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full shadow-sm">
                     Destaque
                   </div>
                 )}
               </div>
               
-              <div className="p-8">
-                <h3 className="text-xl font-black text-blue-900 group-hover:text-red-600 transition-colors duration-300">
+              <div className="p-6">
+                <h3 className="text-lg font-black text-blue-900 group-hover:text-red-600 transition-colors duration-300 line-clamp-1">
                   {kit.name}
                 </h3>
-                <p className="mt-2 text-sm text-slate-500 line-clamp-2 leading-relaxed">
-                  {kit.description || "Transforme sua festa com este kit exclusivo."}
+                <p className="mt-1 text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+                  Ver Coleção
                 </p>
               </div>
             </Link>

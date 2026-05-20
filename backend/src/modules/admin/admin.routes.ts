@@ -153,7 +153,9 @@ const pegueMonteSchema = z.object({
   description: z.string().nullish(),
   theme: z.string().nullish(),
   coverImage: z.string().nullish(),
+  videoUrl: z.string().nullish(),
   gallery: z.array(z.string()).optional(),
+  items: z.array(z.string()).optional(),
   active: z.boolean().optional(),
   highlight: z.boolean().optional(),
 });
