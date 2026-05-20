@@ -1,6 +1,7 @@
 import { Routes, Route, Link } from "react-router-dom";
 import Home from "./pages/Home";
 import PageView from "./pages/PageView";
+import Categories from "./pages/Categories";
 import About from "./pages/About";
 import Login from "./pages/Login";
 import AdminLayout from "./pages/admin/Layout";
