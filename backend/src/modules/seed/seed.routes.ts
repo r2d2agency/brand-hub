@@ -92,6 +92,34 @@ seedRouter.post("/", async (req, res, next) => {
       },
     });
 
+    // Banners Sazonais (Hero Slider)
+    const banners = [
+      {
+        title: "Tudo para sua festa ser inesquecível",
+        subtitle: "Variedade em doces, embalagens e artigos para festa com os melhores preços.",
+        imageDesktop: "https://images.unsplash.com/photo-1530103862676-fa8c9d34bb34?auto=format&fit=crop&q=80&w=2070",
+        imageMobile: "https://images.unsplash.com/photo-1530103862676-fa8c9d34bb34?auto=format&fit=crop&q=80&w=1000",
+        buttonText: "Ver Promoções",
+        buttonLink: "/categorias",
+        active: true,
+        order: 1
+      },
+      {
+        title: "Kits Pegue e Monte Exclusivos",
+        subtitle: "Praticidade e beleza para sua comemoração em casa. Diversos temas disponíveis.",
+        imageDesktop: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&q=80&w=2036",
+        imageMobile: "https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?auto=format&fit=crop&q=80&w=1000",
+        buttonText: "Conhecer Kits",
+        buttonLink: "/pegue-monte",
+        active: true,
+        order: 2
+      }
+    ];
+
+    for (const banner of banners) {
+      await prisma.seasonalBanner.create({ data: banner });
+    }
+
     res.json({ ok: true, message: 'Banco de dados populado com sucesso!' });
   } catch (e) {
     next(e);
