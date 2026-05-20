@@ -30,6 +30,9 @@ async function main() {
       name: 'Basmar - Unidade Matriz', 
       address: 'Rua Principal, 123', 
       neighborhood: 'Centro', 
+      city: 'São Paulo',
+      state: 'SP',
+      zipCode: '01001-000',
       phone: '(11) 1234-5678', 
       whatsapp: '5511999999999',
       hours: 'Seg a Sex: 08h às 18h | Sáb: 08h às 13h',
@@ -39,6 +42,9 @@ async function main() {
       name: 'Basmar - Unidade Shopping', 
       address: 'Av. das Américas, 500', 
       neighborhood: 'Vila Nova', 
+      city: 'Rio de Janeiro',
+      state: 'RJ',
+      zipCode: '22631-000',
       phone: '(11) 8765-4321', 
       whatsapp: '5511888888888',
       hours: 'Seg a Sáb: 10h às 22h | Dom: 14h às 20h',
@@ -47,6 +53,7 @@ async function main() {
   ]
 
   for (const store of stores) {
+    // Upsert or simple create depending on model key, here we use create as original code
     await prisma.store.create({ data: store })
   }
 
@@ -121,6 +128,8 @@ async function main() {
   ]
 
   for (const promo of promos) {
+    // Usar upsert ou verificar existência se possível, mas como Promotion não tem campo único óbvio além do id cuid,
+    // vamos manter o create para seguir o padrão do arquivo original, ou deletar antes para evitar duplicatas em re-seeds
     await prisma.promotion.create({ data: promo })
   }
 
