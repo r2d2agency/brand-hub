@@ -10,6 +10,7 @@ import {
 import HeroSlider from "@/components/HeroSlider";
 import CategoryGalleryModal from "@/components/CategoryGalleryModal";
 import PromotionsAndCourses from "@/components/PromotionsAndCourses";
+import NewsVideosSection from "@/components/NewsVideosSection";
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<any>(null);
@@ -81,31 +82,7 @@ export default function Home() {
       </section>
 
       {/* Videos Section */}
-      <section className="bg-blue-50 py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="mb-12 text-center">
-            <div className="text-xs font-black uppercase tracking-widest text-red-600 mb-2">Momento Basmar</div>
-            <h2 className="text-3xl md:text-4xl font-black text-blue-900">Dicas e Novidades</h2>
-          </div>
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {[1, 2, 3].map(i => (
-              <div key={i} className="aspect-video relative rounded-3xl bg-slate-200 overflow-hidden shadow-lg group">
-                <div className="absolute inset-0 bg-blue-900/20 group-hover:bg-blue-900/40 transition-colors flex items-center justify-center">
-                  <div className="h-16 w-16 rounded-full bg-white/90 text-red-600 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform cursor-pointer">
-                    <Play size={24} fill="currentColor" />
-                  </div>
-                </div>
-                <div className="absolute bottom-6 left-6 right-6">
-                  <div className="inline-block rounded-lg bg-red-600 px-3 py-1 text-[10px] font-bold text-white uppercase tracking-wider mb-2">
-                    Dica da Semana
-                  </div>
-                  <h4 className="text-lg font-bold text-white drop-shadow-md">Como montar sua festa em casa</h4>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <NewsVideosSection />
 
       {/* CTA Strip */}
       <section className="bg-red-600 py-12 text-white">
