@@ -56,7 +56,7 @@ export default function Home() {
                 <h3 className="text-xl font-black text-blue-900 group-hover:text-red-600 transition-colors">{cat.name}</h3>
                 <p className="mt-2 text-sm text-slate-500 line-clamp-2">{cat.description}</p>
               </div>
-            </Link>
+            </button>
           )) : (
             [
               "Doces", "Chocolates", "Balas", "Confeitaria",
