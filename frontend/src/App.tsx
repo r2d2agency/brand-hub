@@ -13,6 +13,7 @@ import BannersAdmin from "./pages/admin/Banners";
 import UsersAdmin from "./pages/admin/Users";
 import StoresAdmin from "./pages/admin/Stores";
 import CategoriesAdmin from "./pages/admin/Categories";
+import Stores from "./pages/Stores";
 import PromotionsAdmin from "./pages/admin/Promotions";
 import NewsVideosAdmin from "./pages/admin/NewsVideos";
 import { ProtectedRoute } from "./lib/auth";
@@ -34,7 +35,7 @@ export default function App() {
         <Route path="/categorias" element={<Categories />} />
         <Route path="/pegue-monte" element={<Placeholder title="Pegue e Monte" />} />
         <Route path="/cursos" element={<Placeholder title="Cursos" />} />
-        <Route path="/lojas" element={<About />} />
+        <Route path="/lojas" element={<Stores />} />
       </Route>
 
       <Route path="/login" element={<Login />} />
