@@ -201,7 +201,34 @@ async function main() {
       );
     `);
 
+    console.log("Checking columns in Branding...");
+    await prisma.$executeRawUnsafe(`
+      DO $$
+      BEGIN
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='Branding' AND column_name='coursesIntro') THEN
+          ALTER TABLE "Branding" ADD COLUMN "coursesIntro" TEXT DEFAULT 'Aprenda com quem entende do assunto: workshops, oficinas e cursos para todos os níveis.';
+        END IF;
+      END $$;
+    `);
 
+    console.log("Checking columns in Course...");
+    await prisma.$executeRawUnsafe(`
+      DO $$
+      BEGIN
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='Course' AND column_name='gallery') THEN
+          ALTER TABLE "Course" ADD COLUMN "gallery" TEXT[] DEFAULT ARRAY[]::TEXT[];
+        END IF;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='Course' AND column_name='showInHome') THEN
+          ALTER TABLE "Course" ADD COLUMN "showInHome" BOOLEAN DEFAULT true;
+        END IF;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='Course' AND column_name='time') THEN
+          ALTER TABLE "Course" ADD COLUMN "time" TEXT;
+        END IF;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='Course' AND column_name='whatsappMsg') THEN
+          ALTER TABLE "Course" ADD COLUMN "whatsappMsg" TEXT;
+        END IF;
+      END $$;
+    `);
 
   } catch (error) {
     console.error("Error updating database schema:", error);

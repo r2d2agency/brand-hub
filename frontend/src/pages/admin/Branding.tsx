@@ -186,6 +186,18 @@ export default function BrandingAdmin() {
                 />
               </div>
 
+              <div className="space-y-1.5">
+                <label className="text-xs font-black uppercase tracking-widest text-slate-500">Texto Introdução — Seção de Cursos</label>
+                <textarea
+                  value={(form as any).coursesIntro || ""}
+                  onChange={e => handleFieldChange("coursesIntro" as any, e.target.value)}
+                  rows={3}
+                  placeholder="Texto curto exibido acima do carrossel de cursos na home."
+                  className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-blue-900 focus:outline-none resize-none"
+                />
+              </div>
+
+
               <div className="grid grid-cols-2 gap-4">
                 <label className="block">
                   <span className="text-xs font-black uppercase tracking-widest text-slate-500 block mb-1">Cor Fundo Rodapé</span>
