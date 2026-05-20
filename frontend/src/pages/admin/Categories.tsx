@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { api } from "@/lib/api";
+import { useBranding } from "@/lib/branding";
 import { 
   Plus, Trash2, Edit2, Grid2X2, MessageCircle, 
   Save, X, ImageIcon, GripVertical, Eye, EyeOff
