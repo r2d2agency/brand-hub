@@ -32,11 +32,8 @@ Tudo é deployado a partir do seu repositório GitHub.
    ```
 5. **Ports**: exponha a porta `3333`
 6. **Domain**: adicione `api.seudominio.com` → SSL automático (Let's Encrypt)
-7. Faça o deploy. O container roda automaticamente `prisma migrate deploy` no boot.
-8. **Primeiro seed** (apenas 1x): abra o terminal do serviço e rode:
-   ```bash
-   npx tsx prisma/seed.ts
-   ```
+7. Faça o deploy. O container roda automaticamente `prisma migrate deploy` e `prisma/seed.ts` no boot.
+
 
 ## 3. Frontend
 
