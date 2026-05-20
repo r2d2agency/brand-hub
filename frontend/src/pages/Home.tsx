@@ -15,35 +15,8 @@ export default function Home() {
 
   return (
     <div className="bg-slate-50">
-      {/* Hero Banner */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 py-16 md:py-20 text-white lg:py-32">
-        <div className="absolute inset-0 opacity-10" style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
-          backgroundSize: '40px 40px'
-        }} />
-        <div className="relative mx-auto max-w-7xl px-6 text-center lg:text-left">
-          <div className="max-w-3xl">
-            <div className="inline-block rounded-full bg-red-600 px-4 py-1.5 text-xs font-black uppercase tracking-widest mb-6">
-              Desde 1991
-            </div>
-            <h1 className="text-4xl md:text-5xl font-black leading-tight lg:text-7xl">
-              Tudo para sua festa ser <span className="text-red-500 italic">inesquecível!</span>
-            </h1>
-            <p className="mt-6 text-base md:text-lg font-medium text-blue-100 lg:text-xl">
-              Variedade em doces, embalagens, artigos de festa e kits exclusivos Pegue e Monte.
-            </p>
-            <div className="mt-10 flex flex-wrap justify-center lg:justify-start gap-4">
-              <button className="rounded-full bg-red-600 px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-bold text-white shadow-xl shadow-red-900/40 hover:bg-red-700 hover:scale-105 transition-all w-full sm:w-auto">
-                Ver Categorias
-              </button>
-              <button className="rounded-full bg-white px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-bold text-blue-900 hover:bg-blue-50 transition-colors flex items-center justify-center gap-2 w-full sm:w-auto">
-                Falar no WhatsApp
-                <MessageCircle size={20} />
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Hero Slider */}
+      <HeroSlider />
 
       {/* Categories Grid */}
       <section className="mx-auto max-w-7xl px-6 py-16 md:py-24">

@@ -8,6 +8,7 @@ import Dashboard from "./pages/admin/Dashboard";
 import BrandingPage from "./pages/admin/Branding";
 import PagesAdmin from "./pages/admin/Pages";
 import ModulesAdmin from "./pages/admin/Modules";
+import BannersAdmin from "./pages/admin/Banners";
 import UsersAdmin from "./pages/admin/Users";
 import { ProtectedRoute } from "./lib/auth";
 import PublicLayout from "./components/PublicLayout";
@@ -46,7 +47,7 @@ export default function App() {
         <Route path="pages" element={<PagesAdmin />} />
         <Route path="modules" element={<ModulesAdmin />} />
         <Route path="users" element={<UsersAdmin />} />
-        <Route path="banners" element={<Placeholder title="Banners" />} />
+        <Route path="banners" element={<BannersAdmin />} />
         <Route path="categories" element={<Placeholder title="Categorias" />} />
         <Route path="stores" element={<Placeholder title="Lojas" />} />
         <Route path="history" element={<Placeholder title="História" />} />
