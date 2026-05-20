@@ -344,15 +344,17 @@ export default function BannersAdmin() {
               items={banners.map((b: any) => b.id)}
               strategy={verticalListSortingStrategy}
             >
-              {banners.map((banner: any) => (
-                <SortableBannerItem 
-                  key={banner.id} 
-                  banner={banner} 
-                  onEdit={openEdit}
-                  onDelete={(id) => deleteMutation.mutate(id)}
-                  onToggle={(b) => toggleMutation.mutate(b)}
-                />
-              ))}
+              <div className="space-y-4">
+                {banners.map((banner: any) => (
+                  <SortableBannerItem 
+                    key={banner.id} 
+                    banner={banner} 
+                    onEdit={openEdit}
+                    onDelete={(id: string) => deleteMutation.mutate(id)}
+                    onToggle={(b: any) => toggleMutation.mutate(b)}
+                  />
+                ))}
+              </div>
             </SortableContext>
           )}
         </div>
