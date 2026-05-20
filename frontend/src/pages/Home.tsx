@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 import HeroSlider from "@/components/HeroSlider";
 import CategoryGalleryModal from "@/components/CategoryGalleryModal";
+import PromotionsAndCourses from "@/components/PromotionsAndCourses";
 
 export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState<any>(null);
