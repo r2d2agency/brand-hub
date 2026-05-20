@@ -71,7 +71,7 @@ export function Header() {
 
 export function Footer() {
   return (
-    <footer className="bg-blue-950 py-16 md:py-20 text-white">
+    <footer className="bg-blue-950 py-16 md:py-20 text-white border-t-4 border-red-600">
       <div className="mx-auto max-w-7xl px-6">
         <div className="grid gap-12 lg:grid-cols-4">
           <div className="col-span-2">
@@ -98,8 +98,13 @@ export function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-16 border-t border-blue-900 pt-8 text-center text-sm text-blue-300">
-          © {new Date().getFullYear()} Basmar Doces & Artigos de Festas. Todos os direitos reservados.
+        <div className="mt-16 border-t border-blue-900 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-blue-300">
+          <div>
+            © {new Date().getFullYear()} Basmar Doces & Artigos de Festas. Todos os direitos reservados.
+          </div>
+          <div className="font-bold tracking-wider text-xs uppercase opacity-80">
+            Design by <span className="text-red-500">TNS R2D2</span>
+          </div>
         </div>
       </div>
     </footer>
