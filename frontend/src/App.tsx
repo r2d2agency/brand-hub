@@ -68,6 +68,7 @@ export default function App() {
         <Route path="history" element={<HistoryAdmin />} />
         <Route path="partners" element={<PartnersAdmin />} />
         <Route path="pegue-monte" element={<PegueMonteAdmin />} />
+        <Route path="courses" element={<CoursesAdmin />} />
       </Route>
 
       <Route
