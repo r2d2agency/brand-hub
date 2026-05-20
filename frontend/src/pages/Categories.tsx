@@ -6,6 +6,7 @@ import { Grid2X2 } from "lucide-react";
 import CategoryGalleryModal from "@/components/CategoryGalleryModal";
 
 export default function Categories() {
+  const branding = useBranding();
   const [selectedCategory, setSelectedCategory] = useState<any>(null);
 
   const { data: categories = [], isLoading } = useQuery({
