@@ -19,9 +19,9 @@ export function Header() {
 
   return (
     <header 
-      className="sticky top-0 z-50 border-b-4 bg-white shadow-sm"
-      style={{ borderBottomColor: branding?.primaryColor || '#dc2626' }}
+      className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-slate-100 shadow-sm"
     >
+
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
         <Link to="/" className="flex items-center shrink-0">
           <img src={branding?.logoUrl || logoBasmar} alt={branding?.siteName || "Basmar"} className="h-12 md:h-14 w-auto object-contain" />

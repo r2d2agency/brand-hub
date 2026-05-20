@@ -13,6 +13,8 @@ import CategoryGalleryModal from "@/components/CategoryGalleryModal";
 import PromotionsAndCourses from "@/components/PromotionsAndCourses";
 import NewsVideosSection from "@/components/NewsVideosSection";
 import PartnersCarousel from "@/components/PartnersCarousel";
+import PegueMonteHome from "@/components/PegueMonteHome";
+
 
 export default function Home() {
   const branding = useBranding();
@@ -32,25 +34,29 @@ export default function Home() {
       <PromotionsAndCourses />
 
       {/* Categories Grid */}
-      <section className="mx-auto max-w-7xl px-6 py-16 md:py-24">
-        <div className="flex items-end justify-between mb-12 flex-wrap gap-4">
-          <div>
-            <div className="text-xs font-black uppercase tracking-widest text-red-600 mb-2">Nossa Vitrine</div>
-            <h2 className="text-3xl md:text-4xl font-black text-blue-900">Explore nosso mundo</h2>
-            <p className="mt-2 text-slate-500 font-medium">As melhores marcas e produtos para você.</p>
+      <section className="mx-auto max-w-7xl px-6 py-24 md:py-32">
+        <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-8">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-900 text-[10px] font-black uppercase tracking-widest mb-4">
+              Nossa Vitrine
+            </div>
+            <h2 className="text-4xl md:text-5xl font-black text-blue-900 leading-tight">Explore nosso <br /><span className="text-red-600">Mundo de Doces</span></h2>
+            <p className="mt-4 text-lg text-slate-500 font-medium">As melhores marcas e produtos para tornar seus momentos ainda mais especiais.</p>
           </div>
-          <Link to="/categorias" className="text-red-600 font-bold flex items-center gap-1 hover:gap-2 transition-all uppercase text-sm tracking-wide">
-            Ver todas <ChevronRight size={20} />
+          <Link to="/categorias" className="group text-red-600 font-bold flex items-center gap-2 hover:gap-3 transition-all uppercase text-sm tracking-wider bg-red-50 px-6 py-3 rounded-full">
+            Ver todas <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
+
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {categories.length > 0 ? categories.map((cat: any) => (
             <button 
               key={cat.id} 
               onClick={() => setSelectedCategory(cat)}
-              className="group text-left relative overflow-hidden rounded-3xl bg-white shadow-md border-2 border-transparent hover:border-red-600 hover:shadow-2xl transition-all"
+              className="group text-left relative overflow-hidden rounded-[2.5rem] bg-white shadow-sm border border-slate-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-500"
             >
+
               <div className="h-48 overflow-hidden bg-blue-50">
                 {cat.coverImage && (
                   <img 
@@ -86,6 +92,10 @@ export default function Home() {
 
       {/* Partners Carousel */}
       <PartnersCarousel />
+
+      {/* Pegue e Monte Home Section */}
+      <PegueMonteHome />
+
 
       {/* Videos Section */}
       <NewsVideosSection />
