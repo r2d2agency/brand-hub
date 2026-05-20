@@ -133,6 +133,7 @@ export default function PartnersAdmin() {
                 <div className="space-y-1.5">
                   <label className="text-xs font-black uppercase tracking-widest text-slate-500">Nome da Marca</label>
                   <input 
+                    key={partner.id}
                     defaultValue={partner.name}
                     onBlur={e => updatePartner(index, 'name', e.target.value)}
                     placeholder="Ex: Nestlé"
