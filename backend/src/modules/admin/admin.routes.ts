@@ -13,7 +13,11 @@ const createCrud = (modelName: string, schema: z.ZodObject<any>) => {
 
   router.get("/", async (_req, res, next) => {
     try {
-      const items = await model.findMany({ orderBy: { createdAt: "desc" } });
+      const items = await model.findMany({ 
+        orderBy: modelName.toLowerCase().includes('banner') || modelName.toLowerCase().includes('category') || modelName.toLowerCase().includes('store') 
+          ? { order: "asc" } 
+          : { createdAt: "desc" } 
+      });
       res.json(items);
     } catch (e) { next(e); }
   });
