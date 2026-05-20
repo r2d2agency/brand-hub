@@ -53,6 +53,19 @@ export function BrandingProvider({ children }: { children: ReactNode }) {
     r.setProperty("--font-heading", `"${data.fontHeading}", system-ui, sans-serif`);
     r.setProperty("--font-body", `"${data.fontBody}", system-ui, sans-serif`);
     
+    // Google Fonts Loader
+    const fontsToLoad = [data.fontHeading, data.fontBody].filter(Boolean);
+    const linkId = 'google-fonts-branding';
+    let fontLink = document.getElementById(linkId) as HTMLLinkElement;
+    if (!fontLink) {
+      fontLink = document.createElement('link');
+      fontLink.id = linkId;
+      fontLink.rel = 'stylesheet';
+      document.head.appendChild(fontLink);
+    }
+    const fontQuery = fontsToLoad.map(f => `family=${f.replace(/\s+/g, '+')}:wght@400;700;900`).join('&');
+    fontLink.href = `https://fonts.googleapis.com/css2?${fontQuery}&display=swap`;
+    
     // UI Theme variables
     r.setProperty("--footer-bg", data.footerBgColor);
     r.setProperty("--footer-text", data.footerTextColor);
