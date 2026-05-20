@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { api } from "@/lib/api";
@@ -7,8 +8,11 @@ import {
   Play
 } from "lucide-react";
 import HeroSlider from "@/components/HeroSlider";
+import CategoryGalleryModal from "@/components/CategoryGalleryModal";
 
 export default function Home() {
+  const [selectedCategory, setSelectedCategory] = useState<any>(null);
+
   const { data: categories = [] } = useQuery({
     queryKey: ["site-categories"],
     queryFn: async () => (await api.get("/site/categories")).data,
@@ -34,10 +38,10 @@ export default function Home() {
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {categories.length > 0 ? categories.map((cat: any) => (
-            <Link 
+            <button 
               key={cat.id} 
-              to={`/categoria/${cat.slug}`}
-              className="group relative overflow-hidden rounded-3xl bg-white shadow-md border-2 border-transparent hover:border-red-600 hover:shadow-2xl transition-all"
+              onClick={() => setSelectedCategory(cat)}
+              className="group text-left relative overflow-hidden rounded-3xl bg-white shadow-md border-2 border-transparent hover:border-red-600 hover:shadow-2xl transition-all"
             >
               <div className="h-48 overflow-hidden bg-blue-50">
                 {cat.coverImage && (
@@ -52,7 +56,7 @@ export default function Home() {
                 <h3 className="text-xl font-black text-blue-900 group-hover:text-red-600 transition-colors">{cat.name}</h3>
                 <p className="mt-2 text-sm text-slate-500 line-clamp-2">{cat.description}</p>
               </div>
-            </Link>
+            </button>
           )) : (
             [
               "Doces", "Chocolates", "Balas", "Confeitaria",
@@ -112,6 +116,14 @@ export default function Home() {
           </button>
         </div>
       </section>
+
+      {/* Gallery Modal */}
+      {selectedCategory && (
+        <CategoryGalleryModal 
+          category={selectedCategory} 
+          onClose={() => setSelectedCategory(null)} 
+        />
+      )}
     </div>
   );
 }
