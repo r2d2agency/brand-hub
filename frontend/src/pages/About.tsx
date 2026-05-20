@@ -128,6 +128,10 @@ export default function About() {
           {stores.map((store: any) => {
             const hasCoords = store.latitude && store.longitude;
             
+            const distance = (hasCoords && userLocation) 
+              ? calculateDistance(userLocation.lat, userLocation.lon, store.latitude, store.longitude)
+              : null;
+            
             return (
               <div key={store.id} className="group relative rounded-3xl bg-white p-6 shadow-xl border border-slate-100 flex flex-col md:flex-row gap-8 transition-all hover:scale-[1.02] hover:shadow-2xl">
                 {/* Store Photo */}
@@ -137,6 +141,12 @@ export default function About() {
                   ) : (
                     <div className="flex h-full w-full items-center justify-center text-blue-900/10">
                       <Store size={80} />
+                    </div>
+                  )}
+                  {distance && (
+                    <div className="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest text-blue-900 shadow-sm border border-blue-50 flex items-center gap-1.5 animate-bounce-subtle">
+                      <Navigation size={10} className="fill-blue-900" />
+                      {distance} km de você
                     </div>
                   )}
                   {!store.active && (
