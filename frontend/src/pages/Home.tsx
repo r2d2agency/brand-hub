@@ -1,10 +1,19 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import { api } from "@/lib/api";
-import { ChevronRight, MessageCircle } from "lucide-react";
+import { useBranding } from "@/lib/branding";
+import { 
+  ShoppingBag, 
+  MapPin, 
+  MessageCircle, 
+  ChevronRight,
+  Play
+} from "lucide-react";
 import logoBasmar from "@/assets/logo-basmar.png";
 
 export default function Home() {
+  const branding = useBranding();
+
   const { data: categories = [] } = useQuery({
     queryKey: ["site-categories"],
     queryFn: async () => (await api.get("/site/categories")).data,
@@ -16,15 +25,15 @@ export default function Home() {
       <header className="sticky top-0 z-50 border-b-4 border-red-600 bg-white shadow-sm">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3">
           <Link to="/" className="flex items-center">
-            <img src={logoBasmar} alt="Basmar Doces e Artigos de Festas" className="h-14 w-auto object-contain" />
+            <img src={logoBasmar} alt="Basmar" className="h-14 w-auto object-contain" />
           </Link>
-
+          
           <nav className="hidden md:flex items-center gap-7 text-sm font-bold uppercase tracking-wide text-blue-900">
+            <Link to="/sobre" className="hover:text-red-600 transition-colors">Sobre</Link>
             <Link to="/categorias" className="hover:text-red-600 transition-colors">Categorias</Link>
             <Link to="/pegue-monte" className="hover:text-red-600 transition-colors">Pegue e Monte</Link>
             <Link to="/cursos" className="hover:text-red-600 transition-colors">Cursos</Link>
             <Link to="/lojas" className="hover:text-red-600 transition-colors">Lojas</Link>
-            <Link to="/contato" className="hover:text-red-600 transition-colors">Contato</Link>
             <Link to="/admin" className="rounded-full bg-blue-900 px-4 py-2 text-white hover:bg-blue-800 transition-colors">Admin</Link>
           </nav>
         </div>
@@ -36,7 +45,6 @@ export default function Home() {
           backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)',
           backgroundSize: '40px 40px'
         }} />
-        
         <div className="relative mx-auto max-w-7xl px-6 text-center lg:text-left">
           <div className="max-w-3xl">
             <div className="inline-block rounded-full bg-red-600 px-4 py-1.5 text-xs font-black uppercase tracking-widest mb-6">
@@ -76,17 +84,17 @@ export default function Home() {
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {categories.length > 0 ? categories.map((cat: any) => (
-            <Link
-              key={cat.id}
+            <Link 
+              key={cat.id} 
               to={`/categoria/${cat.slug}`}
               className="group relative overflow-hidden rounded-3xl bg-white shadow-md border-2 border-transparent hover:border-red-600 hover:shadow-2xl transition-all"
             >
               <div className="h-48 overflow-hidden bg-blue-50">
                 {cat.coverImage && (
-                  <img
-                    src={cat.coverImage}
-                    alt={cat.name}
-                    className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  <img 
+                    src={cat.coverImage} 
+                    alt={cat.name} 
+                    className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-500" 
                   />
                 )}
               </div>
@@ -114,6 +122,33 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Videos Section */}
+      <section className="bg-blue-50 py-24">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="mb-12 text-center">
+            <div className="text-xs font-black uppercase tracking-widest text-red-600 mb-2">Momento Basmar</div>
+            <h2 className="text-4xl font-black text-blue-900">Dicas e Novidades</h2>
+          </div>
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {[1, 2, 3].map(i => (
+              <div key={i} className="aspect-video relative rounded-3xl bg-slate-200 overflow-hidden shadow-lg group">
+                <div className="absolute inset-0 bg-blue-900/20 group-hover:bg-blue-900/40 transition-colors flex items-center justify-center">
+                  <div className="h-16 w-16 rounded-full bg-white/90 text-red-600 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform">
+                    <Play size={24} fill="currentColor" />
+                  </div>
+                </div>
+                <div className="absolute bottom-6 left-6 right-6">
+                  <div className="inline-block rounded-lg bg-red-600 px-3 py-1 text-[10px] font-bold text-white uppercase tracking-wider mb-2">
+                    Dica da Semana
+                  </div>
+                  <h4 className="text-lg font-bold text-white drop-shadow-md">Como montar sua festa em casa</h4>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA Strip */}
       <section className="bg-red-600 py-12 text-white">
         <div className="mx-auto max-w-7xl px-6 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
@@ -129,10 +164,7 @@ export default function Home() {
       </section>
 
       {/* WhatsApp Floating Button */}
-      <a
-        href="#"
-        className="fixed bottom-8 right-8 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-green-500 text-white shadow-2xl shadow-green-500/40 hover:scale-110 transition-transform"
-      >
+      <a href="#" className="fixed bottom-8 right-8 z-50 flex h-16 w-16 items-center justify-center rounded-full bg-green-500 text-white shadow-2xl shadow-green-500/40 hover:scale-110 transition-transform">
         <MessageCircle size={32} />
       </a>
 
@@ -149,7 +181,7 @@ export default function Home() {
             <div>
               <h4 className="font-black mb-4 uppercase text-red-500 text-xs tracking-widest">Navegue</h4>
               <nav className="flex flex-col gap-2 text-blue-200">
-                <Link to="/p/sobre-nos" className="hover:text-white transition-colors">Sobre Nós</Link>
+                <Link to="/sobre" className="hover:text-white transition-colors">Sobre Nós</Link>
                 <Link to="/lojas" className="hover:text-white transition-colors">Onde Estamos</Link>
                 <Link to="/cursos" className="hover:text-white transition-colors">Cursos</Link>
                 <Link to="/contato" className="hover:text-white transition-colors">Contato</Link>
