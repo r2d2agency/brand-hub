@@ -17,10 +17,11 @@ export default function PegueMonteHome() {
   const displayKits = kits.slice(0, 4);
 
   return (
-    <section className="relative py-24 overflow-hidden bg-white">
+    <section className="relative py-32 overflow-hidden bg-white/50 backdrop-blur-sm">
       {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-64 h-64 bg-blue-50 rounded-full mix-blend-multiply filter blur-3xl opacity-30 -translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-red-50 rounded-full mix-blend-multiply filter blur-3xl opacity-30 translate-x-1/3 translate-y-1/3"></div>
+      <div className="absolute top-0 left-0 w-96 h-96 bg-blue-100/40 rounded-full mix-blend-multiply filter blur-3xl opacity-50 -translate-x-1/2 -translate-y-1/2 animate-pulse"></div>
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-red-100/40 rounded-full mix-blend-multiply filter blur-3xl opacity-50 translate-x-1/3 translate-y-1/3 animate-pulse" style={{ animationDelay: '2s' }}></div>
+
 
       <div className="mx-auto max-w-7xl px-6 relative">
         <div className="flex flex-col md:flex-row items-center justify-between mb-16 gap-6">
