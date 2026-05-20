@@ -117,24 +117,18 @@ export default function BrandingAdmin() {
               <div className="space-y-4">
                 <label className="block">
                   <span className="text-xs font-black uppercase tracking-widest text-slate-500 block mb-1">Cor Primária</span>
-                  <div className="flex gap-2">
-                    <input type="color" value={form.primaryColor || "#e91e63"} onChange={e => handleFieldChange("primaryColor", e.target.value)} className="h-10 w-10 border-none cursor-pointer" />
-                    <input type="text" value={form.primaryColor || ""} onChange={e => handleFieldChange("primaryColor", e.target.value)} className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-xs font-mono" />
-                  </div>
+                  <input type="color" value={form.primaryColor || "#e91e63"} onChange={e => handleFieldChange("primaryColor", e.target.value)} className="h-12 w-full border-none cursor-pointer rounded-xl overflow-hidden shadow-sm" />
+                  <input type="text" value={form.primaryColor || ""} onChange={e => handleFieldChange("primaryColor", e.target.value)} className="mt-2 w-full rounded-lg border border-slate-200 px-3 py-1.5 text-[10px] font-mono text-center" />
                 </label>
                 <label className="block">
                   <span className="text-xs font-black uppercase tracking-widest text-slate-500 block mb-1">Cor Secundária</span>
-                  <div className="flex gap-2">
-                    <input type="color" value={form.secondaryColor || "#9c27b0"} onChange={e => handleFieldChange("secondaryColor", e.target.value)} className="h-10 w-10 border-none cursor-pointer" />
-                    <input type="text" value={form.secondaryColor || ""} onChange={e => handleFieldChange("secondaryColor", e.target.value)} className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-xs font-mono" />
-                  </div>
+                  <input type="color" value={form.secondaryColor || "#9c27b0"} onChange={e => handleFieldChange("secondaryColor", e.target.value)} className="h-12 w-full border-none cursor-pointer rounded-xl overflow-hidden shadow-sm" />
+                  <input type="text" value={form.secondaryColor || ""} onChange={e => handleFieldChange("secondaryColor", e.target.value)} className="mt-2 w-full rounded-lg border border-slate-200 px-3 py-1.5 text-[10px] font-mono text-center" />
                 </label>
                 <label className="block">
                   <span className="text-xs font-black uppercase tracking-widest text-slate-500 block mb-1">Botão Global (Fundo)</span>
-                  <div className="flex gap-2">
-                    <input type="color" value={form.buttonBgColor || "#e91e63"} onChange={e => handleFieldChange("buttonBgColor", e.target.value)} className="h-10 w-10 border-none cursor-pointer" />
-                    <input type="text" value={form.buttonBgColor || ""} onChange={e => handleFieldChange("buttonBgColor", e.target.value)} className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-xs font-mono" />
-                  </div>
+                  <input type="color" value={form.buttonBgColor || "#e91e63"} onChange={e => handleFieldChange("buttonBgColor", e.target.value)} className="h-12 w-full border-none cursor-pointer rounded-xl overflow-hidden shadow-sm" />
+                  <input type="text" value={form.buttonBgColor || ""} onChange={e => handleFieldChange("buttonBgColor", e.target.value)} className="mt-2 w-full rounded-lg border border-slate-200 px-3 py-1.5 text-[10px] font-mono text-center" />
                 </label>
               </div>
 
@@ -165,10 +159,8 @@ export default function BrandingAdmin() {
                 </label>
                 <label className="block">
                   <span className="text-xs font-black uppercase tracking-widest text-slate-500 block mb-1">Botão Global (Texto)</span>
-                  <div className="flex gap-2">
-                    <input type="color" value={form.buttonTextColor || "#ffffff"} onChange={e => handleFieldChange("buttonTextColor", e.target.value)} className="h-10 w-10 border-none cursor-pointer" />
-                    <input type="text" value={form.buttonTextColor || ""} onChange={e => handleFieldChange("buttonTextColor", e.target.value)} className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-xs font-mono" />
-                  </div>
+                  <input type="color" value={form.buttonTextColor || "#ffffff"} onChange={e => handleFieldChange("buttonTextColor", e.target.value)} className="h-12 w-full border-none cursor-pointer rounded-xl overflow-hidden shadow-sm" />
+                  <input type="text" value={form.buttonTextColor || ""} onChange={e => handleFieldChange("buttonTextColor", e.target.value)} className="mt-2 w-full rounded-lg border border-slate-200 px-3 py-1.5 text-[10px] font-mono text-center" />
                 </label>
               </div>
             </div>
@@ -197,17 +189,13 @@ export default function BrandingAdmin() {
               <div className="grid grid-cols-2 gap-4">
                 <label className="block">
                   <span className="text-xs font-black uppercase tracking-widest text-slate-500 block mb-1">Cor Fundo Rodapé</span>
-                  <div className="flex gap-2">
-                    <input type="color" value={form.footerBgColor || "#0f172a"} onChange={e => handleFieldChange("footerBgColor", e.target.value)} className="h-10 w-10 border-none cursor-pointer" />
-                    <input type="text" value={form.footerBgColor || ""} onChange={e => handleFieldChange("footerBgColor", e.target.value)} className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-xs font-mono" />
-                  </div>
+                  <input type="color" value={form.footerBgColor || "#0f172a"} onChange={e => handleFieldChange("footerBgColor", e.target.value)} className="h-12 w-full border-none cursor-pointer rounded-xl overflow-hidden shadow-sm" />
+                  <input type="text" value={form.footerBgColor || ""} onChange={e => handleFieldChange("footerBgColor", e.target.value)} className="mt-2 w-full rounded-lg border border-slate-200 px-3 py-1.5 text-[10px] font-mono text-center" />
                 </label>
                 <label className="block">
                   <span className="text-xs font-black uppercase tracking-widest text-slate-500 block mb-1">Cor Texto Rodapé</span>
-                  <div className="flex gap-2">
-                    <input type="color" value={form.footerTextColor || "#ffffff"} onChange={e => handleFieldChange("footerTextColor", e.target.value)} className="h-10 w-10 border-none cursor-pointer" />
-                    <input type="text" value={form.footerTextColor || ""} onChange={e => handleFieldChange("footerTextColor", e.target.value)} className="flex-1 rounded-lg border border-slate-200 px-3 py-2 text-xs font-mono" />
-                  </div>
+                  <input type="color" value={form.footerTextColor || "#ffffff"} onChange={e => handleFieldChange("footerTextColor", e.target.value)} className="h-12 w-full border-none cursor-pointer rounded-xl overflow-hidden shadow-sm" />
+                  <input type="text" value={form.footerTextColor || ""} onChange={e => handleFieldChange("footerTextColor", e.target.value)} className="mt-2 w-full rounded-lg border border-slate-200 px-3 py-1.5 text-[10px] font-mono text-center" />
                 </label>
               </div>
 
