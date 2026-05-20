@@ -14,6 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
+      NewsVideo: {
+        Row: {
+          active: boolean
+          createdAt: string
+          id: string
+          order: number
+          orientation: string
+          tags: string[] | null
+          thumbnail: string
+          title: string
+          updatedAt: string
+          youtubeUrl: string
+        }
+        Insert: {
+          active?: boolean
+          createdAt?: string
+          id: string
+          order?: number
+          orientation?: string
+          tags?: string[] | null
+          thumbnail: string
+          title: string
+          updatedAt?: string
+          youtubeUrl: string
+        }
+        Update: {
+          active?: boolean
+          createdAt?: string
+          id?: string
+          order?: number
+          orientation?: string
+          tags?: string[] | null
+          thumbnail?: string
+          title?: string
+          updatedAt?: string
+          youtubeUrl?: string
+        }
+        Relationships: []
+      }
       stores: {
         Row: {
           address: string
