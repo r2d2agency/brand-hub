@@ -12,6 +12,7 @@ import HeroSlider from "@/components/HeroSlider";
 import CategoryGalleryModal from "@/components/CategoryGalleryModal";
 import PromotionsAndCourses from "@/components/PromotionsAndCourses";
 import NewsVideosSection from "@/components/NewsVideosSection";
+import PartnersCarousel from "@/components/PartnersCarousel";
 
 export default function Home() {
   const branding = useBranding();
@@ -82,6 +83,9 @@ export default function Home() {
           )}
         </div>
       </section>
+
+      {/* Partners Carousel */}
+      <PartnersCarousel />
 
       {/* Videos Section */}
       <NewsVideosSection />
