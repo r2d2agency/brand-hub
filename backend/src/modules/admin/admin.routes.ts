@@ -89,7 +89,24 @@ const storeSchema = z.object({
 });
 
 // Register Routes
-adminRouter.use("/banners", createCrud("seasonalBanner", bannerSchema));
+// Specific Banner Routes (to handle reordering)
+const bannerCrud = createCrud("seasonalBanner", bannerSchema);
+bannerCrud.post("/reorder", async (req, res, next) => {
+  try {
+    const { ids } = z.object({ ids: z.array(z.string()) }).parse(req.body);
+    await Promise.all(
+      ids.map((id, index) => 
+        prisma.seasonalBanner.update({
+          where: { id },
+          data: { order: index }
+        })
+      )
+    );
+    res.json({ success: true });
+  } catch (e) { next(e); }
+});
+
+adminRouter.use("/banners", bannerCrud);
 adminRouter.use("/categories", createCrud("productCategory", categorySchema));
 adminRouter.use("/stores", createCrud("store", storeSchema));
 
