@@ -35,8 +35,8 @@ export default function AdminLayout() {
     <div className="flex min-h-screen bg-slate-50">
       <aside className="fixed inset-y-0 left-0 w-64 border-r border-slate-200 bg-white">
         <div className="flex h-full flex-col">
-          <div className="flex h-16 items-center border-b border-slate-100 px-6">
-            <span className="text-lg font-bold text-pink-600">Basmar Admin</span>
+          <div className="flex h-16 items-center border-b border-slate-100 px-6 bg-blue-900">
+            <span className="text-lg font-black text-white">BASMAR <span className="text-red-400">Admin</span></span>
           </div>
 
           <div className="flex-1 overflow-y-auto p-4">
