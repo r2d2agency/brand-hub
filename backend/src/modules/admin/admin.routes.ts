@@ -52,9 +52,14 @@ const bannerSchema = z.object({
   imageMobile: z.string().nullish(),
   buttonText: z.string().nullish(),
   buttonLink: z.string().nullish(),
-  startDate: z.string().datetime().nullish().transform(v => v ? new Date(v) : null),
-  endDate: z.string().datetime().nullish().transform(v => v ? new Date(v) : null),
+  startDate: z.string().nullish().transform(v => v ? new Date(v) : null),
+  endDate: z.string().nullish().transform(v => v ? new Date(v) : null),
   active: z.boolean().optional(),
+  isDefault: z.boolean().optional(),
+  fontFamily: z.string().nullish(),
+  fontSize: z.string().nullish(),
+  transitionTime: z.number().int().nullish(),
+  transitionType: z.string().nullish(),
   order: z.number().int().optional(),
 });
 
