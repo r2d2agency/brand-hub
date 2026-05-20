@@ -1,0 +1,44 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: app
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/app?schema=public
+      JWT_SECRET: troque-este-segredo-em-producao-please
+      JWT_EXPIRES_IN: 7d
+      PORT: 3333
+      CORS_ORIGIN: http://localhost
+      ADMIN_EMAIL: admin@local
+      ADMIN_PASSWORD: admin123
+      ADMIN_NAME: Administrador
+    ports:
+      - "3333:3333"
+    command: sh -c "npx prisma migrate deploy && npx tsx prisma/seed.ts && node dist/index.js"
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: http://localhost:3333/api
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "80:80"
+
+volumes:
+  pgdata:
