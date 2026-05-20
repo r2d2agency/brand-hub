@@ -173,6 +173,66 @@ export type Database = {
         }
         Relationships: []
       }
+      PegueMonte: {
+        Row: {
+          active: boolean | null
+          coverImage: string | null
+          created_at: string
+          description: string | null
+          gallery: string[] | null
+          highlight: boolean | null
+          id: string
+          items: string[] | null
+          name: string
+          obs: string | null
+          partyType: string | null
+          peopleCount: string | null
+          slug: string
+          theme: string | null
+          unit: string | null
+          updated_at: string
+          whatsappMsg: string | null
+        }
+        Insert: {
+          active?: boolean | null
+          coverImage?: string | null
+          created_at?: string
+          description?: string | null
+          gallery?: string[] | null
+          highlight?: boolean | null
+          id?: string
+          items?: string[] | null
+          name: string
+          obs?: string | null
+          partyType?: string | null
+          peopleCount?: string | null
+          slug: string
+          theme?: string | null
+          unit?: string | null
+          updated_at?: string
+          whatsappMsg?: string | null
+        }
+        Update: {
+          active?: boolean | null
+          coverImage?: string | null
+          created_at?: string
+          description?: string | null
+          gallery?: string[] | null
+          highlight?: boolean | null
+          id?: string
+          items?: string[] | null
+          name?: string
+          obs?: string | null
+          partyType?: string | null
+          peopleCount?: string | null
+          slug?: string
+          theme?: string | null
+          unit?: string | null
+          updated_at?: string
+          whatsappMsg?: string | null
+        }
+        Relationships: []
+      }
       stores: {
         Row: {
           address: string

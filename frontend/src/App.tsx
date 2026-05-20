@@ -18,6 +18,7 @@ import PromotionsAdmin from "./pages/admin/Promotions";
 import NewsVideosAdmin from "./pages/admin/NewsVideos";
 import HistoryAdmin from "./pages/admin/History";
 import PartnersAdmin from "./pages/admin/Partners";
+import PegueMonteAdmin from "./pages/admin/PegueMonte";
 import { ProtectedRoute } from "./lib/auth";
 import PublicLayout from "./components/PublicLayout";
 
@@ -62,6 +63,7 @@ export default function App() {
         <Route path="news-videos" element={<NewsVideosAdmin />} />
         <Route path="history" element={<HistoryAdmin />} />
         <Route path="partners" element={<PartnersAdmin />} />
+        <Route path="pegue-monte" element={<PegueMonteAdmin />} />
       </Route>
 
       <Route
