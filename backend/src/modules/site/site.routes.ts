@@ -192,3 +192,22 @@ siteRouter.post("/whatsapp-click", async (req, res, next) => {
     res.status(201).json(click);
   } catch (e) { next(e); }
 });
+
+// Page View Tracking
+siteRouter.post("/track", async (req, res, next) => {
+  try {
+    const schema = z.object({
+      path: z.string().min(1).max(500),
+      sessionId: z.string().min(1).max(100),
+      referrer: z.string().max(500).optional().nullable(),
+    });
+    const data = schema.parse(req.body);
+    const userAgent = (req.headers["user-agent"] || "").toString().slice(0, 500);
+    await prisma.$executeRawUnsafe(
+      `INSERT INTO "PageView" ("path", "sessionId", "userAgent", "referrer") VALUES ($1, $2, $3, $4)`,
+      data.path, data.sessionId, userAgent, data.referrer || null
+    );
+    res.status(201).json({ ok: true });
+  } catch (e) { next(e); }
+});
+

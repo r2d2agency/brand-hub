@@ -23,7 +23,9 @@ import PegueMonteDetails from "./pages/PegueMonteDetails";
 import PegueMonteAdmin from "./pages/admin/PegueMonte";
 import CoursesAdmin from "./pages/admin/Courses";
 import SeoAdmin from "./pages/admin/Seo";
+import Analytics from "./pages/admin/Analytics";
 import Courses from "./pages/Courses";
+
 import { ProtectedRoute } from "./lib/auth";
 import PublicLayout from "./components/PublicLayout";
 
@@ -72,6 +74,8 @@ export default function App() {
         <Route path="pegue-monte" element={<PegueMonteAdmin />} />
         <Route path="courses" element={<CoursesAdmin />} />
         <Route path="seo" element={<SeoAdmin />} />
+        <Route path="analytics" element={<Analytics />} />
+
       </Route>
 
       <Route
