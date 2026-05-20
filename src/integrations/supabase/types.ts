@@ -134,6 +134,33 @@ export type Database = {
         }
         Relationships: []
       }
+      PageView: {
+        Row: {
+          createdAt: string
+          id: number
+          path: string
+          referrer: string | null
+          sessionId: string
+          userAgent: string | null
+        }
+        Insert: {
+          createdAt?: string
+          id?: number
+          path: string
+          referrer?: string | null
+          sessionId: string
+          userAgent?: string | null
+        }
+        Update: {
+          createdAt?: string
+          id?: number
+          path?: string
+          referrer?: string | null
+          sessionId?: string
+          userAgent?: string | null
+        }
+        Relationships: []
+      }
       partner: {
         Row: {
           active: boolean | null
