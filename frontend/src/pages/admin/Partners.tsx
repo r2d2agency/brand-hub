@@ -26,22 +26,28 @@ export default function PartnersAdmin() {
     queryFn: async () => (await api.get("/admin-cms/partners")).data,
   });
 
-  const [msg, setMsg] = useState("");
-
   const saveMutation = useMutation({
     mutationFn: async (payload: any) => {
+      const data = {
+        name: payload.name || "Novo Parceiro",
+        logo: payload.logo || "https://placehold.co/200x100?text=Logo",
+        order: typeof payload.order === 'number' ? payload.order : partners.length,
+        active: payload.active !== undefined ? payload.active : true
+      };
+
       if (payload.id) {
-        return (await api.put(`/admin-cms/partners/${payload.id}`, payload)).data;
+        return (await api.put(`/admin-cms/partners/${payload.id}`, data)).data;
       }
-      return (await api.post("/admin-cms/partners", payload)).data;
+      return (await api.post("/admin-cms/partners", data)).data;
     },
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["admin-partners"] });
       setMsg("Parceiro salvo com sucesso!");
       setTimeout(() => setMsg(""), 3000);
     },
-    onError: () => {
-      alert("Erro ao salvar parceiro.");
+    onError: (err: any) => {
+      console.error("Erro ao salvar parceiro:", err.response?.data || err.message);
+      alert("Erro ao salvar parceiro. Verifique se o nome e a logo estão preenchidos.");
     }
   });
 
@@ -111,7 +117,7 @@ export default function PartnersAdmin() {
       </div>
 
       <div className="grid gap-6">
-        {[...partners].sort((a, b) => (a.order || 0) - (b.order || 0)).map((partner, index) => (
+        {[...partners].sort((a, b) => (a.order ?? 0) - (b.order ?? 0)).map((partner, index) => (
           <div key={partner.id || index} className="group relative rounded-2xl border border-slate-200 bg-white p-6 shadow-sm hover:shadow-md transition-all">
             <div className="flex flex-col md:flex-row gap-6 items-center">
               <div className="w-full md:w-48">
@@ -127,6 +133,7 @@ export default function PartnersAdmin() {
                 <div className="space-y-1.5">
                   <label className="text-xs font-black uppercase tracking-widest text-slate-500">Nome da Marca</label>
                   <input 
+                    key={partner.id}
                     defaultValue={partner.name}
                     onBlur={e => updatePartner(index, 'name', e.target.value)}
                     placeholder="Ex: Nestlé"
