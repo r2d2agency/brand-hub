@@ -464,13 +464,16 @@ export default function BannersAdmin() {
                     value={form.imageDesktop}
                     onChange={(v) => setForm({...form, imageDesktop: v})}
                     aspectClass="aspect-[21/9]"
+                    hint="1920x820px • paisagem ultra-wide (21:9)"
                   />
                   <ImageUpload
                     label="Imagem Mobile (opcional)"
                     value={form.imageMobile}
                     onChange={(v) => setForm({...form, imageMobile: v})}
                     aspectClass="aspect-[9/16] max-h-48"
+                    hint="720x1280px • retrato (9:16)"
                   />
+
                 </div>
 
                 <div className="grid gap-4 md:grid-cols-2">
