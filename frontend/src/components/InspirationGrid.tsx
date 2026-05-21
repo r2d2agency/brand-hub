@@ -12,9 +12,9 @@ export default function InspirationGrid() {
   if (!items.length) return null;
 
   return (
-    <section className="mx-auto max-w-7xl px-6 py-12 md:py-16">
-      <div className="flex items-end justify-between mb-8">
-        <h2 className="text-2xl md:text-3xl font-black text-blue-900">
+    <section className="mx-auto max-w-7xl px-6 py-6 md:py-8">
+      <div className="flex items-end justify-between mb-6">
+        <h2 className="text-xl md:text-2xl font-black text-blue-900">
           Inspiração para <span className="text-red-600">sua festa</span>
         </h2>
         <Link to="/categorias" className="text-red-600 font-bold text-sm flex items-center gap-1 hover:gap-2 transition-all">

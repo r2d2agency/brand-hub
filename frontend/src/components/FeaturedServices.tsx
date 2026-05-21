@@ -34,8 +34,8 @@ export default function FeaturedServices() {
   };
 
   return (
-    <section className="mx-auto max-w-7xl px-6 py-12 md:py-20">
-      <div className="grid gap-8 md:grid-cols-2">
+    <section className="mx-auto max-w-7xl px-6 py-6 md:py-10">
+      <div className="grid gap-6 md:grid-cols-2">
 
         {/* COL 1: NOVIDADES */}
         <div className="relative group overflow-hidden rounded-[3rem] bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500">
@@ -43,7 +43,7 @@ export default function FeaturedServices() {
             onClick={() => featuredVideo && setActiveVideo(featuredVideo)}
             className="block w-full text-left"
           >
-            <div className="aspect-[16/10] md:aspect-auto md:h-[450px] relative overflow-hidden">
+            <div className="aspect-[16/10] md:aspect-auto md:h-[380px] relative overflow-hidden">
               {featuredVideo?.thumbnail ? (
                 <img
                   src={featuredVideo.thumbnail}
@@ -73,7 +73,7 @@ export default function FeaturedServices() {
                     Novidades
                   </span>
                 </div>
-                <h3 className="text-3xl font-black mb-3 leading-tight">
+                <h3 className="text-2xl font-black mb-2 leading-tight">
                   {featuredVideo?.title || "Fique por dentro das novidades"}
                 </h3>
                 <p className="text-blue-100 font-medium mb-6 line-clamp-2 max-w-sm">
@@ -86,7 +86,7 @@ export default function FeaturedServices() {
 
         {/* COL 2: CURSOS */}
         <div className="relative group overflow-hidden rounded-[3rem] bg-blue-900 shadow-sm hover:shadow-xl transition-all duration-500">
-          <div className="aspect-[16/10] md:aspect-auto md:h-[450px] relative overflow-hidden">
+          <div className="aspect-[16/10] md:aspect-auto md:h-[380px] relative overflow-hidden">
             {featuredCourse?.coverImage ? (
               <img
                 src={featuredCourse.coverImage}
@@ -106,7 +106,7 @@ export default function FeaturedServices() {
                   Cursos e Workshops
                 </span>
               </div>
-              <h3 className="text-3xl font-black mb-3 leading-tight">
+              <h3 className="text-2xl font-black mb-2 leading-tight">
                 {featuredCourse?.title || "Aprenda Conosco"}
               </h3>
 

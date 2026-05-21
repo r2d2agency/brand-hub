@@ -49,7 +49,7 @@ export default function CategoryCarousel({
   if (!categories?.length) return null;
 
   return (
-    <section className="mx-auto max-w-7xl px-4 md:px-6 py-8 md:py-12">
+    <section className="mx-auto max-w-7xl px-4 md:px-6 py-4 md:py-6">
       <div className="relative group">
         {/* Fade edges */}
         <div
