@@ -269,7 +269,7 @@ function CourseCard({ course, branding }: { course: any; branding: any }) {
         <img
           src={course.coverImage || "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=2070&auto=format&fit=crop"}
           alt={course.title}
-          className="h-full w-full object-cover opacity-40"
+          className="h-full w-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-300"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/50 to-transparent" />
       </div>
