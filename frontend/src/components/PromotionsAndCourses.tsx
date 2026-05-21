@@ -83,7 +83,7 @@ export default function PromotionsAndCourses() {
                 prevEl: ".promo-prev",
                 nextEl: ".promo-next"
               } : false}
-              autoplay={{ delay: 4000, disableOnInteraction: false }}
+              autoplay={false}
               className="rounded-3xl"
             >
               {promotions.map((promo: any) => (
