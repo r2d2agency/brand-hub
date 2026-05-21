@@ -15,7 +15,7 @@ import {
   MapPin,
   X
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -71,32 +71,35 @@ export default function PromotionsAndCourses() {
           <div className="relative group min-h-[200px] flex items-center justify-center">
             {promotions.length > 0 ? (
               <Swiper
-              modules={[Autoplay, SwiperNavigation]}
-              spaceBetween={12}
-              slidesPerView={2}
-              breakpoints={{
-                480: { slidesPerView: 2 },
-                640: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 }
-              }}
-              navigation={promotions.length > 3 ? {
-                prevEl: ".promo-prev",
-                nextEl: ".promo-next"
-              } : false}
-              autoplay={{ delay: 4000, disableOnInteraction: false }}
-              className="rounded-3xl"
-            >
+                key={promotions.length}
+                modules={[Autoplay, SwiperNavigation]}
+                spaceBetween={12}
+                slidesPerView={2}
+                observer={true}
+                observeParents={true}
+                breakpoints={{
+                  480: { slidesPerView: 2 },
+                  640: { slidesPerView: 2 },
+                  1024: { slidesPerView: 3 }
+                }}
+                navigation={promotions.length > 3 ? {
+                  prevEl: ".promo-prev",
+                  nextEl: ".promo-next"
+                } : false}
+                autoplay={{ delay: 4000, disableOnInteraction: false }}
+                className="rounded-3xl"
+              >
               {promotions.map((promo: any) => (
                 <SwiperSlide key={promo.id}>
                   <button 
                     onClick={() => setSelectedPromo(promo)}
-                    className="w-full text-left group bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden"
+                    className="w-full text-left bg-white rounded-3xl border border-slate-100 shadow-sm overflow-hidden"
                   >
                     <div className="relative h-40 sm:h-48 md:h-64 overflow-hidden bg-slate-50">
                       <img 
                         src={promo.image} 
                         alt={promo.title} 
-                        className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-300" 
+                        className="h-full w-full object-cover" 
                       />
                       <div className="absolute top-4 left-4">
                         <span className="bg-red-600 text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">
@@ -105,7 +108,7 @@ export default function PromotionsAndCourses() {
                       </div>
                     </div>
                     <div className="p-6">
-                      <h3 className="font-black text-blue-900 line-clamp-1 mb-2 group-hover:text-red-600 transition-colors">
+                      <h3 className="font-black text-blue-900 line-clamp-1 mb-2">
                         {promo.title}
                       </h3>
                       <div className="flex items-baseline gap-2">
@@ -141,9 +144,12 @@ export default function PromotionsAndCourses() {
             {homeCourses.length > 1 ? (
               <div className="flex-1 relative group">
                 <Swiper
+                  key={homeCourses.length}
                   modules={[Autoplay, SwiperNavigation]}
                   spaceBetween={16}
                   slidesPerView={1}
+                  observer={true}
+                  observeParents={true}
                   navigation={{ prevEl: ".course-prev", nextEl: ".course-next" }}
                   autoplay={{ delay: 5000, disableOnInteraction: false }}
                   loop={homeCourses.length > 1}
@@ -180,76 +186,66 @@ export default function PromotionsAndCourses() {
 
 
       {/* PROMO MODAL */}
-      <AnimatePresence>
-        {selectedPromo && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+      {selectedPromo && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div 
+            onClick={() => setSelectedPromo(null)}
+            className="absolute inset-0 bg-blue-950/80 backdrop-blur-md"
+          />
+          
+          <div className="relative w-full max-w-4xl bg-white rounded-[40px] shadow-2xl overflow-hidden flex flex-col md:flex-row">
+            <button 
               onClick={() => setSelectedPromo(null)}
-              className="absolute inset-0 bg-blue-950/80 backdrop-blur-md"
-            />
-            
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-4xl bg-white rounded-[40px] shadow-2xl overflow-hidden flex flex-col md:flex-row"
+              className="absolute top-6 right-6 z-10 p-2 rounded-full bg-slate-100 text-slate-500 hover:bg-red-600 hover:text-white transition-colors"
             >
-              <button 
-                onClick={() => setSelectedPromo(null)}
-                className="absolute top-6 right-6 z-10 p-2 rounded-full bg-slate-100 text-slate-500 hover:bg-red-600 hover:text-white transition-colors"
-              >
-                <X size={20} />
-              </button>
+              <X size={20} />
+            </button>
 
-              <div className="md:w-1/2 aspect-square md:aspect-auto relative bg-slate-50">
-                <img src={selectedPromo.image} alt={selectedPromo.title} className="h-full w-full object-cover" />
-                <div className="absolute top-8 left-8">
-                  <span className="bg-red-600 text-white px-6 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-xl">
-                    Oferta Ativa
-                  </span>
-                </div>
+            <div className="md:w-1/2 aspect-square md:aspect-auto relative bg-slate-50">
+              <img src={selectedPromo.image} alt={selectedPromo.title} className="h-full w-full object-cover" />
+              <div className="absolute top-8 left-8">
+                <span className="bg-red-600 text-white px-6 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-xl">
+                  Oferta Ativa
+                </span>
+              </div>
+            </div>
+
+            <div className="flex-1 p-8 md:p-12 flex flex-col">
+              <div className="mb-8">
+                <h3 className="text-3xl font-black text-blue-900 mb-4 leading-tight">{selectedPromo.title}</h3>
+                <div className="h-1.5 w-16 bg-red-600 rounded-full" />
               </div>
 
-              <div className="flex-1 p-8 md:p-12 flex flex-col">
-                <div className="mb-8">
-                  <h3 className="text-3xl font-black text-blue-900 mb-4 leading-tight">{selectedPromo.title}</h3>
-                  <div className="h-1.5 w-16 bg-red-600 rounded-full" />
+              <div className="flex items-center gap-4 mb-8">
+                <div className="text-5xl font-black text-red-600 tracking-tighter">
+                  R$ <span className="text-6xl">{selectedPromo.price}</span>
                 </div>
-
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="text-5xl font-black text-red-600 tracking-tighter">
-                    R$ <span className="text-6xl">{selectedPromo.price}</span>
+                {selectedPromo.oldPrice && (
+                  <div className="text-slate-400 line-through font-bold text-xl decoration-2 decoration-red-600/30">
+                    R$ {selectedPromo.oldPrice}
                   </div>
-                  {selectedPromo.oldPrice && (
-                    <div className="text-slate-400 line-through font-bold text-xl decoration-2 decoration-red-600/30">
-                      R$ {selectedPromo.oldPrice}
-                    </div>
-                  )}
-                </div>
-
-                <div className="flex-1 prose prose-slate max-w-none">
-                  <p className="text-slate-600 font-medium leading-relaxed">
-                    {selectedPromo.description || "Aproveite esta oferta exclusiva na Basmar! Qualidade e preço baixo para sua festa."}
-                  </p>
-                </div>
-
-                <div className="mt-12">
-                  <button 
-                    onClick={() => handlePromoWhatsApp(selectedPromo)}
-                    className="w-full flex items-center justify-center gap-3 rounded-2xl bg-green-500 py-5 text-sm font-black uppercase tracking-widest text-white hover:bg-green-600 transition-all shadow-xl shadow-green-500/20 active:scale-95"
-                  >
-                    <MessageCircle size={22} />
-                    Aproveitar Oferta no WhatsApp
-                  </button>
-                </div>
+                )}
               </div>
-            </motion.div>
+
+              <div className="flex-1 prose prose-slate max-w-none">
+                <p className="text-slate-600 font-medium leading-relaxed">
+                  {selectedPromo.description || "Aproveite esta oferta exclusiva na Basmar! Qualidade e preço baixo para sua festa."}
+                </p>
+              </div>
+
+              <div className="mt-12">
+                <button 
+                  onClick={() => handlePromoWhatsApp(selectedPromo)}
+                  className="w-full flex items-center justify-center gap-3 rounded-2xl bg-green-500 py-5 text-sm font-black uppercase tracking-widest text-white hover:bg-green-600 transition-all shadow-xl shadow-green-500/20 active:scale-95"
+                >
+                  <MessageCircle size={22} />
+                  Aproveitar Oferta no WhatsApp
+                </button>
+              </div>
+            </div>
           </div>
-        )}
-      </AnimatePresence>
+        </div>
+      )}
     </section>
   );
 }
@@ -264,12 +260,12 @@ function CourseCard({ course, branding }: { course: any; branding: any }) {
   const whatsappLink = `https://wa.me/${branding?.whatsappPhone?.replace(/\D/g, '') || '5511999999999'}?text=${encodeURIComponent(course.whatsappMsg || `Olá! Tenho interesse no curso: ${course.title}`)}`;
 
   return (
-    <div className="h-full min-h-[350px] md:min-h-[420px] relative rounded-3xl bg-blue-900 overflow-hidden group shadow-xl">
+    <div className="h-full min-h-[350px] md:min-h-[420px] relative rounded-3xl bg-blue-900 overflow-hidden shadow-xl">
       <div className="absolute inset-0">
         <img
           src={course.coverImage || "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=2070&auto=format&fit=crop"}
           alt={course.title}
-          className="h-full w-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-300"
+          className="h-full w-full object-cover opacity-40"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/50 to-transparent" />
       </div>

@@ -44,7 +44,7 @@ export default function HeroSlider() {
 
   const firstBanner = banners[0];
   const effect = firstBanner?.transitionType === "slide" ? "slide" : "fade";
-  const delay = (firstBanner?.transitionTime || 5) * 1000;
+  const delay = Math.max((firstBanner?.transitionTime || 5) * 1000, 3000);
 
   return (
     <section className="relative h-[300px] md:h-[500px] lg:h-[700px] w-full bg-slate-900 overflow-hidden">
