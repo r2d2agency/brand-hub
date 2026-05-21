@@ -1,7 +1,6 @@
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+import { prisma } from "./prisma.js";
 
-async function main() {
+export async function fixSchema() {
   try {
     console.log("Checking columns in SeasonalBanner...");
     
@@ -329,14 +328,9 @@ async function main() {
     `);
     await prisma.$executeRawUnsafe(`CREATE UNIQUE INDEX IF NOT EXISTS "HomeBanner_key_key" ON "HomeBanner" ("key");`);
 
-
-
+    console.log("✅ Database schema fix completed successfully.");
 
   } catch (error) {
-    console.error("Error updating database schema:", error);
-  } finally {
-    await prisma.$disconnect();
+    console.error("❌ Error updating database schema:", error);
   }
 }
-
-main();
