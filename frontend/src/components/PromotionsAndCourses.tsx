@@ -104,7 +104,7 @@ export default function PromotionsAndCourses() {
                       </div>
                     </div>
                     <div className="p-6">
-                      <h3 className="font-black text-blue-900 line-clamp-1 mb-2 group-hover:text-red-600 transition-colors">
+                      <h3 className="font-black text-blue-900 line-clamp-1 mb-2">
                         {promo.title}
                       </h3>
                       <div className="flex items-baseline gap-2">
