@@ -228,7 +228,9 @@ export default function HistoryAdmin() {
               value={form.mainImage}
               onChange={url => setForm({...form, mainImage: url})}
               aspectClass="aspect-square"
+              hint="800x800px • quadrado (1:1)"
             />
+
           </div>
 
           {/* Gallery */}
@@ -243,7 +245,9 @@ export default function HistoryAdmin() {
               value=""
               onChange={handleGalleryChange}
               aspectClass="aspect-video"
+              hint="1280x720px • paisagem (16:9)"
             />
+
 
             <div className="mt-6 grid grid-cols-2 gap-3">
               {form.gallery.map((img, idx) => (

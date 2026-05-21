@@ -96,13 +96,16 @@ export default function BrandingAdmin() {
                   value={form.logoUrl || ""}
                   onChange={url => handleFieldChange("logoUrl", url)}
                   aspectClass="aspect-video"
+                  hint="400x200px • PNG transparente"
                 />
                 <ImageUpload 
                   label="Favicon (Ícone)"
                   value={form.faviconUrl || ""}
                   onChange={url => handleFieldChange("faviconUrl", url)}
                   aspectClass="aspect-square"
+                  hint="64x64px • PNG ou ICO"
                 />
+
               </div>
             </div>
           </div>
@@ -216,7 +219,9 @@ export default function BrandingAdmin() {
                 value={form.footerLogo || ""}
                 onChange={url => handleFieldChange("footerLogo", url)}
                 aspectClass="aspect-video"
+                hint="400x200px • PNG transparente (claro)"
               />
+
             </div>
           </div>
 

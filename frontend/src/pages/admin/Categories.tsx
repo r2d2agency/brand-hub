@@ -270,7 +270,9 @@ export default function CategoriesAdmin() {
                     value={form.coverImage}
                     onChange={url => setForm({...form, coverImage: url})}
                     aspectClass="aspect-[4/3]"
+                    hint="800x600px • formato 4:3 • fundo claro recomendado"
                   />
+
 
                   <div className="space-y-1.5">
                     <label className="text-xs font-black uppercase tracking-widest text-slate-500">Mensagem do WhatsApp</label>

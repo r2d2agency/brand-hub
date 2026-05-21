@@ -138,7 +138,9 @@ export default function PegueMonteAdmin() {
                   value={kit.coverImage}
                   onChange={url => updateKit(kit.id, { coverImage: url })}
                   aspectClass="aspect-[4/5]"
+                  hint="800x1000px • retrato (4:5)"
                 />
+
               </div>
 
               <div className="flex-1 space-y-6">

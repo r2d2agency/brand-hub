@@ -214,7 +214,9 @@ export default function CoursesAdmin() {
                 value={form.coverImage}
                 onChange={url => setForm({ ...form, coverImage: url })}
                 aspectClass="aspect-video"
+                hint="1280x720px • paisagem (16:9)"
               />
+
 
               <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
                 <div className="space-y-1.5 md:col-span-2">

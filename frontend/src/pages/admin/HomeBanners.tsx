@@ -72,7 +72,7 @@ export default function HomeBannersAdmin() {
               <input required placeholder="Título" value={form.title} onChange={e => setForm({ ...form, title: e.target.value })} className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm" />
               <input placeholder="Subtítulo" value={form.subtitle} onChange={e => setForm({ ...form, subtitle: e.target.value })} className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm" />
               <textarea placeholder="Descrição" value={form.description} onChange={e => setForm({ ...form, description: e.target.value })} rows={3} className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm" />
-              <ImageUpload label="Imagem" value={form.image} onChange={url => setForm({ ...form, image: url })} aspectClass="aspect-[2/1]" />
+              <ImageUpload label="Imagem" value={form.image} onChange={url => setForm({ ...form, image: url })} aspectClass="aspect-[2/1]" hint="1200x600px • formato paisagem (2:1) • JPG/PNG" />
               <div className="grid grid-cols-2 gap-3">
                 <input placeholder="Texto do botão" value={form.ctaText} onChange={e => setForm({ ...form, ctaText: e.target.value })} className="rounded-md border border-slate-300 px-3 py-2 text-sm" />
                 <input placeholder="Link do botão" value={form.ctaLink} onChange={e => setForm({ ...form, ctaLink: e.target.value })} className="rounded-md border border-slate-300 px-3 py-2 text-sm" />

@@ -6,7 +6,9 @@ interface ImageUploadProps {
   onChange: (value: string) => void;
   label: string;
   aspectClass?: string;
+  hint?: string; // ex.: "1920x720px • paisagem"
 }
+
 
 // Compress and convert file to base64 data URL
 async function fileToCompressedDataURL(file: File, maxWidth = 1920, quality = 0.85): Promise<string> {
@@ -35,7 +37,7 @@ async function fileToCompressedDataURL(file: File, maxWidth = 1920, quality = 0.
   });
 }
 
-export default function ImageUpload({ value, onChange, label, aspectClass = "aspect-[21/9]" }: ImageUploadProps) {
+export default function ImageUpload({ value, onChange, label, aspectClass = "aspect-[21/9]", hint }: ImageUploadProps) {
   const [isDragging, setIsDragging] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showUrlInput, setShowUrlInput] = useState(false);
@@ -184,6 +186,12 @@ export default function ImageUpload({ value, onChange, label, aspectClass = "asp
           </div>
         )}
       </div>
+      {hint && (
+        <div className="text-xs font-semibold text-slate-500">
+          📐 Dimensão recomendada: <span className="text-blue-700">{hint}</span>
+        </div>
+      )}
     </div>
   );
 }
+

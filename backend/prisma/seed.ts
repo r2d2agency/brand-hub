@@ -6,14 +6,14 @@ async function main() {
 
   // Categorias
   const categories = [
-    { name: 'Doces', slug: 'doces', description: 'Guloseimas, pirulitos, chicletes e muito mais.', whatsappMsg: 'Gostaria de saber mais sobre os doces.' },
-    { name: 'Chocolates', slug: 'chocolates', description: 'Barras, bombons e chocolates para confeitaria.', whatsappMsg: 'Gostaria de saber mais sobre os chocolates.' },
-    { name: 'Balas', slug: 'balas', description: 'Balas de goma, mastigáveis e tradicionais.', whatsappMsg: 'Gostaria de saber mais sobre as balas.' },
-    { name: 'Confeitaria', slug: 'confeitaria', description: 'Ingredientes e utensílios para boleiras e confeiteiros.', whatsappMsg: 'Gostaria de saber mais sobre itens de confeitaria.' },
-    { name: 'Embalagens', slug: 'embalagens', description: 'Caixas, sacos de presente e embalagens para doces.', whatsappMsg: 'Gostaria de saber mais sobre as embalagens.' },
-    { name: 'Artigos para Festa', slug: 'artigos-festa', description: 'Decoração completa para sua comemoração.', whatsappMsg: 'Gostaria de saber mais sobre artigos para festa.' },
-    { name: 'Balões', slug: 'baloes', description: 'Balões de látex, metalizados e acessórios.', whatsappMsg: 'Gostaria de saber mais sobre os balões.' },
-    { name: 'Descartáveis', slug: 'descartaveis', description: 'Pratos, copos e talheres para sua festa.', whatsappMsg: 'Gostaria de saber mais sobre os descartáveis.' },
+    { name: 'Doces e Guloseimas', slug: 'doces', description: 'Guloseimas, pirulitos, chicletes e muito mais.', whatsappMsg: 'Gostaria de saber mais sobre os doces.', coverImage: '/seed/cat-doces.jpg', icon: 'Candy', order: 1 },
+    { name: 'Embalagens', slug: 'embalagens', description: 'Caixas, sacos de presente e embalagens para doces.', whatsappMsg: 'Gostaria de saber mais sobre as embalagens.', coverImage: '/seed/cat-embalagens.jpg', icon: 'Gift', order: 2 },
+    { name: 'Confeitaria', slug: 'confeitaria', description: 'Ingredientes e utensílios para boleiras e confeiteiros.', whatsappMsg: 'Gostaria de saber mais sobre itens de confeitaria.', coverImage: '/seed/cat-confeitaria.jpg', icon: 'ChefHat', order: 3 },
+    { name: 'Decoração de Festa', slug: 'decoracao-festa', description: 'Decoração completa para sua comemoração.', whatsappMsg: 'Gostaria de saber mais sobre decoração.', coverImage: '/seed/cat-decoracao.jpg', icon: 'PartyPopper', order: 4 },
+    { name: 'Descartáveis', slug: 'descartaveis', description: 'Pratos, copos e talheres para sua festa.', whatsappMsg: 'Gostaria de saber mais sobre os descartáveis.', coverImage: '/seed/cat-descartaveis.jpg', icon: 'CupSoda', order: 5 },
+    { name: 'Pegue e Monte', slug: 'pegue-e-monte', description: 'Monte sua festa com nossos kits prontos.', whatsappMsg: 'Quero saber sobre o Pegue e Monte.', coverImage: '/seed/cat-pegue-monte.jpg', icon: 'Package', order: 6 },
+    { name: 'Cursos', slug: 'cursos', description: 'Aprenda com nossos cursos especializados.', whatsappMsg: 'Quero saber sobre os cursos.', coverImage: '/seed/cat-cursos.jpg', icon: 'GraduationCap', order: 7 },
+    { name: 'Galeria de Produtos', slug: 'galeria', description: 'Veja nossa galeria completa.', whatsappMsg: 'Quero ver a galeria de produtos.', coverImage: '/seed/cat-galeria.jpg', icon: 'Camera', order: 8 },
   ]
 
   for (const cat of categories) {
@@ -23,6 +23,7 @@ async function main() {
       create: cat,
     })
   }
+
 
   // Lojas
   const stores = [
@@ -146,24 +147,26 @@ async function main() {
 
   // Inspirações
   const inspirations = [
-    { title: 'Festa Safari', image: 'https://images.unsplash.com/photo-1530103862676-de8c9debad1d?q=80&w=1200&auto=format&fit=crop', order: 1 },
-    { title: 'Festa Princesas', image: 'https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?q=80&w=1200&auto=format&fit=crop', order: 2 },
-    { title: 'Festa Unicórnio', image: 'https://images.unsplash.com/photo-1558636508-e0db3814bd1d?q=80&w=1200&auto=format&fit=crop', order: 3 },
-    { title: 'Festa Junina', image: 'https://images.unsplash.com/photo-1530541930197-ff16ac917b0e?q=80&w=1200&auto=format&fit=crop', order: 4 },
-    { title: 'Festa Tropical', image: 'https://images.unsplash.com/photo-1496024840928-4c417adf211d?q=80&w=1200&auto=format&fit=crop', order: 5 },
-    { title: 'Casamento', image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1200&auto=format&fit=crop', order: 6 },
+    { title: 'Balões',                       image: '/seed/inspiration-baloes.jpg',      order: 1 },
+    { title: 'Doces',                        image: '/seed/inspiration-doces.jpg',       order: 2 },
+    { title: 'Formas e acessórios',          image: '/seed/inspiration-formas.jpg',      order: 3 },
+    { title: 'Topos de bolo e personalizados', image: '/seed/inspiration-topos.jpg',     order: 4 },
+    { title: 'Kits prontos',                 image: '/seed/inspiration-kits.jpg',        order: 5 },
+    { title: 'Embalagens',                   image: '/seed/inspiration-embalagens.jpg',  order: 6 },
+    { title: 'Itens sazonais',               image: '/seed/inspiration-sazonais.jpg',    order: 7 },
   ]
   await prisma.inspiration.deleteMany({})
   for (const i of inspirations) await prisma.inspiration.create({ data: i })
 
   // Home Banners
   const homeBanners = [
-    { key: 'courses-promo', title: 'Cursos Basmar', subtitle: 'Aprenda com quem entende', description: 'Confeitaria, decoração e muito mais. Vagas limitadas!', image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?q=80&w=1200&auto=format&fit=crop', ctaText: 'Ver cursos', ctaLink: '/cursos', bgColor: '#dc2626', order: 1 },
-    { key: 'about-store', title: 'Sobre a Basmar', subtitle: 'Desde 1991 com você', description: 'Há mais de 30 anos transformando festas em momentos inesquecíveis.', image: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?q=80&w=1200&auto=format&fit=crop', ctaText: 'Conheça nossa história', ctaLink: '/sobre', bgColor: '#1e3a8a', order: 2 },
+    { key: 'courses-promo', title: 'Aprenda, produza e venda mais!', subtitle: 'Cursos Basmar', description: 'Cursos e conteúdos para quem trabalha com doces, festas e confeitaria.', image: '/seed/banner-cursos.jpg', ctaText: 'Ver cursos disponíveis', ctaLink: '/cursos', bgColor: '#1e3a8a', order: 1 },
+    { key: 'about-store',   title: 'Uma loja feita para quem ama transformar momentos em festa!', subtitle: 'Sobre a Basmar', description: 'A Basmar Doces & Festa nasceu com o propósito de oferecer produtos de qualidade, variedade e soluções práticas para quem ama celebrar.', image: '/seed/banner-sobre.jpg', ctaText: 'Conheça nossa história', ctaLink: '/sobre', bgColor: '#ffffff', textColor: '#1e3a8a', order: 2 },
   ]
   for (const b of homeBanners) {
     await prisma.homeBanner.upsert({ where: { key: b.key }, update: b, create: b })
   }
+
 
   console.log('População finalizada com sucesso!')
 }
