@@ -163,7 +163,7 @@ export default function PromotionsAndCourses() {
                 <CourseCard course={featuredCourse} branding={branding} />
               </div>
             ) : (
-              <div className="flex-1 rounded-3xl bg-slate-100 flex items-center justify-center border-2 border-dashed border-slate-200 min-h-[300px]">
+              <div className="flex-1 rounded-3xl bg-slate-100 flex items-center justify-center border-2 border-dashed border-slate-200 min-h-[200px] md:min-h-[300px]">
                 <p className="text-slate-400 font-bold uppercase tracking-widest text-xs">Novos cursos em breve</p>
               </div>
             )}
