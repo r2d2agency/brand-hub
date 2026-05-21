@@ -236,6 +236,10 @@ adminRouter.use("/news-videos", createCrud("newsVideo", newsVideoSchema));
 adminRouter.use("/partners", createCrud("partner", partnerSchema));
 adminRouter.use("/pegue-monte", createCrud("pegueMonte", pegueMonteSchema));
 adminRouter.use("/courses", createCrud("course", courseSchema));
+adminRouter.use("/benefits", createCrud("benefit", benefitSchema));
+adminRouter.use("/inspirations", createCrud("inspiration", inspirationSchema));
+adminRouter.use("/home-banners", createCrud("homeBanner", homeBannerSchema));
+
 
 // Dashboard Stats
 adminRouter.get("/stats", async (_req, res, next) => {
