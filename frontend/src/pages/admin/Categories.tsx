@@ -220,7 +220,18 @@ export default function CategoriesAdmin() {
                     />
                   </div>
 
-                  <div className="flex flex-wrap gap-6">
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-black uppercase tracking-widest text-slate-500">Ícone (Menu Categorias)</label>
+                    <input
+                      value={form.icon}
+                      onChange={e => setForm({...form, icon: e.target.value})}
+                      placeholder="Ex: 🎂  ou  cake  (lucide-react)"
+                      className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-blue-900 focus:outline-none"
+                    />
+                    <p className="text-[10px] text-slate-400 font-medium italic">Emoji ou nome de ícone do lucide-react exibido na barra vermelha de categorias.</p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-x-6 gap-y-3">
                     <label className="flex items-center gap-2 cursor-pointer group">
                       <input 
                         type="checkbox"
@@ -239,6 +250,16 @@ export default function CategoriesAdmin() {
                         className="h-5 w-5 rounded border-slate-300 text-red-600 focus:ring-red-600"
                       />
                       <span className="text-sm font-bold text-slate-700 group-hover:text-red-600">Destaque na Home</span>
+                    </label>
+
+                    <label className="flex items-center gap-2 cursor-pointer group">
+                      <input
+                        type="checkbox"
+                        checked={form.showInMenu}
+                        onChange={e => setForm({...form, showInMenu: e.target.checked})}
+                        className="h-5 w-5 rounded border-slate-300 text-red-600 focus:ring-red-600"
+                      />
+                      <span className="text-sm font-bold text-slate-700 group-hover:text-red-600">Exibir no Menu de Categorias</span>
                     </label>
                   </div>
                 </div>
