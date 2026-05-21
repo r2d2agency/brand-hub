@@ -11,6 +11,7 @@ import PromotionsAndCourses from "@/components/PromotionsAndCourses";
 import NewsVideosSection from "@/components/NewsVideosSection";
 import PartnersCarousel from "@/components/PartnersCarousel";
 import PegueMonteHome from "@/components/PegueMonteHome";
+import FeaturedServices from "@/components/FeaturedServices";
 import InspirationGrid from "@/components/InspirationGrid";
 import HomeBannersRow from "@/components/HomeBannersRow";
 
@@ -39,19 +40,19 @@ export default function Home() {
       {/* 4. Inspiração para sua festa */}
       <InspirationGrid />
 
-      {/* 5. Pegue e Monte (destaque) */}
-      <PegueMonteHome />
+      {/* 5. Pegue Monte e Cursos (Destaques em 2 colunas) */}
+      <FeaturedServices />
 
-      {/* 5. HomeBanners: Cursos promo + Sobre a loja */}
+      {/* 6. HomeBanners: Sobre a loja */}
       <HomeBannersRow />
 
-      {/* 6. Promoções e Cursos */}
+      {/* 7. Promoções */}
       <PromotionsAndCourses />
 
-      {/* 7. Parceiros */}
+      {/* 8. Parceiros */}
       <PartnersCarousel />
 
-      {/* 8. Vídeos */}
+      {/* 9. Vídeos */}
       <NewsVideosSection />
 
       {/* 9. CTA Strip WhatsApp */}
