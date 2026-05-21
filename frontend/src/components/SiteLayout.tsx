@@ -39,15 +39,8 @@ export function Header() {
 
           <div className="flex items-center gap-2 md:gap-4 ml-auto">
             <button onClick={() => setSearchOpen(true)} className="md:hidden p-2 text-blue-900"><Search size={22} /></button>
-            <Link to="/login" className="hidden md:flex items-center gap-2 text-blue-900 hover:text-red-600 transition-colors">
-              <User size={20} />
-              <div className="text-left leading-tight">
-                <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Entrar</div>
-                <div className="text-xs font-black">Minha conta</div>
-              </div>
-            </Link>
             <Link to="/admin" className="hidden lg:inline-flex rounded-full bg-blue-900 px-4 py-2 text-xs font-bold text-white hover:bg-blue-800 transition-colors">
-              Admin
+              Painel
             </Link>
             <button className="lg:hidden p-2 text-blue-900" onClick={() => setIsMenuOpen(!isMenuOpen)}>
               {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
@@ -66,7 +59,7 @@ export function Header() {
             </Link>
           ))}
           <Link to="/admin" onClick={() => setIsMenuOpen(false)} className="mt-2 rounded-full bg-blue-900 py-3 text-white">
-            Admin
+            Painel
           </Link>
         </nav>
       )}
