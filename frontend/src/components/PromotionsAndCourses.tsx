@@ -264,12 +264,12 @@ function CourseCard({ course, branding }: { course: any; branding: any }) {
   const whatsappLink = `https://wa.me/${branding?.whatsappPhone?.replace(/\D/g, '') || '5511999999999'}?text=${encodeURIComponent(course.whatsappMsg || `Olá! Tenho interesse no curso: ${course.title}`)}`;
 
   return (
-    <div className="h-full min-h-[350px] md:min-h-[420px] relative rounded-3xl bg-blue-900 overflow-hidden group shadow-xl">
+    <div className="h-full min-h-[350px] md:min-h-[420px] relative rounded-3xl bg-blue-900 overflow-hidden shadow-xl">
       <div className="absolute inset-0">
         <img
           src={course.coverImage || "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=2070&auto=format&fit=crop"}
           alt={course.title}
-          className="h-full w-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-300"
+          className="h-full w-full object-cover opacity-40"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/50 to-transparent" />
       </div>
