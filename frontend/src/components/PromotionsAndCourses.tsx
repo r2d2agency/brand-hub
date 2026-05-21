@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/api";
 import { useBranding } from "@/lib/branding";
@@ -23,6 +23,8 @@ import "swiper/css/navigation";
 export default function PromotionsAndCourses() {
   const branding = useBranding();
   const [selectedPromo, setSelectedPromo] = useState<any>(null);
+  const promoSwiperRef = useRef<any>(null);
+  const courseSwiperRef = useRef<any>(null);
 
   const { data: promotions = [] } = useQuery({
     queryKey: ["site-promotions"],
@@ -56,12 +58,18 @@ export default function PromotionsAndCourses() {
               </div>
               <h2 className="text-3xl font-black text-blue-900">Economize agora</h2>
             </div>
-            {promotions.length > 3 && (
+            {promotions.length > 2 && (
               <div className="flex gap-2">
-                <button className="promo-prev p-2 rounded-full border border-slate-200 text-slate-400 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all">
+                <button 
+                  onClick={() => promoSwiperRef.current?.slidePrev()}
+                  className="p-2 rounded-full border border-slate-200 text-slate-400 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all"
+                >
                   <ChevronLeft size={20} />
                 </button>
-                <button className="promo-next p-2 rounded-full border border-slate-200 text-slate-400 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all">
+                <button 
+                  onClick={() => promoSwiperRef.current?.slideNext()}
+                  className="p-2 rounded-full border border-slate-200 text-slate-400 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all"
+                >
                   <ChevronRight size={20} />
                 </button>
               </div>
@@ -71,8 +79,8 @@ export default function PromotionsAndCourses() {
           <div className="relative group min-h-[200px] flex items-center justify-center">
             {promotions.length > 0 ? (
               <Swiper
-                key={promotions.length}
-                modules={[Autoplay, SwiperNavigation]}
+                onSwiper={(swiper) => promoSwiperRef.current = swiper}
+                modules={[Autoplay]}
                 spaceBetween={12}
                 slidesPerView={2}
                 observer={true}
@@ -82,10 +90,6 @@ export default function PromotionsAndCourses() {
                   640: { slidesPerView: 2 },
                   1024: { slidesPerView: 3 }
                 }}
-                navigation={promotions.length > 3 ? {
-                  prevEl: ".promo-prev",
-                  nextEl: ".promo-next"
-                } : false}
                 autoplay={{ delay: 4000, disableOnInteraction: false }}
                 className="rounded-3xl"
               >
@@ -144,13 +148,12 @@ export default function PromotionsAndCourses() {
             {homeCourses.length > 1 ? (
               <div className="flex-1 relative group">
                 <Swiper
-                  key={homeCourses.length}
-                  modules={[Autoplay, SwiperNavigation]}
+                  onSwiper={(swiper) => courseSwiperRef.current = swiper}
+                  modules={[Autoplay]}
                   spaceBetween={16}
                   slidesPerView={1}
                   observer={true}
                   observeParents={true}
-                  navigation={{ prevEl: ".course-prev", nextEl: ".course-next" }}
                   autoplay={{ delay: 5000, disableOnInteraction: false }}
                   loop={homeCourses.length > 1}
                   className="h-full rounded-3xl"
@@ -161,10 +164,16 @@ export default function PromotionsAndCourses() {
                     </SwiperSlide>
                   ))}
                 </Swiper>
-                <button className="course-prev absolute top-1/2 -translate-y-1/2 left-3 z-10 p-2 rounded-full bg-white/90 text-blue-900 shadow-lg hover:bg-red-600 hover:text-white transition-all opacity-0 group-hover:opacity-100">
+                <button 
+                  onClick={() => courseSwiperRef.current?.slidePrev()}
+                  className="absolute top-1/2 -translate-y-1/2 left-3 z-10 p-2 rounded-full bg-white/90 text-blue-900 shadow-lg hover:bg-red-600 hover:text-white transition-all opacity-0 group-hover:opacity-100"
+                >
                   <ChevronLeft size={18} />
                 </button>
-                <button className="course-next absolute top-1/2 -translate-y-1/2 right-3 z-10 p-2 rounded-full bg-white/90 text-blue-900 shadow-lg hover:bg-red-600 hover:text-white transition-all opacity-0 group-hover:opacity-100">
+                <button 
+                  onClick={() => courseSwiperRef.current?.slideNext()}
+                  className="absolute top-1/2 -translate-y-1/2 right-3 z-10 p-2 rounded-full bg-white/90 text-blue-900 shadow-lg hover:bg-red-600 hover:text-white transition-all opacity-0 group-hover:opacity-100"
+                >
                   <ChevronRight size={18} />
                 </button>
                 <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 px-3 py-1 rounded-full bg-white/90 text-[10px] font-black text-blue-900 shadow">
