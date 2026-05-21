@@ -92,11 +92,11 @@ export default function PromotionsAndCourses() {
                     onClick={() => setSelectedPromo(promo)}
                     className="w-full text-left group bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden"
                   >
-                    <div className="aspect-square relative overflow-hidden bg-slate-50">
+                    <div className="relative h-40 sm:h-48 md:h-64 overflow-hidden bg-slate-50">
                       <img 
                         src={promo.image} 
                         alt={promo.title} 
-                        className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                        className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-300" 
                       />
                       <div className="absolute top-4 left-4">
                         <span className="bg-red-600 text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">
@@ -269,7 +269,7 @@ function CourseCard({ course, branding }: { course: any; branding: any }) {
         <img
           src={course.coverImage || "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=2070&auto=format&fit=crop"}
           alt={course.title}
-          className="h-full w-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700"
+          className="h-full w-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-300"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/50 to-transparent" />
       </div>
