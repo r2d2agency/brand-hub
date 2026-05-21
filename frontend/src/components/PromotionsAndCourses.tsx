@@ -146,6 +146,8 @@ export default function PromotionsAndCourses() {
                   modules={[Autoplay, SwiperNavigation]}
                   spaceBetween={16}
                   slidesPerView={1}
+                  observer={true}
+                  observeParents={true}
                   navigation={{ prevEl: ".course-prev", nextEl: ".course-next" }}
                   autoplay={{ delay: 5000, disableOnInteraction: false }}
                   loop={homeCourses.length > 1}
