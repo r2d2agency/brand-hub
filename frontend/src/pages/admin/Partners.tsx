@@ -129,7 +129,9 @@ export default function PartnersAdmin() {
                   value={partner.logo}
                   onChange={url => updatePartner(index, 'logo', url)}
                   aspectClass="aspect-video"
+                  hint="400x225px • PNG transparente"
                 />
+
               </div>
               
               <div className="flex-1 space-y-4 w-full">
