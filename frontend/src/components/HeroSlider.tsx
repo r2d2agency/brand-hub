@@ -67,8 +67,8 @@ export default function HeroSlider() {
                     <img 
                       src={banner.imageDesktop} 
                       alt={banner.title} 
-                      className="h-full w-full object-cover transition-transform duration-[10000ms] ease-linear"
-                      style={{ transform: isActive ? 'scale(1.1)' : 'scale(1)' }}
+                      className="h-full w-full object-cover"
+                      style={{ transform: 'none' }}
                     />
                   </picture>
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-950/80 via-blue-900/40 to-transparent" />
