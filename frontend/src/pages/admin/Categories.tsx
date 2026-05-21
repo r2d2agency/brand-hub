@@ -14,10 +14,12 @@ interface CategoryForm {
   slug: string;
   description: string;
   coverImage: string;
+  icon: string;
   gallery: string[];
   whatsappMsg: string;
   active: boolean;
   showInHome: boolean;
+  showInMenu: boolean;
 }
 
 const EMPTY_FORM: CategoryForm = {
@@ -25,10 +27,12 @@ const EMPTY_FORM: CategoryForm = {
   slug: "",
   description: "",
   coverImage: "",
+  icon: "",
   gallery: [],
   whatsappMsg: "",
   active: true,
   showInHome: true,
+  showInMenu: true,
 };
 
 export default function CategoriesAdmin() {
