@@ -52,8 +52,10 @@ async function main() {
     }
   ]
 
+  // Primeiro limpamos lojas antigas para evitar duplicatas
+  await prisma.store.deleteMany({})
+
   for (const store of stores) {
-    // Upsert or simple create depending on model key, here we use create as original code
     await prisma.store.create({ data: store })
   }
 
@@ -121,15 +123,14 @@ async function main() {
 
   // Promoções
   const promos = [
-    { title: 'Chocolate Nestlé 1kg', price: '49,90', oldPrice: '59,90', image: 'https://images.unsplash.com/photo-1548907040-4baa42d10919?q=80&w=1935&auto=format&fit=crop' },
-    { title: 'Balas de Goma 500g', price: '12,90', oldPrice: '15,90', image: 'https://images.unsplash.com/photo-1581798459219-318e76aecc7b?q=80&w=2030&auto=format&fit=crop' },
-    { title: 'Kit Confeiteiro Iniciante', price: '89,90', oldPrice: '119,90', image: 'https://images.unsplash.com/photo-1510255394145-78e727829497?q=80&w=1974&auto=format&fit=crop' },
-    { title: 'Marshmallow 250g', price: '9,90', oldPrice: '12,90', image: 'https://images.unsplash.com/photo-1551323568-d069b2751433?q=80&w=2070&auto=format&fit=crop' },
+    { id: 'promo-1', title: 'Chocolate Nestlé 1kg', price: '49,90', oldPrice: '59,90', image: 'https://images.unsplash.com/photo-1548907040-4baa42d10919?q=80&w=1935&auto=format&fit=crop' },
+    { id: 'promo-2', title: 'Balas de Goma 500g', price: '12,90', oldPrice: '15,90', image: 'https://images.unsplash.com/photo-1581798459219-318e76aecc7b?q=80&w=2030&auto=format&fit=crop' },
   ]
 
+  // Primeiro limpamos promoções antigas para evitar duplicatas infinitas
+  await prisma.promotion.deleteMany({})
+
   for (const promo of promos) {
-    // Usar upsert ou verificar existência se possível, mas como Promotion não tem campo único óbvio além do id cuid,
-    // vamos manter o create para seguir o padrão do arquivo original, ou deletar antes para evitar duplicatas em re-seeds
     await prisma.promotion.create({ data: promo })
   }
 
