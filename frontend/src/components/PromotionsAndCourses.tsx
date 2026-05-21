@@ -180,76 +180,66 @@ export default function PromotionsAndCourses() {
 
 
       {/* PROMO MODAL */}
-      <AnimatePresence>
-        {selectedPromo && (
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-            <motion.div 
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+      {selectedPromo && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div 
+            onClick={() => setSelectedPromo(null)}
+            className="absolute inset-0 bg-blue-950/80 backdrop-blur-md"
+          />
+          
+          <div className="relative w-full max-w-4xl bg-white rounded-[40px] shadow-2xl overflow-hidden flex flex-col md:flex-row">
+            <button 
               onClick={() => setSelectedPromo(null)}
-              className="absolute inset-0 bg-blue-950/80 backdrop-blur-md"
-            />
-            
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9, y: 20 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-4xl bg-white rounded-[40px] shadow-2xl overflow-hidden flex flex-col md:flex-row"
+              className="absolute top-6 right-6 z-10 p-2 rounded-full bg-slate-100 text-slate-500 hover:bg-red-600 hover:text-white transition-colors"
             >
-              <button 
-                onClick={() => setSelectedPromo(null)}
-                className="absolute top-6 right-6 z-10 p-2 rounded-full bg-slate-100 text-slate-500 hover:bg-red-600 hover:text-white transition-colors"
-              >
-                <X size={20} />
-              </button>
+              <X size={20} />
+            </button>
 
-              <div className="md:w-1/2 aspect-square md:aspect-auto relative bg-slate-50">
-                <img src={selectedPromo.image} alt={selectedPromo.title} className="h-full w-full object-cover" />
-                <div className="absolute top-8 left-8">
-                  <span className="bg-red-600 text-white px-6 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-xl">
-                    Oferta Ativa
-                  </span>
-                </div>
+            <div className="md:w-1/2 aspect-square md:aspect-auto relative bg-slate-50">
+              <img src={selectedPromo.image} alt={selectedPromo.title} className="h-full w-full object-cover" />
+              <div className="absolute top-8 left-8">
+                <span className="bg-red-600 text-white px-6 py-2 rounded-full text-xs font-black uppercase tracking-[0.2em] shadow-xl">
+                  Oferta Ativa
+                </span>
+              </div>
+            </div>
+
+            <div className="flex-1 p-8 md:p-12 flex flex-col">
+              <div className="mb-8">
+                <h3 className="text-3xl font-black text-blue-900 mb-4 leading-tight">{selectedPromo.title}</h3>
+                <div className="h-1.5 w-16 bg-red-600 rounded-full" />
               </div>
 
-              <div className="flex-1 p-8 md:p-12 flex flex-col">
-                <div className="mb-8">
-                  <h3 className="text-3xl font-black text-blue-900 mb-4 leading-tight">{selectedPromo.title}</h3>
-                  <div className="h-1.5 w-16 bg-red-600 rounded-full" />
+              <div className="flex items-center gap-4 mb-8">
+                <div className="text-5xl font-black text-red-600 tracking-tighter">
+                  R$ <span className="text-6xl">{selectedPromo.price}</span>
                 </div>
-
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="text-5xl font-black text-red-600 tracking-tighter">
-                    R$ <span className="text-6xl">{selectedPromo.price}</span>
+                {selectedPromo.oldPrice && (
+                  <div className="text-slate-400 line-through font-bold text-xl decoration-2 decoration-red-600/30">
+                    R$ {selectedPromo.oldPrice}
                   </div>
-                  {selectedPromo.oldPrice && (
-                    <div className="text-slate-400 line-through font-bold text-xl decoration-2 decoration-red-600/30">
-                      R$ {selectedPromo.oldPrice}
-                    </div>
-                  )}
-                </div>
-
-                <div className="flex-1 prose prose-slate max-w-none">
-                  <p className="text-slate-600 font-medium leading-relaxed">
-                    {selectedPromo.description || "Aproveite esta oferta exclusiva na Basmar! Qualidade e preço baixo para sua festa."}
-                  </p>
-                </div>
-
-                <div className="mt-12">
-                  <button 
-                    onClick={() => handlePromoWhatsApp(selectedPromo)}
-                    className="w-full flex items-center justify-center gap-3 rounded-2xl bg-green-500 py-5 text-sm font-black uppercase tracking-widest text-white hover:bg-green-600 transition-all shadow-xl shadow-green-500/20 active:scale-95"
-                  >
-                    <MessageCircle size={22} />
-                    Aproveitar Oferta no WhatsApp
-                  </button>
-                </div>
+                )}
               </div>
-            </motion.div>
+
+              <div className="flex-1 prose prose-slate max-w-none">
+                <p className="text-slate-600 font-medium leading-relaxed">
+                  {selectedPromo.description || "Aproveite esta oferta exclusiva na Basmar! Qualidade e preço baixo para sua festa."}
+                </p>
+              </div>
+
+              <div className="mt-12">
+                <button 
+                  onClick={() => handlePromoWhatsApp(selectedPromo)}
+                  className="w-full flex items-center justify-center gap-3 rounded-2xl bg-green-500 py-5 text-sm font-black uppercase tracking-widest text-white hover:bg-green-600 transition-all shadow-xl shadow-green-500/20 active:scale-95"
+                >
+                  <MessageCircle size={22} />
+                  Aproveitar Oferta no WhatsApp
+                </button>
+              </div>
+            </div>
           </div>
-        )}
-      </AnimatePresence>
+        </div>
+      )}
     </section>
   );
 }
