@@ -122,7 +122,7 @@ export default function PromotionsAndCourses() {
 
         {/* COURSES SIDE (4 columns) */}
         <div className="lg:col-span-4">
-          <div className="h-full flex flex-col">
+          <div className="h-full flex flex-col min-h-[400px]">
             <div className="flex items-center gap-2 text-blue-600 font-black uppercase tracking-widest text-xs mb-2">
               <Sparkles size={14} className="fill-blue-600" /> Conhecimento
             </div>
@@ -257,7 +257,7 @@ function CourseCard({ course, branding }: { course: any; branding: any }) {
   const whatsappLink = `https://wa.me/${branding?.whatsappPhone?.replace(/\D/g, '') || '5511999999999'}?text=${encodeURIComponent(course.whatsappMsg || `Olá! Tenho interesse no curso: ${course.title}`)}`;
 
   return (
-    <div className="h-full min-h-[420px] relative rounded-3xl bg-blue-900 overflow-hidden group shadow-xl">
+    <div className="h-full min-h-[350px] md:min-h-[420px] relative rounded-3xl bg-blue-900 overflow-hidden group shadow-xl">
       <div className="absolute inset-0">
         <img
           src={course.coverImage || "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=2070&auto=format&fit=crop"}

@@ -18,8 +18,8 @@ export default function HeroSlider() {
 
   if (isLoading) {
     return (
-      <div className="h-[500px] lg:h-[650px] w-full bg-blue-900 animate-pulse flex items-center justify-center">
-        <div className="text-blue-200 font-bold uppercase tracking-widest">Carregando ofertas...</div>
+      <div className="h-[400px] md:h-[500px] lg:h-[650px] w-full bg-blue-900 animate-pulse flex items-center justify-center">
+        <div className="text-blue-200 font-bold uppercase tracking-widest text-sm">Carregando ofertas...</div>
       </div>
     );
   }
@@ -27,7 +27,7 @@ export default function HeroSlider() {
   // Fallback se não houver banners
   if (banners.length === 0) {
     return (
-      <section className="relative h-[500px] lg:h-[650px] overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 flex items-center">
+      <section className="relative h-[400px] md:h-[500px] lg:h-[650px] overflow-hidden bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 flex items-center">
         <div className="mx-auto max-w-7xl px-6">
           <div className="max-w-2xl text-white">
             <h1 className="text-5xl font-black leading-tight lg:text-7xl">
@@ -47,7 +47,7 @@ export default function HeroSlider() {
   const delay = (firstBanner?.transitionTime || 5) * 1000;
 
   return (
-    <section className="relative h-[500px] lg:h-[700px] w-full bg-slate-900 overflow-hidden">
+    <section className="relative h-[400px] md:h-[500px] lg:h-[700px] w-full bg-slate-900 overflow-hidden">
       <Swiper
         modules={[Autoplay, Pagination, EffectFade]}
         effect={effect}
