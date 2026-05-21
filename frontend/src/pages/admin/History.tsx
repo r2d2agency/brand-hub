@@ -245,7 +245,9 @@ export default function HistoryAdmin() {
               value=""
               onChange={handleGalleryChange}
               aspectClass="aspect-video"
+              hint="1280x720px • paisagem (16:9)"
             />
+
 
             <div className="mt-6 grid grid-cols-2 gap-3">
               {form.gallery.map((img, idx) => (
