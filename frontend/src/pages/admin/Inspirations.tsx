@@ -31,7 +31,7 @@ export default function InspirationsAdmin() {
       <div className="rounded-xl border border-slate-200 bg-white p-4 space-y-3">
         <input placeholder="Título (ex: Balões)" value={form.title} onChange={e => setForm(s => ({ ...s, title: e.target.value }))} className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm" />
         <input placeholder="Link (opcional)" value={form.link} onChange={e => setForm(s => ({ ...s, link: e.target.value }))} className="w-full rounded-md border border-slate-300 px-3 py-2 text-sm" />
-        <ImageUpload label="Imagem" value={form.image} onChange={url => setForm(s => ({ ...s, image: url }))} aspectClass="aspect-square" />
+        <ImageUpload label="Imagem" value={form.image} onChange={url => setForm(s => ({ ...s, image: url }))} aspectClass="aspect-square" hint="800x800px • formato quadrado (1:1)" />
         <button disabled={!form.title || !form.image} onClick={() => create.mutate()} className="rounded-md bg-blue-900 px-4 py-2 text-sm font-bold text-white disabled:opacity-40 flex items-center gap-2"><Plus size={16}/> Adicionar</button>
       </div>
 
