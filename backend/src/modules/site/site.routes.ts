@@ -193,6 +193,39 @@ siteRouter.post("/whatsapp-click", async (req, res, next) => {
   } catch (e) { next(e); }
 });
 
+// Benefits (rodapé)
+siteRouter.get("/benefits", async (_req, res, next) => {
+  try {
+    const items = await prisma.benefit.findMany({
+      where: { active: true },
+      orderBy: { order: "asc" }
+    });
+    res.json(items);
+  } catch (e) { next(e); }
+});
+
+// Inspirations (Inspiração para sua festa)
+siteRouter.get("/inspirations", async (_req, res, next) => {
+  try {
+    const items = await prisma.inspiration.findMany({
+      where: { active: true },
+      orderBy: { order: "asc" }
+    });
+    res.json(items);
+  } catch (e) { next(e); }
+});
+
+// Home Banners (Cursos promo, Sobre a Loja, etc)
+siteRouter.get("/home-banners", async (_req, res, next) => {
+  try {
+    const items = await prisma.homeBanner.findMany({
+      where: { active: true },
+      orderBy: { order: "asc" }
+    });
+    res.json(items);
+  } catch (e) { next(e); }
+});
+
 // Page View Tracking
 siteRouter.post("/track", async (req, res, next) => {
   try {
@@ -210,4 +243,5 @@ siteRouter.post("/track", async (req, res, next) => {
     res.status(201).json({ ok: true });
   } catch (e) { next(e); }
 });
+
 
