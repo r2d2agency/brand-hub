@@ -1,26 +1,18 @@
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
 import { api } from "@/lib/api";
 import { useBranding } from "@/lib/branding";
-import { ChevronRight, MessageCircle, Tag } from "lucide-react";
-import * as Icons from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import HeroSlider from "@/components/HeroSlider";
 import CategoryGalleryModal from "@/components/CategoryGalleryModal";
+import CategoryCarousel from "@/components/CategoryCarousel";
+import PromoBannerSlider from "@/components/PromoBannerSlider";
 import PromotionsAndCourses from "@/components/PromotionsAndCourses";
 import NewsVideosSection from "@/components/NewsVideosSection";
 import PartnersCarousel from "@/components/PartnersCarousel";
 import PegueMonteHome from "@/components/PegueMonteHome";
 import InspirationGrid from "@/components/InspirationGrid";
 import HomeBannersRow from "@/components/HomeBannersRow";
-
-function CatIcon({ name, size = 32 }: { name?: string | null; size?: number }) {
-  if (!name) return <Tag size={size} />;
-  if (/\p{Extended_Pictographic}/u.test(name)) return <span style={{ fontSize: size }}>{name}</span>;
-  const key = name.charAt(0).toUpperCase() + name.slice(1);
-  const Cmp = (Icons as any)[key] || (Icons as any)[name] || Tag;
-  return <Cmp size={size} />;
-}
 
 export default function Home() {
   const branding = useBranding();
@@ -38,27 +30,12 @@ export default function Home() {
       {/* 1. Hero */}
       <HeroSlider />
 
-      {/* 2. Categories Grid (cards rápidos com ícone) */}
-      <section className="mx-auto max-w-7xl px-6 py-10 md:py-14">
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 md:gap-4">
-          {homeCategories.map((cat: any) => (
-            <button
-              key={cat.id}
-              onClick={() => setSelectedCategory(cat)}
-              className="group flex flex-col items-center text-center bg-white rounded-2xl p-3 md:p-4 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all border border-slate-100"
-            >
-              <div className="aspect-square w-full overflow-hidden rounded-xl bg-slate-50 flex items-center justify-center mb-2">
-                {cat.coverImage ? (
-                  <img src={cat.coverImage} alt={cat.name} className="h-full w-full object-cover" />
-                ) : (
-                  <div className="text-red-600"><CatIcon name={cat.icon} size={36} /></div>
-                )}
-              </div>
-              <span className="text-[11px] md:text-xs font-black text-blue-900 leading-tight">{cat.name}</span>
-            </button>
-          ))}
-        </div>
-      </section>
+      {/* 2. Categorias em carrossel (1 linha) */}
+      <CategoryCarousel categories={homeCategories} onSelect={setSelectedCategory} />
+
+      {/* 3. Banner slider promocional (Pegue e Monte) */}
+      <PromoBannerSlider />
+
 
       {/* 3. Pegue e Monte (destaque) */}
       <PegueMonteHome />
