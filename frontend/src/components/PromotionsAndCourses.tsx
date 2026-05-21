@@ -44,7 +44,7 @@ export default function PromotionsAndCourses() {
   };
 
   return (
-    <section className="mx-auto max-w-7xl px-6 py-12 md:py-20">
+    <section className="mx-auto max-w-7xl px-6 py-8 md:py-20">
       <div className="grid gap-8 lg:grid-cols-12">
         
         {/* PROMOTIONS SIDE (8 columns) */}
