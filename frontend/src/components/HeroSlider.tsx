@@ -68,7 +68,6 @@ export default function HeroSlider() {
                       src={banner.imageDesktop} 
                       alt={banner.title} 
                       className="h-full w-full object-cover"
-                      style={{ transform: 'none' }}
                     />
                   </picture>
                   <div className="absolute inset-0 bg-gradient-to-r from-blue-950/80 via-blue-900/40 to-transparent" />
