@@ -130,11 +130,52 @@ model ProductCategory {
   slug        String   @unique
   description String?
   coverImage  String?
+  icon        String?  // lucide name or emoji
   gallery     String[] @default([])
   whatsappMsg String?
   active      Boolean  @default(true)
   order       Int      @default(0)
   showInHome  Boolean  @default(true)
+  showInMenu  Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Benefit {
+  id        String   @id @default(cuid())
+  icon      String   // lucide icon name
+  title     String
+  subtitle  String?
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Inspiration {
+  id        String   @id @default(cuid())
+  title     String
+  image     String
+  link      String?
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model HomeBanner {
+  id          String   @id @default(cuid())
+  key         String   @unique // e.g. "courses-promo", "about-store"
+  title       String
+  subtitle    String?
+  description String?  @db.Text
+  image       String?
+  ctaText     String?
+  ctaLink     String?
+  bgColor     String?  @default("#1e3a8a")
+  textColor   String?  @default("#ffffff")
+  active      Boolean  @default(true)
+  order       Int      @default(0)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

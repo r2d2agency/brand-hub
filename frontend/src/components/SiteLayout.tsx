@@ -1,12 +1,15 @@
 import { Link } from "react-router-dom";
-import { MessageCircle, Menu, X, Instagram, Facebook, Youtube } from "lucide-react";
+import { MessageCircle, Menu, X, Instagram, Facebook, Youtube, Search, User } from "lucide-react";
 import { useState } from "react";
 import { useBranding } from "@/lib/branding";
 import logoBasmar from "@/assets/logo-basmar.png";
+import CategoryMenuBar from "@/components/CategoryMenuBar";
+import SearchOverlay from "@/components/SearchOverlay";
 
 export function Header() {
   const branding = useBranding();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   const navLinks = [
     { to: "/", label: "Home" },
@@ -18,58 +21,57 @@ export function Header() {
   ];
 
   return (
-    <header 
-      className="sticky top-0 z-50 bg-white/70 backdrop-blur-xl border-b border-white/20 transition-all duration-300"
-    >
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-
-        <Link to="/" className="flex items-center shrink-0">
-          <img src={branding?.logoUrl || logoBasmar} alt={branding?.siteName || "Basmar"} className="h-12 md:h-14 w-auto object-contain" />
-        </Link>
-
-        {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-6 text-sm font-bold uppercase tracking-wide text-blue-900">
-          {navLinks.map((link) => (
-            <Link key={link.to} to={link.to} className="hover:text-red-600 transition-colors">
-              {link.label}
-            </Link>
-          ))}
-          <Link to="/admin" className="rounded-full bg-blue-900 px-4 py-2 text-xs text-white hover:bg-blue-800 transition-colors">
-            Admin
+    <header className="sticky top-0 z-50 bg-white shadow-sm">
+      <div className="border-b border-slate-100">
+        <div className="mx-auto flex max-w-7xl items-center gap-6 px-6 py-4">
+          <Link to="/" className="flex items-center shrink-0">
+            <img src={branding?.logoUrl || logoBasmar} alt={branding?.siteName || "Basmar"} className="h-12 md:h-14 w-auto object-contain" />
           </Link>
-        </nav>
 
-        {/* Mobile Menu Toggle */}
-        <button 
-          className="lg:hidden p-2 text-blue-900" 
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-        >
-          {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+          <button
+            onClick={() => setSearchOpen(true)}
+            className="hidden md:flex flex-1 max-w-2xl items-center gap-3 px-5 py-3 rounded-full border border-slate-200 hover:border-red-400 text-left text-slate-400 transition-colors"
+          >
+            <Search size={18} />
+            <span className="text-sm">O que você está procurando?</span>
+            <span className="ml-auto px-3 py-1.5 rounded-full text-white" style={{ backgroundColor: branding?.primaryColor || '#dc2626' }}><Search size={14} /></span>
+          </button>
+
+          <div className="flex items-center gap-2 md:gap-4 ml-auto">
+            <button onClick={() => setSearchOpen(true)} className="md:hidden p-2 text-blue-900"><Search size={22} /></button>
+            <Link to="/login" className="hidden md:flex items-center gap-2 text-blue-900 hover:text-red-600 transition-colors">
+              <User size={20} />
+              <div className="text-left leading-tight">
+                <div className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Entrar</div>
+                <div className="text-xs font-black">Minha conta</div>
+              </div>
+            </Link>
+            <Link to="/admin" className="hidden lg:inline-flex rounded-full bg-blue-900 px-4 py-2 text-xs font-bold text-white hover:bg-blue-800 transition-colors">
+              Admin
+            </Link>
+            <button className="lg:hidden p-2 text-blue-900" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+              {isMenuOpen ? <X size={26} /> : <Menu size={26} />}
+            </button>
+          </div>
+        </div>
       </div>
 
-      {/* Mobile Nav */}
+      <CategoryMenuBar />
+
       {isMenuOpen && (
         <nav className="lg:hidden border-t border-slate-100 bg-white p-6 flex flex-col gap-4 text-center font-bold uppercase tracking-wide text-blue-900">
           {navLinks.map((link) => (
-            <Link 
-              key={link.to} 
-              to={link.to} 
-              onClick={() => setIsMenuOpen(false)}
-              className="py-2 border-b border-slate-50 hover:text-red-600"
-            >
+            <Link key={link.to} to={link.to} onClick={() => setIsMenuOpen(false)} className="py-2 border-b border-slate-50 hover:text-red-600">
               {link.label}
             </Link>
           ))}
-          <Link 
-            to="/admin" 
-            onClick={() => setIsMenuOpen(false)}
-            className="mt-2 rounded-full bg-blue-900 py-3 text-white"
-          >
+          <Link to="/admin" onClick={() => setIsMenuOpen(false)} className="mt-2 rounded-full bg-blue-900 py-3 text-white">
             Admin
           </Link>
         </nav>
       )}
+
+      <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
     </header>
   );
 }

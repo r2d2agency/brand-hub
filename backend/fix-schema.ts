@@ -260,6 +260,76 @@ async function main() {
     await prisma.$executeRawUnsafe(`CREATE INDEX IF NOT EXISTS "PageView_path_idx" ON "PageView" ("path");`);
     await prisma.$executeRawUnsafe(`CREATE INDEX IF NOT EXISTS "PageView_session_idx" ON "PageView" ("sessionId");`);
 
+    // ====== NEW: ProductCategory extras (icon, showInMenu) ======
+    console.log("Checking columns in ProductCategory...");
+    await prisma.$executeRawUnsafe(`
+      DO $$
+      BEGIN
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='ProductCategory' AND column_name='icon') THEN
+          ALTER TABLE "ProductCategory" ADD COLUMN "icon" TEXT;
+        END IF;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='ProductCategory' AND column_name='showInMenu') THEN
+          ALTER TABLE "ProductCategory" ADD COLUMN "showInMenu" BOOLEAN DEFAULT true;
+        END IF;
+      END $$;
+    `);
+
+    // ====== NEW: Benefit table (rodapé de benefícios) ======
+    console.log("Checking table Benefit...");
+    await prisma.$executeRawUnsafe(`
+      CREATE TABLE IF NOT EXISTS "Benefit" (
+        "id" TEXT NOT NULL,
+        "icon" TEXT NOT NULL,
+        "title" TEXT NOT NULL,
+        "subtitle" TEXT,
+        "order" INTEGER NOT NULL DEFAULT 0,
+        "active" BOOLEAN NOT NULL DEFAULT true,
+        "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        CONSTRAINT "Benefit_pkey" PRIMARY KEY ("id")
+      );
+    `);
+
+    // ====== NEW: Inspiration table ======
+    console.log("Checking table Inspiration...");
+    await prisma.$executeRawUnsafe(`
+      CREATE TABLE IF NOT EXISTS "Inspiration" (
+        "id" TEXT NOT NULL,
+        "title" TEXT NOT NULL,
+        "image" TEXT NOT NULL,
+        "link" TEXT,
+        "order" INTEGER NOT NULL DEFAULT 0,
+        "active" BOOLEAN NOT NULL DEFAULT true,
+        "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        CONSTRAINT "Inspiration_pkey" PRIMARY KEY ("id")
+      );
+    `);
+
+    // ====== NEW: HomeBanner table (Cursos/Sobre destaque) ======
+    console.log("Checking table HomeBanner...");
+    await prisma.$executeRawUnsafe(`
+      CREATE TABLE IF NOT EXISTS "HomeBanner" (
+        "id" TEXT NOT NULL,
+        "key" TEXT NOT NULL,
+        "title" TEXT NOT NULL,
+        "subtitle" TEXT,
+        "description" TEXT,
+        "image" TEXT,
+        "ctaText" TEXT,
+        "ctaLink" TEXT,
+        "bgColor" TEXT DEFAULT '#1e3a8a',
+        "textColor" TEXT DEFAULT '#ffffff',
+        "active" BOOLEAN NOT NULL DEFAULT true,
+        "order" INTEGER NOT NULL DEFAULT 0,
+        "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        CONSTRAINT "HomeBanner_pkey" PRIMARY KEY ("id")
+      );
+    `);
+    await prisma.$executeRawUnsafe(`CREATE UNIQUE INDEX IF NOT EXISTS "HomeBanner_key_key" ON "HomeBanner" ("key");`);
+
+
 
 
   } catch (error) {

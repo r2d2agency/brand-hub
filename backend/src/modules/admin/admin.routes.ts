@@ -94,12 +94,45 @@ const categorySchema = z.object({
   slug: z.string().min(1),
   description: z.string().nullish(),
   coverImage: z.string().nullish(),
+  icon: z.string().nullish(),
   gallery: z.array(z.string()).optional(),
   whatsappMsg: z.string().nullish(),
   active: z.boolean().optional(),
   order: z.number().int().optional(),
   showInHome: z.boolean().optional(),
+  showInMenu: z.boolean().optional(),
 });
+
+const benefitSchema = z.object({
+  icon: z.string().min(1),
+  title: z.string().min(1),
+  subtitle: z.string().nullish(),
+  order: z.number().int().optional(),
+  active: z.boolean().optional(),
+});
+
+const inspirationSchema = z.object({
+  title: z.string().min(1),
+  image: z.string().min(1),
+  link: z.string().nullish(),
+  order: z.number().int().optional(),
+  active: z.boolean().optional(),
+});
+
+const homeBannerSchema = z.object({
+  key: z.string().min(1),
+  title: z.string().min(1),
+  subtitle: z.string().nullish(),
+  description: z.string().nullish(),
+  image: z.string().nullish(),
+  ctaText: z.string().nullish(),
+  ctaLink: z.string().nullish(),
+  bgColor: z.string().nullish(),
+  textColor: z.string().nullish(),
+  active: z.boolean().optional(),
+  order: z.number().int().optional(),
+});
+
 
 const storeSchema = z.object({
   name: z.string().min(1),
@@ -203,6 +236,10 @@ adminRouter.use("/news-videos", createCrud("newsVideo", newsVideoSchema));
 adminRouter.use("/partners", createCrud("partner", partnerSchema));
 adminRouter.use("/pegue-monte", createCrud("pegueMonte", pegueMonteSchema));
 adminRouter.use("/courses", createCrud("course", courseSchema));
+adminRouter.use("/benefits", createCrud("benefit", benefitSchema));
+adminRouter.use("/inspirations", createCrud("inspiration", inspirationSchema));
+adminRouter.use("/home-banners", createCrud("homeBanner", homeBannerSchema));
+
 
 // Dashboard Stats
 adminRouter.get("/stats", async (_req, res, next) => {
