@@ -71,9 +71,10 @@ export default function PromotionsAndCourses() {
           <div className="relative group">
             <Swiper
               modules={[Autoplay, SwiperNavigation]}
-              spaceBetween={20}
-              slidesPerView={1}
+              spaceBetween={12}
+              slidesPerView={1.2}
               breakpoints={{
+                480: { slidesPerView: 2 },
                 640: { slidesPerView: 2 },
                 1024: { slidesPerView: 3 }
               }}
