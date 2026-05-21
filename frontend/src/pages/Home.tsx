@@ -36,12 +36,11 @@ export default function Home() {
       {/* 3. Banner slider promocional (Pegue e Monte) */}
       <PromoBannerSlider />
 
-
-      {/* 3. Pegue e Monte (destaque) */}
-      <PegueMonteHome />
-
       {/* 4. Inspiração para sua festa */}
       <InspirationGrid />
+
+      {/* 5. Pegue e Monte (destaque) */}
+      <PegueMonteHome />
 
       {/* 5. HomeBanners: Cursos promo + Sobre a loja */}
       <HomeBannersRow />
