@@ -44,7 +44,7 @@ export default function PromotionsAndCourses() {
   };
 
   return (
-    <section className="mx-auto max-w-7xl px-6 py-12 md:py-20">
+    <section className="mx-auto max-w-7xl px-6 py-8 md:py-20">
       <div className="grid gap-8 lg:grid-cols-12">
         
         {/* PROMOTIONS SIDE (8 columns) */}
@@ -122,7 +122,7 @@ export default function PromotionsAndCourses() {
 
         {/* COURSES SIDE (4 columns) */}
         <div className="lg:col-span-4">
-          <div className="h-full flex flex-col">
+          <div className="h-full flex flex-col min-h-[400px]">
             <div className="flex items-center gap-2 text-blue-600 font-black uppercase tracking-widest text-xs mb-2">
               <Sparkles size={14} className="fill-blue-600" /> Conhecimento
             </div>
@@ -163,7 +163,7 @@ export default function PromotionsAndCourses() {
                 <CourseCard course={featuredCourse} branding={branding} />
               </div>
             ) : (
-              <div className="flex-1 rounded-3xl bg-slate-100 flex items-center justify-center border-2 border-dashed border-slate-200 min-h-[300px]">
+              <div className="flex-1 rounded-3xl bg-slate-100 flex items-center justify-center border-2 border-dashed border-slate-200 min-h-[200px] md:min-h-[300px]">
                 <p className="text-slate-400 font-bold uppercase tracking-widest text-xs">Novos cursos em breve</p>
               </div>
             )}
@@ -257,7 +257,7 @@ function CourseCard({ course, branding }: { course: any; branding: any }) {
   const whatsappLink = `https://wa.me/${branding?.whatsappPhone?.replace(/\D/g, '') || '5511999999999'}?text=${encodeURIComponent(course.whatsappMsg || `Olá! Tenho interesse no curso: ${course.title}`)}`;
 
   return (
-    <div className="h-full min-h-[420px] relative rounded-3xl bg-blue-900 overflow-hidden group shadow-xl">
+    <div className="h-full min-h-[350px] md:min-h-[420px] relative rounded-3xl bg-blue-900 overflow-hidden group shadow-xl">
       <div className="absolute inset-0">
         <img
           src={course.coverImage || "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=2070&auto=format&fit=crop"}
