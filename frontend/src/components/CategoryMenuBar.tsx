@@ -1,28 +1,19 @@
-import { useQuery } from "@tanstack/react-query";
-import { Link } from "react-router-dom";
-import { api } from "@/lib/api";
-import * as Icons from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 import { useBranding } from "@/lib/branding";
 
-function CategoryIcon({ name, size = 18 }: { name?: string | null; size?: number }) {
-  if (!name) return <Icons.Tag size={size} />;
-  // Emoji case
-  if (/\p{Extended_Pictographic}/u.test(name)) return <span style={{ fontSize: size }}>{name}</span>;
-  // Lucide name (PascalCase)
-  const key = name.charAt(0).toUpperCase() + name.slice(1);
-  const Cmp = (Icons as any)[key] || (Icons as any)[name] || Icons.Tag;
-  return <Cmp size={size} />;
-}
+const navLinks = [
+  { to: "/", label: "Home" },
+  { to: "/sobre", label: "Sobre" },
+  { to: "/categorias", label: "Categorias" },
+  { to: "/pegue-monte", label: "Pegue e Monte" },
+  { to: "/cursos", label: "Cursos" },
+  { to: "/lojas", label: "Lojas" },
+  { to: "/contato", label: "Contato" },
+];
 
 export default function CategoryMenuBar() {
   const branding = useBranding();
-  const { data: categories = [] } = useQuery({
-    queryKey: ["site-categories"],
-    queryFn: async () => (await api.get("/site/categories")).data,
-  });
-
-  const items = categories.filter((c: any) => c.active && c.showInMenu !== false);
-  if (items.length === 0) return null;
+  const { pathname } = useLocation();
 
   return (
     <div
@@ -30,19 +21,22 @@ export default function CategoryMenuBar() {
       style={{ backgroundColor: branding?.primaryColor || "#dc2626" }}
     >
       <div className="mx-auto max-w-7xl px-4">
-        <div className="flex items-center gap-1 overflow-x-auto scrollbar-hide">
-          {items.map((c: any) => (
-            <Link
-              key={c.id}
-              to="/categorias"
-              className="flex items-center gap-2 px-4 py-3 text-[11px] md:text-xs font-black uppercase tracking-wider whitespace-nowrap hover:bg-black/15 transition-colors"
-              title={c.name}
-            >
-              <CategoryIcon name={c.icon} size={16} />
-              {c.name}
-            </Link>
-          ))}
-        </div>
+        <nav className="flex items-center gap-1 overflow-x-auto scrollbar-hide">
+          {navLinks.map((l) => {
+            const active = pathname === l.to;
+            return (
+              <Link
+                key={l.to}
+                to={l.to}
+                className={`px-4 py-3 text-[11px] md:text-xs font-black uppercase tracking-wider whitespace-nowrap transition-colors ${
+                  active ? "bg-black/20" : "hover:bg-black/15"
+                }`}
+              >
+                {l.label}
+              </Link>
+            );
+          })}
+        </nav>
       </div>
     </div>
   );
