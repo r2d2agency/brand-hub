@@ -6,7 +6,9 @@ interface ImageUploadProps {
   onChange: (value: string) => void;
   label: string;
   aspectClass?: string;
+  hint?: string; // ex.: "1920x720px • paisagem"
 }
+
 
 // Compress and convert file to base64 data URL
 async function fileToCompressedDataURL(file: File, maxWidth = 1920, quality = 0.85): Promise<string> {
