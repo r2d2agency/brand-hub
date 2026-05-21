@@ -47,10 +47,10 @@ export default function PromotionsAndCourses() {
 
   return (
     <section className="mx-auto max-w-7xl px-6 py-8 md:py-20">
-      <div className="grid gap-8 lg:grid-cols-12">
+      <div className="space-y-8">
         
-        {/* PROMOTIONS SIDE (8 columns) */}
-        <div className="lg:col-span-8 space-y-8">
+        {/* PROMOTIONS SIDE */}
+        <div className="space-y-8">
           <div className="flex items-end justify-between">
             <div>
               <div className="flex items-center gap-2 text-red-600 font-black uppercase tracking-widest text-xs mb-2">
@@ -88,7 +88,7 @@ export default function PromotionsAndCourses() {
                 breakpoints={{
                   480: { slidesPerView: 2 },
                   640: { slidesPerView: 2 },
-                  1024: { slidesPerView: 3 }
+                  1024: { slidesPerView: 4 }
                 }}
                 autoplay={{ delay: 4000, disableOnInteraction: false }}
                 className="rounded-3xl"
@@ -134,65 +134,8 @@ export default function PromotionsAndCourses() {
           </div>
         </div>
 
-        {/* COURSES SIDE (4 columns) */}
-        <div className="lg:col-span-4">
-          <div className="h-full flex flex-col min-h-[400px]">
-            <div className="flex items-center gap-2 text-blue-600 font-black uppercase tracking-widest text-xs mb-2">
-              <Sparkles size={14} className="fill-blue-600" /> Conhecimento
-            </div>
-            <h2 className="text-3xl font-black text-blue-900 mb-3">Aprenda conosco</h2>
-            <p className="text-sm text-slate-500 font-medium mb-6 leading-relaxed">
-              {coursesIntro}
-            </p>
-
-            {homeCourses.length > 1 ? (
-              <div className="flex-1 relative group">
-                <Swiper
-                  onSwiper={(swiper) => courseSwiperRef.current = swiper}
-                  modules={[Autoplay]}
-                  spaceBetween={16}
-                  slidesPerView={1}
-                  observer={false}
-                  observeParents={false}
-                  autoplay={{ delay: 5000, disableOnInteraction: false }}
-                  loop={homeCourses.length > 1}
-                  className="h-full rounded-3xl"
-                >
-                  {homeCourses.map((course: any) => (
-                    <SwiperSlide key={course.id}>
-                      <CourseCard course={course} branding={branding} />
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-                <button 
-                  onClick={() => courseSwiperRef.current?.slidePrev()}
-                  className="absolute top-1/2 -translate-y-1/2 left-3 z-10 p-2 rounded-full bg-white/90 text-blue-900 shadow-lg hover:bg-red-600 hover:text-white transition-all opacity-0 group-hover:opacity-100"
-                >
-                  <ChevronLeft size={18} />
-                </button>
-                <button 
-                  onClick={() => courseSwiperRef.current?.slideNext()}
-                  className="absolute top-1/2 -translate-y-1/2 right-3 z-10 p-2 rounded-full bg-white/90 text-blue-900 shadow-lg hover:bg-red-600 hover:text-white transition-all opacity-0 group-hover:opacity-100"
-                >
-                  <ChevronRight size={18} />
-                </button>
-                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 px-3 py-1 rounded-full bg-white/90 text-[10px] font-black text-blue-900 shadow">
-                  {homeCourses.length} cursos
-                </div>
-              </div>
-            ) : featuredCourse ? (
-              <div className="flex-1">
-                <CourseCard course={featuredCourse} branding={branding} />
-              </div>
-            ) : (
-              <div className="flex-1 rounded-3xl bg-slate-100 flex items-center justify-center border-2 border-dashed border-slate-200 min-h-[200px] md:min-h-[300px]">
-                <p className="text-slate-400 font-bold uppercase tracking-widest text-xs">Novos cursos em breve</p>
-              </div>
-            )}
-          </div>
-        </div>
+        {/* COURSES SIDE REMOVED (now in FeaturedServices) */}
       </div>
-
 
       {/* PROMO MODAL */}
       {selectedPromo && (
