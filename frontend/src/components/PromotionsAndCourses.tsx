@@ -71,6 +71,7 @@ export default function PromotionsAndCourses() {
           <div className="relative group min-h-[200px] flex items-center justify-center">
             {promotions.length > 0 ? (
               <Swiper
+                key={promotions.length}
                 modules={[Autoplay, SwiperNavigation]}
                 spaceBetween={12}
                 slidesPerView={2}
