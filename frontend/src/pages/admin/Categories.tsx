@@ -71,10 +71,12 @@ export default function CategoriesAdmin() {
       slug: cat.slug || "",
       description: cat.description || "",
       coverImage: cat.coverImage || "",
+      icon: cat.icon || "",
       gallery: cat.gallery || [],
       whatsappMsg: cat.whatsappMsg || "",
       active: cat.active ?? true,
       showInHome: cat.showInHome ?? true,
+      showInMenu: cat.showInMenu ?? true,
     });
     setIsEditing(true);
   };
