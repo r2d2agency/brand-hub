@@ -37,7 +37,7 @@ async function fileToCompressedDataURL(file: File, maxWidth = 1920, quality = 0.
   });
 }
 
-export default function ImageUpload({ value, onChange, label, aspectClass = "aspect-[21/9]" }: ImageUploadProps) {
+export default function ImageUpload({ value, onChange, label, aspectClass = "aspect-[21/9]", hint }: ImageUploadProps) {
   const [isDragging, setIsDragging] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [showUrlInput, setShowUrlInput] = useState(false);
