@@ -71,21 +71,23 @@ export default function PromotionsAndCourses() {
           <div className="relative group min-h-[200px] flex items-center justify-center">
             {promotions.length > 0 ? (
               <Swiper
-              modules={[Autoplay, SwiperNavigation]}
-              spaceBetween={12}
-              slidesPerView={2}
-              breakpoints={{
-                480: { slidesPerView: 2 },
-                640: { slidesPerView: 2 },
-                1024: { slidesPerView: 3 }
-              }}
-              navigation={promotions.length > 3 ? {
-                prevEl: ".promo-prev",
-                nextEl: ".promo-next"
-              } : false}
-              autoplay={{ delay: 4000, disableOnInteraction: false }}
-              className="rounded-3xl"
-            >
+                modules={[Autoplay, SwiperNavigation]}
+                spaceBetween={12}
+                slidesPerView={2}
+                observer={true}
+                observeParents={true}
+                breakpoints={{
+                  480: { slidesPerView: 2 },
+                  640: { slidesPerView: 2 },
+                  1024: { slidesPerView: 3 }
+                }}
+                navigation={promotions.length > 3 ? {
+                  prevEl: ".promo-prev",
+                  nextEl: ".promo-next"
+                } : false}
+                autoplay={{ delay: 4000, disableOnInteraction: false }}
+                className="rounded-3xl"
+              >
               {promotions.map((promo: any) => (
                 <SwiperSlide key={promo.id}>
                   <button 
