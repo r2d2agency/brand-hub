@@ -219,7 +219,9 @@ export default function BrandingAdmin() {
                 value={form.footerLogo || ""}
                 onChange={url => handleFieldChange("footerLogo", url)}
                 aspectClass="aspect-video"
+                hint="400x200px • PNG transparente (claro)"
               />
+
             </div>
           </div>
 
