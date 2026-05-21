@@ -31,14 +31,6 @@ export default function PromotionsAndCourses() {
     queryFn: async () => (await api.get("/site/promotions")).data,
   });
 
-  const { data: courses = [] } = useQuery({
-    queryKey: ["site-courses"],
-    queryFn: async () => (await api.get("/site/courses")).data,
-  });
-
-  const homeCourses = courses.filter((c: any) => c.active && c.showInHome);
-  const featuredCourse = homeCourses[0] || courses[0];
-  const coursesIntro = branding?.coursesIntro || "Aprenda com quem entende do assunto: workshops, oficinas e cursos para todos os níveis.";
 
   const handlePromoWhatsApp = (promo: any) => {
     const msg = encodeURIComponent(promo.whatsappMsg || `Olá! Tenho interesse na oferta: ${promo.title}`);
@@ -202,64 +194,4 @@ export default function PromotionsAndCourses() {
   );
 }
 
-function CourseCard({ course, branding }: { course: any; branding: any }) {
-  const statusLabel: Record<string, string> = {
-    SOON: "Em breve",
-    OPEN: "Inscrições abertas",
-    CLOSED: "Encerrado",
-  };
-  const status = course.status || "SOON";
-  const whatsappLink = `https://wa.me/${branding?.whatsappPhone?.replace(/\D/g, '') || '5511999999999'}?text=${encodeURIComponent(course.whatsappMsg || `Olá! Tenho interesse no curso: ${course.title}`)}`;
-
-  return (
-    <div className="h-full min-h-[350px] md:min-h-[420px] relative rounded-3xl bg-blue-900 overflow-hidden shadow-xl">
-      <div className="absolute inset-0">
-        <img
-          src={course.coverImage || "https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=2070&auto=format&fit=crop"}
-          alt={course.title}
-          className="h-full w-full object-cover opacity-40"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-blue-950 via-blue-900/50 to-transparent" />
-      </div>
-
-      <div className="relative h-full flex flex-col justify-end p-6 text-white">
-        <div className="inline-block self-start rounded-lg bg-red-600 px-3 py-1 text-[10px] font-bold uppercase tracking-widest mb-3">
-          {statusLabel[status]}
-        </div>
-        <h3 className="text-xl font-black mb-3 leading-tight line-clamp-2">{course.title}</h3>
-
-        <div className="space-y-2 mb-5 text-xs font-medium text-blue-100">
-          {course.date && (
-            <div className="flex items-center gap-2">
-              <Calendar size={14} className="text-red-500" />
-              {new Date(course.date).toLocaleDateString('pt-BR', { weekday: 'short', day: '2-digit', month: 'short' })}
-              {course.time && <span className="opacity-80">• {course.time}</span>}
-            </div>
-          )}
-          {course.instructor && (
-            <div className="flex items-center gap-2">
-              <User size={14} className="text-red-500" />
-              {course.instructor}
-            </div>
-          )}
-          {course.location && (
-            <div className="flex items-center gap-2">
-              <MapPin size={14} className="text-red-500" />
-              {course.location}
-            </div>
-          )}
-        </div>
-
-        <a
-          href={whatsappLink}
-          target="_blank"
-          rel="noreferrer"
-          className="w-full rounded-2xl bg-white py-3 text-center text-xs font-black uppercase tracking-widest text-blue-900 hover:bg-red-600 hover:text-white transition-all shadow-lg"
-        >
-          Quero me inscrever
-        </a>
-      </div>
-    </div>
-  );
-}
 
