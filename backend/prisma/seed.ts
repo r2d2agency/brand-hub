@@ -6,14 +6,14 @@ async function main() {
 
   // Categorias
   const categories = [
-    { name: 'Doces', slug: 'doces', description: 'Guloseimas, pirulitos, chicletes e muito mais.', whatsappMsg: 'Gostaria de saber mais sobre os doces.' },
-    { name: 'Chocolates', slug: 'chocolates', description: 'Barras, bombons e chocolates para confeitaria.', whatsappMsg: 'Gostaria de saber mais sobre os chocolates.' },
-    { name: 'Balas', slug: 'balas', description: 'Balas de goma, mastigáveis e tradicionais.', whatsappMsg: 'Gostaria de saber mais sobre as balas.' },
-    { name: 'Confeitaria', slug: 'confeitaria', description: 'Ingredientes e utensílios para boleiras e confeiteiros.', whatsappMsg: 'Gostaria de saber mais sobre itens de confeitaria.' },
-    { name: 'Embalagens', slug: 'embalagens', description: 'Caixas, sacos de presente e embalagens para doces.', whatsappMsg: 'Gostaria de saber mais sobre as embalagens.' },
-    { name: 'Artigos para Festa', slug: 'artigos-festa', description: 'Decoração completa para sua comemoração.', whatsappMsg: 'Gostaria de saber mais sobre artigos para festa.' },
-    { name: 'Balões', slug: 'baloes', description: 'Balões de látex, metalizados e acessórios.', whatsappMsg: 'Gostaria de saber mais sobre os balões.' },
-    { name: 'Descartáveis', slug: 'descartaveis', description: 'Pratos, copos e talheres para sua festa.', whatsappMsg: 'Gostaria de saber mais sobre os descartáveis.' },
+    { name: 'Doces e Guloseimas', slug: 'doces', description: 'Guloseimas, pirulitos, chicletes e muito mais.', whatsappMsg: 'Gostaria de saber mais sobre os doces.', coverImage: '/seed/cat-doces.jpg', icon: 'Candy', order: 1 },
+    { name: 'Embalagens', slug: 'embalagens', description: 'Caixas, sacos de presente e embalagens para doces.', whatsappMsg: 'Gostaria de saber mais sobre as embalagens.', coverImage: '/seed/cat-embalagens.jpg', icon: 'Gift', order: 2 },
+    { name: 'Confeitaria', slug: 'confeitaria', description: 'Ingredientes e utensílios para boleiras e confeiteiros.', whatsappMsg: 'Gostaria de saber mais sobre itens de confeitaria.', coverImage: '/seed/cat-confeitaria.jpg', icon: 'ChefHat', order: 3 },
+    { name: 'Decoração de Festa', slug: 'decoracao-festa', description: 'Decoração completa para sua comemoração.', whatsappMsg: 'Gostaria de saber mais sobre decoração.', coverImage: '/seed/cat-decoracao.jpg', icon: 'PartyPopper', order: 4 },
+    { name: 'Descartáveis', slug: 'descartaveis', description: 'Pratos, copos e talheres para sua festa.', whatsappMsg: 'Gostaria de saber mais sobre os descartáveis.', coverImage: '/seed/cat-descartaveis.jpg', icon: 'CupSoda', order: 5 },
+    { name: 'Pegue e Monte', slug: 'pegue-e-monte', description: 'Monte sua festa com nossos kits prontos.', whatsappMsg: 'Quero saber sobre o Pegue e Monte.', coverImage: '/seed/cat-pegue-monte.jpg', icon: 'Package', order: 6 },
+    { name: 'Cursos', slug: 'cursos', description: 'Aprenda com nossos cursos especializados.', whatsappMsg: 'Quero saber sobre os cursos.', coverImage: '/seed/cat-cursos.jpg', icon: 'GraduationCap', order: 7 },
+    { name: 'Galeria de Produtos', slug: 'galeria', description: 'Veja nossa galeria completa.', whatsappMsg: 'Quero ver a galeria de produtos.', coverImage: '/seed/cat-galeria.jpg', icon: 'Camera', order: 8 },
   ]
 
   for (const cat of categories) {
@@ -23,6 +23,7 @@ async function main() {
       create: cat,
     })
   }
+
 
   // Lojas
   const stores = [
