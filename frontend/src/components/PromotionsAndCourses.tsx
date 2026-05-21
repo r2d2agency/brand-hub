@@ -90,13 +90,13 @@ export default function PromotionsAndCourses() {
                 <SwiperSlide key={promo.id}>
                   <button 
                     onClick={() => setSelectedPromo(promo)}
-                    className="w-full text-left group bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden"
+                    className="w-full text-left group bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-shadow overflow-hidden"
                   >
                     <div className="aspect-square relative overflow-hidden bg-slate-50">
                       <img 
                         src={promo.image} 
                         alt={promo.title} 
-                        className="h-full w-full object-cover group-hover:scale-110 transition-transform duration-700" 
+                        className="h-full w-full object-cover" 
                       />
                       <div className="absolute top-4 left-4">
                         <span className="bg-red-600 text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">
