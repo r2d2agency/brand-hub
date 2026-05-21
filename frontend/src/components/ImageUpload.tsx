@@ -186,6 +186,12 @@ export default function ImageUpload({ value, onChange, label, aspectClass = "asp
           </div>
         )}
       </div>
+      {hint && (
+        <div className="text-xs font-semibold text-slate-500">
+          📐 Dimensão recomendada: <span className="text-blue-700">{hint}</span>
+        </div>
+      )}
     </div>
   );
 }
+
