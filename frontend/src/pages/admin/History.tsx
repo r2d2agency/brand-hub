@@ -228,7 +228,9 @@ export default function HistoryAdmin() {
               value={form.mainImage}
               onChange={url => setForm({...form, mainImage: url})}
               aspectClass="aspect-square"
+              hint="800x800px • quadrado (1:1)"
             />
+
           </div>
 
           {/* Gallery */}
