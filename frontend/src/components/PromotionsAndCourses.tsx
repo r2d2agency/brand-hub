@@ -15,7 +15,7 @@ import {
   MapPin,
   X
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion"; // Not using anymore in this file to avoid loops
 
 import "swiper/css";
 import "swiper/css/navigation";
