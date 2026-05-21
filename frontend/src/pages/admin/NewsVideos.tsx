@@ -171,7 +171,9 @@ export default function NewsVideosAdmin() {
                   value={form.thumbnail}
                   onChange={url => setForm({...form, thumbnail: url})}
                   aspectClass={form.orientation === 'vertical' ? "aspect-[9/16]" : "aspect-video"}
+                  hint={form.orientation === 'vertical' ? "720x1280px • retrato (9:16)" : "1280x720px • paisagem (16:9)"}
                 />
+
                 
                 <div className="space-y-4">
                   <div className="space-y-1.5">
