@@ -90,7 +90,7 @@ export default function PromotionsAndCourses() {
                     onClick={() => setSelectedPromo(promo)}
                     className="w-full text-left group bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all overflow-hidden"
                   >
-                    <div className="aspect-square relative overflow-hidden bg-slate-50">
+                    <div className="aspect-[4/3] md:aspect-square relative overflow-hidden bg-slate-50">
                       <img 
                         src={promo.image} 
                         alt={promo.title} 
