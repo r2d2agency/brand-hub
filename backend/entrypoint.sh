@@ -14,8 +14,8 @@ else
   npx prisma migrate deploy
 fi
 
-# O fix-schema agora roda automaticamente no início da aplicação (src/index.ts)
-# removido: npx tsx fix-schema.ts || echo "⚠️ Falha ao rodar fix-schema."
+echo "🔧 Executando fix-schema via dist/fix-schema.js..."
+node -e "import('./dist/fix-schema.js').then(m => m.fixSchema())" || echo "⚠️ Falha ao rodar fix-schema."
 
 echo "🌱 Rodando seed..."
 npx tsx prisma/seed.ts
