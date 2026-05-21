@@ -8,41 +8,41 @@ export default function HomeBannersRow() {
     queryFn: async () => (await api.get("/site/home-banners")).data,
   });
 
-  const list = banners.filter((b: any) => b.key !== 'courses-promo').slice(0, 2);
+  const list = banners.filter((b: any) => b.key !== 'courses-promo').slice(0, 1);
   if (!list.length) return null;
 
   return (
-    <section className="mx-auto max-w-7xl px-6 py-8 md:py-12">
-      <div className="grid gap-6 md:grid-cols-2">
+    <section className="mx-auto max-w-7xl px-6 py-4 md:py-6">
+      <div className="grid gap-6 md:grid-cols-1">
         {list.map((b: any) => (
           <article
             key={b.id}
-            className="relative overflow-hidden rounded-3xl p-8 md:p-10 min-h-[260px] flex flex-col justify-center"
+            className="relative overflow-hidden rounded-3xl p-6 md:p-8 min-h-[160px] md:min-h-[180px] flex flex-col justify-center"
             style={{ backgroundColor: b.bgColor || "#1e3a8a", color: b.textColor || "#ffffff" }}
           >
             {b.image && (
               <img
                 src={b.image}
                 alt=""
-                className="absolute right-0 top-0 h-full w-1/2 object-cover opacity-90"
+                className="absolute right-0 top-0 h-full w-2/5 object-cover opacity-90"
               />
             )}
-            <div className="relative max-w-[55%]">
+            <div className="relative max-w-[65%]">
               {b.subtitle && (
-                <div className="text-[10px] font-black uppercase tracking-widest mb-2 opacity-80">
+                <div className="text-[10px] font-black uppercase tracking-widest mb-1 opacity-80">
                   {b.subtitle}
                 </div>
               )}
-              <h3 className="text-2xl md:text-3xl font-black leading-tight mb-3">
+              <h3 className="text-xl md:text-2xl font-black leading-tight mb-2">
                 {b.title}
               </h3>
               {b.description && (
-                <p className="text-sm opacity-90 mb-5 line-clamp-3">{b.description}</p>
+                <p className="text-sm opacity-90 mb-4 line-clamp-2">{b.description}</p>
               )}
               {b.ctaText && b.ctaLink && (
                 <a
                   href={b.ctaLink}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-red-600 text-white text-xs font-black uppercase tracking-widest hover:bg-red-700 transition-colors"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-red-600 text-white text-[10px] font-black uppercase tracking-widest hover:bg-red-700 transition-colors w-fit"
                 >
                   {b.ctaText} <ChevronRight size={14} />
                 </a>
