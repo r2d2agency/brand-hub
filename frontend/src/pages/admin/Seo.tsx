@@ -144,7 +144,9 @@ export default function SeoAdmin() {
               value={form.seoOgImage || ""}
               onChange={(url) => set("seoOgImage", url)}
               aspectClass="aspect-[1200/630]"
+              hint="1200x630px • paisagem (1.91:1) • redes sociais"
             />
+
 
             {form.seoOgImage && (
               <div className="rounded-xl border border-slate-200 p-3 bg-slate-50">
