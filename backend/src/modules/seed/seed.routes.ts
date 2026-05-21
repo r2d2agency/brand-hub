@@ -117,6 +117,7 @@ seedRouter.post("/", async (req, res, next) => {
       }
     ];
 
+    await prisma.seasonalBanner.deleteMany({});
     for (const banner of banners) {
       await prisma.seasonalBanner.create({ data: banner });
     }
