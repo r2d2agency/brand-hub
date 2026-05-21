@@ -152,7 +152,9 @@ export default function PromotionsAdmin() {
                 value={form.image}
                 onChange={url => setForm({...form, image: url})}
                 aspectClass="aspect-square"
+                hint="800x800px • quadrado • fundo branco/neutro"
               />
+
 
               <div className="space-y-1.5">
                 <label className="text-xs font-black uppercase tracking-widest text-slate-500">Título do Produto *</label>
