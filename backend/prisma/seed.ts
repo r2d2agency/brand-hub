@@ -52,8 +52,10 @@ async function main() {
     }
   ]
 
+  // Primeiro limpamos lojas antigas para evitar duplicatas
+  await prisma.store.deleteMany({})
+
   for (const store of stores) {
-    // Upsert or simple create depending on model key, here we use create as original code
     await prisma.store.create({ data: store })
   }
 
