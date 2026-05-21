@@ -66,6 +66,7 @@ seedRouter.post("/", async (req, res, next) => {
       }
     ];
 
+    await prisma.store.deleteMany({});
     for (const store of stores) {
       await prisma.store.create({ data: store });
     }
