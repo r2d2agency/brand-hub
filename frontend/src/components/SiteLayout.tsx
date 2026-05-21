@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { MessageCircle, Menu, X, Instagram, Facebook, Youtube, Search, User } from "lucide-react";
+import { MessageCircle, Menu, X, Instagram, Facebook, Youtube, Search } from "lucide-react";
 import { useState } from "react";
 import { useBranding } from "@/lib/branding";
 import logoBasmar from "@/assets/logo-basmar.png";
