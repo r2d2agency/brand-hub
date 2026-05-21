@@ -144,6 +144,7 @@ export default function PromotionsAndCourses() {
             {homeCourses.length > 1 ? (
               <div className="flex-1 relative group">
                 <Swiper
+                  key={homeCourses.length}
                   modules={[Autoplay, SwiperNavigation]}
                   spaceBetween={16}
                   slidesPerView={1}
