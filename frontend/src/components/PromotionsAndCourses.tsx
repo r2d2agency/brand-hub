@@ -68,8 +68,9 @@ export default function PromotionsAndCourses() {
             )}
           </div>
 
-          <div className="relative group">
-            <Swiper
+          <div className="relative group min-h-[200px] flex items-center justify-center">
+            {promotions.length > 0 ? (
+              <Swiper
               modules={[Autoplay, SwiperNavigation]}
               spaceBetween={12}
               slidesPerView={1.2}
@@ -117,7 +118,12 @@ export default function PromotionsAndCourses() {
                   </button>
                 </SwiperSlide>
               ))}
-            </Swiper>
+              </Swiper>
+            ) : (
+              <div className="text-slate-400 font-bold uppercase tracking-widest text-xs animate-pulse">
+                Carregando ofertas...
+              </div>
+            )}
           </div>
         </div>
 
