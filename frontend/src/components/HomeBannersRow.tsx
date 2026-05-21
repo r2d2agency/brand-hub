@@ -17,17 +17,17 @@ export default function HomeBannersRow() {
         {list.map((b: any) => (
           <article
             key={b.id}
-            className="relative overflow-hidden rounded-3xl p-6 md:p-8 min-h-[160px] md:min-h-[180px] flex flex-col justify-center"
+            className="relative overflow-hidden rounded-3xl p-6 md:p-10 min-h-[220px] md:min-h-[280px] flex flex-col justify-center"
             style={{ backgroundColor: b.bgColor || "#1e3a8a", color: b.textColor || "#ffffff" }}
           >
             {b.image && (
               <img
                 src={b.image}
                 alt=""
-                className="absolute right-0 top-0 h-full w-2/5 object-cover opacity-90"
+                className="absolute right-0 top-0 h-full w-1/4 object-cover opacity-90"
               />
             )}
-            <div className="relative max-w-[65%]">
+            <div className="relative max-w-[75%]">
               {b.subtitle && (
                 <div className="text-[10px] font-black uppercase tracking-widest mb-1 opacity-80">
                   {b.subtitle}
