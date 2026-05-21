@@ -349,7 +349,9 @@ export default function StoresAdmin() {
                   value={form.images[0]}
                   onChange={url => setForm({...form, images: [url]})}
                   aspectClass="aspect-video"
+                  hint="1280x720px • paisagem (16:9)"
                 />
+
               </div>
 
               <div className="flex justify-end gap-3 pt-6 pb-2 border-t border-slate-50">
