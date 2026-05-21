@@ -4,6 +4,10 @@ import morgan from "morgan";
 import { env } from "./env.js";
 import { apiRouter } from "./routes.js";
 import { errorHandler } from "./middleware/error.js";
+import { fixSchema } from "./fix-schema.js";
+
+// Rodar correções de schema no início
+fixSchema().catch(err => console.error("Falha ao rodar fixSchema:", err));
 
 const app = express();
 
