@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Header, Footer, WhatsAppButton } from "@/components/SiteLayout";
 import SeoInjector from "@/components/SeoInjector";
+import BenefitsBar from "@/components/BenefitsBar";
 import { usePageTracker } from "@/lib/usePageTracker";
 
 export default function SiteLayout() {
@@ -12,6 +13,7 @@ export default function SiteLayout() {
       <main className="flex-grow">
         <Outlet />
       </main>
+      <BenefitsBar />
       <Footer />
       <WhatsAppButton />
     </div>
