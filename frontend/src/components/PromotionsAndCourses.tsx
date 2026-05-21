@@ -76,15 +76,15 @@ export default function PromotionsAndCourses() {
             )}
           </div>
 
-          <div className="relative group min-h-[200px] flex items-center justify-center">
+          <div className="relative group">
             {promotions.length > 0 ? (
               <Swiper
                 onSwiper={(swiper) => promoSwiperRef.current = swiper}
                 modules={[Autoplay]}
                 spaceBetween={12}
                 slidesPerView={2}
-                observer={true}
-                observeParents={true}
+                observer={false}
+                observeParents={false}
                 breakpoints={{
                   480: { slidesPerView: 2 },
                   640: { slidesPerView: 2 },
@@ -152,8 +152,8 @@ export default function PromotionsAndCourses() {
                   modules={[Autoplay]}
                   spaceBetween={16}
                   slidesPerView={1}
-                  observer={true}
-                  observeParents={true}
+                  observer={false}
+                  observeParents={false}
                   autoplay={{ delay: 5000, disableOnInteraction: false }}
                   loop={homeCourses.length > 1}
                   className="h-full rounded-3xl"
