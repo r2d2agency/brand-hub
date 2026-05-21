@@ -78,10 +78,10 @@ export default function PromotionsAndCourses() {
                 640: { slidesPerView: 2 },
                 1024: { slidesPerView: 3 }
               }}
-              navigation={{
+              navigation={promotions.length > 3 ? {
                 prevEl: ".promo-prev",
                 nextEl: ".promo-next"
-              }}
+              } : false}
               autoplay={{ delay: 4000, disableOnInteraction: false }}
               className="rounded-3xl"
             >
