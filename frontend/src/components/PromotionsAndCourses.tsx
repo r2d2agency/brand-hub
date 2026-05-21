@@ -38,7 +38,7 @@ export default function PromotionsAndCourses() {
   };
 
   return (
-    <section className="mx-auto max-w-7xl px-6 py-8 md:py-20">
+    <section className="mx-auto max-w-7xl px-6 py-6 md:py-10">
       <div className="space-y-8">
         
         {/* PROMOTIONS SIDE */}
@@ -48,7 +48,7 @@ export default function PromotionsAndCourses() {
               <div className="flex items-center gap-2 text-red-600 font-black uppercase tracking-widest text-xs mb-2">
                 <Tag size={14} className="fill-red-600" /> Ofertas Imperdíveis
               </div>
-              <h2 className="text-3xl font-black text-blue-900">Economize agora</h2>
+              <h2 className="text-2xl font-black text-blue-900">Economize agora</h2>
             </div>
             {promotions.length > 2 && (
               <div className="flex gap-2">
