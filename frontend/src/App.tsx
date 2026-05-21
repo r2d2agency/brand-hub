@@ -25,6 +25,9 @@ import CoursesAdmin from "./pages/admin/Courses";
 import SeoAdmin from "./pages/admin/Seo";
 import Analytics from "./pages/admin/Analytics";
 import Courses from "./pages/Courses";
+import BenefitsAdmin from "./pages/admin/Benefits";
+import InspirationsAdmin from "./pages/admin/Inspirations";
+import HomeBannersAdmin from "./pages/admin/HomeBanners";
 
 import { ProtectedRoute } from "./lib/auth";
 import PublicLayout from "./components/PublicLayout";
@@ -75,6 +78,9 @@ export default function App() {
         <Route path="courses" element={<CoursesAdmin />} />
         <Route path="seo" element={<SeoAdmin />} />
         <Route path="analytics" element={<Analytics />} />
+        <Route path="benefits" element={<BenefitsAdmin />} />
+        <Route path="inspirations" element={<InspirationsAdmin />} />
+        <Route path="home-banners" element={<HomeBannersAdmin />} />
 
       </Route>
 

@@ -18,7 +18,10 @@ import {
   PartyPopper,
   GraduationCap,
   Search,
-  BarChart3
+  BarChart3,
+  Sparkles,
+  ShieldCheck,
+  LayoutPanelTop
 } from "lucide-react";
 
 export default function AdminLayout() {
@@ -28,6 +31,8 @@ export default function AdminLayout() {
     { to: "/admin", label: "Dashboard", icon: LayoutDashboard, end: true, role: "ANY" },
     { to: "/admin/analytics", label: "Analytics", icon: BarChart3, role: "ADMIN" },
     { to: "/admin/banners", label: "Banners", icon: ImageIcon, role: "ADMIN" },
+    { to: "/admin/home-banners", label: "Banners Home", icon: LayoutPanelTop, role: "ADMIN" },
+    { to: "/admin/inspirations", label: "Inspirações", icon: Sparkles, role: "ADMIN" },
     { to: "/admin/partners", label: "Parceiros", icon: Briefcase, role: "ADMIN" },
     { to: "/admin/pegue-monte", label: "Pegue e Monte", icon: PartyPopper, role: "ADMIN" },
     { to: "/admin/promotions", label: "Promoções", icon: Tag, role: "ADMIN" },
@@ -35,6 +40,7 @@ export default function AdminLayout() {
     { to: "/admin/courses", label: "Cursos", icon: GraduationCap, role: "ADMIN" },
     { to: "/admin/categories", label: "Categorias", icon: Grid2X2, role: "ADMIN" },
     { to: "/admin/stores", label: "Lojas", icon: Store, role: "ADMIN" },
+    { to: "/admin/benefits", label: "Benefícios", icon: ShieldCheck, role: "ADMIN" },
     { to: "/admin/history", label: "História", icon: History, role: "ADMIN" },
     { to: "/admin/branding", label: "Branding", icon: Palette, role: "ADMIN" },
     { to: "/admin/seo", label: "SEO & Analytics", icon: Search, role: "ADMIN" },
