@@ -1,15 +1,17 @@
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { api } from "@/lib/api";
 import { Link } from "react-router-dom";
-import { ChevronRight, Sparkles, Calendar, User, MapPin } from "lucide-react";
+import { ChevronRight, Calendar, User, Play, X, Newspaper } from "lucide-react";
 import { useBranding } from "@/lib/branding";
 
 export default function FeaturedServices() {
   const branding = useBranding();
-  
-  const { data: kits = [] } = useQuery({
-    queryKey: ["site-pegue-monte-featured"],
-    queryFn: async () => (await api.get("/site/pegue-monte")).data,
+  const [activeVideo, setActiveVideo] = useState<any>(null);
+
+  const { data: videos = [] } = useQuery({
+    queryKey: ["site-news-videos-featured"],
+    queryFn: async () => (await api.get("/site/news-videos")).data,
   });
 
   const { data: courses = [] } = useQuery({
@@ -17,61 +19,79 @@ export default function FeaturedServices() {
     queryFn: async () => (await api.get("/site/courses")).data,
   });
 
-  const featuredKit = kits.find((k: any) => k.highlight) || kits[0];
+  const featuredVideo = videos[0];
   const homeCourses = courses.filter((c: any) => c.active && c.showInHome);
   const featuredCourse = homeCourses[0] || courses[0];
+
+  const getEmbedUrl = (url: string) => {
+    try {
+      let videoId = "";
+      if (url.includes("v=")) videoId = url.split("v=")[1].split("&")[0];
+      else if (url.includes("shorts/")) videoId = url.split("shorts/")[1].split("?")[0];
+      else if (url.includes("youtu.be/")) videoId = url.split("youtu.be/")[1].split("?")[0];
+      return `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    } catch { return url; }
+  };
 
   return (
     <section className="mx-auto max-w-7xl px-6 py-12 md:py-20">
       <div className="grid gap-8 md:grid-cols-2">
-        
-        {/* COL 1: PEGUE E MONTE */}
+
+        {/* COL 1: NOVIDADES */}
         <div className="relative group overflow-hidden rounded-[3rem] bg-white border border-slate-100 shadow-sm hover:shadow-xl transition-all duration-500">
-          <div className="aspect-[16/10] md:aspect-auto md:h-[450px] relative overflow-hidden">
-            {featuredKit?.coverImage ? (
-              <img 
-                src={featuredKit.coverImage} 
-                alt={featuredKit.name} 
-                className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700" 
-              />
-            ) : (
-              <div className="h-full w-full bg-gradient-to-br from-blue-50 to-red-50 flex items-center justify-center">
-                <Sparkles size={40} className="text-blue-900/20" />
+          <button
+            onClick={() => featuredVideo && setActiveVideo(featuredVideo)}
+            className="block w-full text-left"
+          >
+            <div className="aspect-[16/10] md:aspect-auto md:h-[450px] relative overflow-hidden">
+              {featuredVideo?.thumbnail ? (
+                <img
+                  src={featuredVideo.thumbnail}
+                  alt={featuredVideo.title}
+                  className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+              ) : (
+                <div className="h-full w-full bg-gradient-to-br from-red-50 to-blue-50 flex items-center justify-center">
+                  <Newspaper size={40} className="text-blue-900/20" />
+                </div>
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-900/40 to-transparent" />
+
+              {featuredVideo && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div className="h-16 w-16 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center shadow-2xl">
+                    <div className="h-12 w-12 rounded-full bg-red-600 flex items-center justify-center text-white shadow-lg">
+                      <Play size={20} fill="currentColor" />
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              <div className="absolute inset-0 p-8 flex flex-col justify-end text-white">
+                <div className="mb-4">
+                  <span className="bg-red-600 text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">
+                    Novidades
+                  </span>
+                </div>
+                <h3 className="text-3xl font-black mb-3 leading-tight">
+                  {featuredVideo?.title || "Fique por dentro das novidades"}
+                </h3>
+                <p className="text-blue-100 font-medium mb-6 line-clamp-2 max-w-sm">
+                  Dicas, lançamentos e os melhores momentos da Basmar para inspirar sua próxima festa.
+                </p>
               </div>
-            )}
-            <div className="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-900/40 to-transparent" />
-            
-            <div className="absolute inset-0 p-8 flex flex-col justify-end text-white">
-              <div className="mb-4">
-                <span className="bg-red-600 text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">
-                  Pegue e Monte
-                </span>
-              </div>
-              <h3 className="text-3xl font-black mb-3 leading-tight">
-                {featuredKit?.name || "Kits de Festa Prontos"}
-              </h3>
-              <p className="text-blue-100 font-medium mb-6 line-clamp-2 max-w-sm">
-                {featuredKit?.description || "Alugue kits completos para sua festa e monte você mesmo com praticidade e economia."}
-              </p>
-              <Link 
-                to="/pegue-monte"
-                className="inline-flex items-center gap-2 bg-white text-blue-900 px-6 py-3 rounded-full font-bold text-sm hover:bg-red-600 hover:text-white transition-all w-fit"
-              >
-                Ver todos os kits
-                <ChevronRight size={18} />
-              </Link>
             </div>
-          </div>
+          </button>
         </div>
 
         {/* COL 2: CURSOS */}
         <div className="relative group overflow-hidden rounded-[3rem] bg-blue-900 shadow-sm hover:shadow-xl transition-all duration-500">
           <div className="aspect-[16/10] md:aspect-auto md:h-[450px] relative overflow-hidden">
             {featuredCourse?.coverImage ? (
-              <img 
-                src={featuredCourse.coverImage} 
-                alt={featuredCourse.title} 
-                className="h-full w-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700" 
+              <img
+                src={featuredCourse.coverImage}
+                alt={featuredCourse.title}
+                className="h-full w-full object-cover opacity-40 group-hover:scale-105 transition-transform duration-700"
               />
             ) : (
               <div className="h-full w-full bg-blue-800 flex items-center justify-center">
@@ -79,7 +99,7 @@ export default function FeaturedServices() {
               </div>
             )}
             <div className="absolute inset-0 bg-gradient-to-t from-blue-950/90 via-blue-900/40 to-transparent" />
-            
+
             <div className="absolute inset-0 p-8 flex flex-col justify-end text-white">
               <div className="mb-4">
                 <span className="bg-blue-600 text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg">
@@ -89,7 +109,7 @@ export default function FeaturedServices() {
               <h3 className="text-3xl font-black mb-3 leading-tight">
                 {featuredCourse?.title || "Aprenda Conosco"}
               </h3>
-              
+
               <div className="space-y-2 mb-6 text-xs font-medium text-blue-100">
                 {featuredCourse?.date && (
                   <div className="flex items-center gap-2">
@@ -105,7 +125,7 @@ export default function FeaturedServices() {
                 )}
               </div>
 
-              <Link 
+              <Link
                 to="/cursos"
                 className="inline-flex items-center gap-2 bg-white text-blue-900 px-6 py-3 rounded-full font-bold text-sm hover:bg-red-600 hover:text-white transition-all w-fit"
               >
@@ -117,6 +137,27 @@ export default function FeaturedServices() {
         </div>
 
       </div>
+
+      {/* Video Modal */}
+      {activeVideo && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 p-4 md:p-10 backdrop-blur-xl">
+          <button
+            onClick={() => setActiveVideo(null)}
+            className="absolute top-6 right-6 text-white hover:text-red-500 transition-colors p-2 z-10"
+          >
+            <X size={40} strokeWidth={3} />
+          </button>
+          <div className={`w-full max-w-5xl overflow-hidden rounded-2xl bg-black shadow-2xl ${activeVideo.orientation === 'vertical' ? 'max-w-sm aspect-[9/16]' : 'aspect-video'}`}>
+            <iframe
+              src={getEmbedUrl(activeVideo.youtubeUrl)}
+              title={activeVideo.title}
+              className="h-full w-full"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 }

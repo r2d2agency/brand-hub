@@ -8,7 +8,7 @@ export default function HomeBannersRow() {
     queryFn: async () => (await api.get("/site/home-banners")).data,
   });
 
-  const list = banners.slice(0, 2);
+  const list = banners.filter((b: any) => b.key !== 'courses-promo').slice(0, 2);
   if (!list.length) return null;
 
   return (
