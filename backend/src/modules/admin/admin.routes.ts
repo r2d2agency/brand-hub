@@ -191,6 +191,10 @@ const pegueMonteSchema = z.object({
   items: z.array(z.string()).optional(),
   active: z.boolean().optional(),
   highlight: z.boolean().optional(),
+  storePhones: z.array(z.object({
+    name: z.string(),
+    phone: z.string()
+  })).optional(),
 });
 
 const courseSchema = z.object({
