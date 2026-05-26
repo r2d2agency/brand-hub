@@ -170,20 +170,27 @@ export async function fixSchema() {
       END $$;
     `);
     console.log("Checking columns in pegue_monte...");
-    await prisma.$executeRawUnsafe(`
-      DO $$ 
-      BEGIN 
-        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='pegue_monte' AND column_name='video_url') THEN
-          ALTER TABLE "pegue_monte" ADD COLUMN "video_url" TEXT;
-        END IF;
-        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='pegue_monte' AND column_name='theme') THEN
-          ALTER TABLE "pegue_monte" ADD COLUMN "theme" TEXT;
-        END IF;
-        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='pegue_monte' AND column_name='store_phones') THEN
-          ALTER TABLE "pegue_monte" ADD COLUMN "store_phones" JSONB DEFAULT '[]'::JSONB;
-        END IF;
-      END $$;
-    `);
+    try {
+      await prisma.$executeRawUnsafe(`
+        DO $$ 
+        BEGIN 
+          -- Check if table exists first
+          IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'pegue_monte') THEN
+            IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_schema = 'public' AND table_name='pegue_monte' AND column_name='video_url') THEN
+              ALTER TABLE public.pegue_monte ADD COLUMN "video_url" TEXT;
+            END IF;
+            IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_schema = 'public' AND table_name='pegue_monte' AND column_name='theme') THEN
+              ALTER TABLE public.pegue_monte ADD COLUMN "theme" TEXT;
+            END IF;
+            IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_schema = 'public' AND table_name='pegue_monte' AND column_name='store_phones') THEN
+              ALTER TABLE public.pegue_monte ADD COLUMN "store_phones" JSONB DEFAULT '[]'::JSONB;
+            END IF;
+          END IF;
+        END $$;
+      `);
+    } catch (e) {
+      console.warn("Could not update pegue_monte schema:", e);
+    }
 
     console.log("Checking table Partner...");
     await prisma.$executeRawUnsafe(`
@@ -229,29 +236,36 @@ export async function fixSchema() {
     }
 
     console.log("Checking columns in courses...");
-    await prisma.$executeRawUnsafe(`
-      DO $$
-      BEGIN
-        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='courses' AND column_name='gallery') THEN
-          ALTER TABLE "courses" ADD COLUMN "gallery" TEXT[] DEFAULT ARRAY[]::TEXT[];
-        END IF;
-        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='courses' AND column_name='show_in_home') THEN
-          ALTER TABLE "courses" ADD COLUMN "show_in_home" BOOLEAN DEFAULT true;
-        END IF;
-        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='courses' AND column_name='time') THEN
-          ALTER TABLE "courses" ADD COLUMN "time" TEXT;
-        END IF;
-        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='courses' AND column_name='whatsapp_msg') THEN
-          ALTER TABLE "courses" ADD COLUMN "whatsapp_msg" TEXT;
-        END IF;
-        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='courses' AND column_name='registration_start') THEN
-          ALTER TABLE "courses" ADD COLUMN "registration_start" TIMESTAMP WITH TIME ZONE;
-        END IF;
-        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='courses' AND column_name='registration_end') THEN
-          ALTER TABLE "courses" ADD COLUMN "registration_end" TIMESTAMP WITH TIME ZONE;
-        END IF;
-      END $$;
-    `);
+    try {
+      await prisma.$executeRawUnsafe(`
+        DO $$
+        BEGIN
+          -- Check if table exists first
+          IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'courses') THEN
+            IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_schema = 'public' AND table_name='courses' AND column_name='gallery') THEN
+              ALTER TABLE public.courses ADD COLUMN "gallery" TEXT[] DEFAULT ARRAY[]::TEXT[];
+            END IF;
+            IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_schema = 'public' AND table_name='courses' AND column_name='show_in_home') THEN
+              ALTER TABLE public.courses ADD COLUMN "show_in_home" BOOLEAN DEFAULT true;
+            END IF;
+            IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_schema = 'public' AND table_name='courses' AND column_name='time') THEN
+              ALTER TABLE public.courses ADD COLUMN "time" TEXT;
+            END IF;
+            IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_schema = 'public' AND table_name='courses' AND column_name='whatsapp_msg') THEN
+              ALTER TABLE public.courses ADD COLUMN "whatsapp_msg" TEXT;
+            END IF;
+            IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_schema = 'public' AND table_name='courses' AND column_name='registration_start') THEN
+              ALTER TABLE public.courses ADD COLUMN "registration_start" TIMESTAMP WITH TIME ZONE;
+            END IF;
+            IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_schema = 'public' AND table_name='courses' AND column_name='registration_end') THEN
+              ALTER TABLE public.courses ADD COLUMN "registration_end" TIMESTAMP WITH TIME ZONE;
+            END IF;
+          END IF;
+        END $$;
+      `);
+    } catch (e) {
+      console.warn("Could not update courses schema:", e);
+    }
 
     // PageView analytics table
     await prisma.$executeRawUnsafe(`
