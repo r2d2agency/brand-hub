@@ -198,9 +198,11 @@ model PegueMonte {
   whatsappMsg String?
   active      Boolean  @default(true)
   highlight   Boolean  @default(false)
-  storePhones Json?    @default("[]")
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  storePhones Json?    @default("[]") @map("store_phones")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("pegue_monte")
 }
 
 enum CourseStatus {
