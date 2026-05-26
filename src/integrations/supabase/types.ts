@@ -215,6 +215,7 @@ export type Database = {
           partyType: string | null
           peopleCount: string | null
           slug: string
+          storePhones: Json | null
           theme: string | null
           unit: string | null
           updated_at: string
@@ -235,6 +236,7 @@ export type Database = {
           partyType?: string | null
           peopleCount?: string | null
           slug: string
+          storePhones?: Json | null
           theme?: string | null
           unit?: string | null
           updated_at?: string
@@ -255,6 +257,7 @@ export type Database = {
           partyType?: string | null
           peopleCount?: string | null
           slug?: string
+          storePhones?: Json | null
           theme?: string | null
           unit?: string | null
           updated_at?: string
