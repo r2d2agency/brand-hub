@@ -114,6 +114,7 @@ const benefitSchema = z.object({
 const inspirationSchema = z.object({
   title: z.string().min(1),
   image: z.string().min(1),
+  gallery: z.array(z.string()).optional(),
   link: z.string().nullish(),
   order: z.number().int().optional(),
   active: z.boolean().optional(),
