@@ -187,11 +187,24 @@ export default function CoursesPage() {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                         <div className="absolute top-4 left-4">
-                          <span
-                            className={`${statusColor[course.status || "SOON"]} text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg`}
-                          >
-                            {statusLabel[course.status || "SOON"]}
-                          </span>
+                          {(() => {
+                            const now = new Date();
+                            const start = course.registrationStart ? new Date(course.registrationStart) : null;
+                            const end = course.registrationEnd ? new Date(course.registrationEnd) : null;
+                            let status = course.status;
+                            if (start && end) {
+                              if (now < start) status = "SOON";
+                              else if (now >= start && now <= end) status = "OPEN";
+                              else status = "CLOSED";
+                            }
+                            return (
+                              <span
+                                className={`${statusColor[status || "SOON"]} text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg`}
+                              >
+                                {statusLabel[status || "SOON"]}
+                              </span>
+                            );
+                          })()}
                         </div>
                       </div>
 
