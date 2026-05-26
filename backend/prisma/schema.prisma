@@ -214,22 +214,20 @@ model Course {
   title             String
   slug              String       @unique
   description       String?
-  coverImage        String?      @map("cover_image")
+  coverImage        String?
   gallery           String[]     @default([])
   date              DateTime?
   time              String?
   location          String?
   instructor        String?
-  registrationStart DateTime?    @map("registration_start")
-  registrationEnd   DateTime?    @map("registration_end")
+  registrationStart DateTime?
+  registrationEnd   DateTime?
   status            CourseStatus @default(SOON)
-  whatsappMsg       String?      @map("whatsapp_msg")
+  whatsappMsg       String?
   active            Boolean      @default(true)
-  showInHome        Boolean      @default(true) @map("show_in_home")
-  createdAt         DateTime     @default(now()) @map("created_at")
-  updatedAt         DateTime     @updatedAt @map("updated_at")
-
-  @@map("courses")
+  showInHome        Boolean      @default(true)
+  createdAt         DateTime     @default(now())
+  updatedAt         DateTime     @updatedAt
 }
 
 model GalleryItem {
