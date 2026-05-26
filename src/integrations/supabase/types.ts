@@ -95,6 +95,69 @@ export type Database = {
         }
         Relationships: []
       }
+      Course: {
+        Row: {
+          active: boolean
+          coverImage: string | null
+          createdAt: string
+          date: string | null
+          description: string | null
+          gallery: string[] | null
+          id: string
+          instructor: string | null
+          location: string | null
+          registrationEnd: string | null
+          registrationStart: string | null
+          showInHome: boolean
+          slug: string
+          status: Database["public"]["Enums"]["CourseStatus"]
+          time: string | null
+          title: string
+          updatedAt: string
+          whatsappMsg: string | null
+        }
+        Insert: {
+          active?: boolean
+          coverImage?: string | null
+          createdAt?: string
+          date?: string | null
+          description?: string | null
+          gallery?: string[] | null
+          id: string
+          instructor?: string | null
+          location?: string | null
+          registrationEnd?: string | null
+          registrationStart?: string | null
+          showInHome?: boolean
+          slug: string
+          status?: Database["public"]["Enums"]["CourseStatus"]
+          time?: string | null
+          title: string
+          updatedAt?: string
+          whatsappMsg?: string | null
+        }
+        Update: {
+          active?: boolean
+          coverImage?: string | null
+          createdAt?: string
+          date?: string | null
+          description?: string | null
+          gallery?: string[] | null
+          id?: string
+          instructor?: string | null
+          location?: string | null
+          registrationEnd?: string | null
+          registrationStart?: string | null
+          showInHome?: boolean
+          slug?: string
+          status?: Database["public"]["Enums"]["CourseStatus"]
+          time?: string | null
+          title?: string
+          updatedAt?: string
+          whatsappMsg?: string | null
+        }
+        Relationships: []
+      }
       Inspiration: {
         Row: {
           active: boolean
@@ -361,7 +424,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      CourseStatus: "SOON" | "OPEN" | "CLOSED"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -488,6 +551,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      CourseStatus: ["SOON", "OPEN", "CLOSED"],
+    },
   },
 } as const
