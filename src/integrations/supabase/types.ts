@@ -303,7 +303,7 @@ export type Database = {
         Row: {
           active: boolean | null
           coverImage: string | null
-          created_at: string
+          createdAt: string
           description: string | null
           gallery: string[] | null
           highlight: boolean | null
@@ -317,14 +317,14 @@ export type Database = {
           storePhones: Json | null
           theme: string | null
           unit: string | null
-          updated_at: string
+          updatedAt: string
           videoUrl: string | null
           whatsappMsg: string | null
         }
         Insert: {
           active?: boolean | null
           coverImage?: string | null
-          created_at?: string
+          createdAt?: string
           description?: string | null
           gallery?: string[] | null
           highlight?: boolean | null
@@ -338,14 +338,14 @@ export type Database = {
           storePhones?: Json | null
           theme?: string | null
           unit?: string | null
-          updated_at?: string
+          updatedAt?: string
           videoUrl?: string | null
           whatsappMsg?: string | null
         }
         Update: {
           active?: boolean | null
           coverImage?: string | null
-          created_at?: string
+          createdAt?: string
           description?: string | null
           gallery?: string[] | null
           highlight?: boolean | null
@@ -359,7 +359,7 @@ export type Database = {
           storePhones?: Json | null
           theme?: string | null
           unit?: string | null
-          updated_at?: string
+          updatedAt?: string
           videoUrl?: string | null
           whatsappMsg?: string | null
         }
