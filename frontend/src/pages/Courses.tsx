@@ -329,11 +329,26 @@ export default function CoursesPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6">
-                  <span
-                    className={`inline-block ${statusColor[selectedCourse.status || "SOON"]} text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-3`}
-                  >
-                    {statusLabel[selectedCourse.status || "SOON"]}
-                  </span>
+                  <div className="mb-3">
+                    {(() => {
+                      const now = new Date();
+                      const start = selectedCourse.registrationStart ? new Date(selectedCourse.registrationStart) : null;
+                      const end = selectedCourse.registrationEnd ? new Date(selectedCourse.registrationEnd) : null;
+                      let status = selectedCourse.status;
+                      if (start && end) {
+                        if (now < start) status = "SOON";
+                        else if (now >= start && now <= end) status = "OPEN";
+                        else status = "CLOSED";
+                      }
+                      return (
+                        <span
+                          className={`inline-block ${statusColor[status || "SOON"]} text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest`}
+                        >
+                          {statusLabel[status || "SOON"]}
+                        </span>
+                      );
+                    })()}
+                  </div>
                   <h2 className="text-2xl md:text-3xl font-black text-white leading-tight">
                     {selectedCourse.title}
                   </h2>
