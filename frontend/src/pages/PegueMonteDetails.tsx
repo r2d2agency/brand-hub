@@ -248,7 +248,7 @@ export default function PegueMonteDetails() {
               </div>
 
               <button
-                onClick={handleWhatsApp}
+                onClick={onWhatsAppClick}
                 className="w-full flex items-center justify-center gap-2 rounded-xl bg-white py-2.5 text-xs font-black uppercase tracking-[0.1em] text-blue-900 hover:bg-red-600 hover:text-white transition-all active:scale-[0.97] group"
               >
                 <MessageCircle size={14} className="group-hover:rotate-12 transition-transform" />
