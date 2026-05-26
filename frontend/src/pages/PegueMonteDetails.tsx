@@ -49,9 +49,21 @@ export default function PegueMonteDetails() {
     };
   }, [lightboxIdx, closeLightbox, nextImg, prevImg]);
 
-  const handleWhatsApp = () => {
+  const handleWhatsApp = (phone?: string) => {
     const msg = encodeURIComponent(`Olá! Tenho interesse no kit Pegue e Monte: ${kit?.name}. Gostaria de mais informações.`);
-    window.open(`https://wa.me/${branding?.whatsappPhone?.replace(/\D/g, "") || "5511999999999"}?text=${msg}`, "_blank");
+    const targetPhone = (phone || branding?.whatsappPhone || "5511999999999").replace(/\D/g, "");
+    window.open(`https://wa.me/${targetPhone}?text=${msg}`, "_blank");
+    setShowStoreSelector(false);
+  };
+
+  const onWhatsAppClick = () => {
+    if (kit?.storePhones && kit.storePhones.length > 1) {
+      setShowStoreSelector(true);
+    } else if (kit?.storePhones && kit.storePhones.length === 1) {
+      handleWhatsApp(kit.storePhones[0].phone);
+    } else {
+      handleWhatsApp();
+    }
   };
 
   if (isLoading) {
