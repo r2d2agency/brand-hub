@@ -417,6 +417,20 @@ export default function CoursesPage() {
                       </div>
                     </div>
                   )}
+
+                  {selectedCourse.registrationStart && selectedCourse.registrationEnd && (
+                    <div className="flex items-center gap-3 p-4 rounded-2xl bg-red-50 sm:col-span-2 lg:col-span-3">
+                      <Calendar size={20} className="text-red-600" />
+                      <div>
+                        <div className="text-[10px] font-black uppercase tracking-widest text-red-400">
+                          Período de Inscrições
+                        </div>
+                        <div className="text-sm font-bold text-red-700">
+                          {new Date(selectedCourse.registrationStart).toLocaleDateString("pt-BR")} até {new Date(selectedCourse.registrationEnd).toLocaleDateString("pt-BR")}
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {selectedCourse.description && (
