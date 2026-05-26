@@ -14,6 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      Benefit: {
+        Row: {
+          active: boolean | null
+          createdAt: string | null
+          icon: string
+          id: string
+          order: number | null
+          subtitle: string | null
+          title: string
+          updatedAt: string | null
+        }
+        Insert: {
+          active?: boolean | null
+          createdAt?: string | null
+          icon: string
+          id: string
+          order?: number | null
+          subtitle?: string | null
+          title: string
+          updatedAt?: string | null
+        }
+        Update: {
+          active?: boolean | null
+          createdAt?: string | null
+          icon?: string
+          id?: string
+          order?: number | null
+          subtitle?: string | null
+          title?: string
+          updatedAt?: string | null
+        }
+        Relationships: []
+      }
       Branding: {
         Row: {
           accentColor: string
@@ -158,6 +191,57 @@ export type Database = {
         }
         Relationships: []
       }
+      HomeBanner: {
+        Row: {
+          active: boolean | null
+          bgColor: string | null
+          createdAt: string | null
+          ctaLink: string | null
+          ctaText: string | null
+          description: string | null
+          id: string
+          image: string | null
+          key: string
+          order: number | null
+          subtitle: string | null
+          textColor: string | null
+          title: string
+          updatedAt: string | null
+        }
+        Insert: {
+          active?: boolean | null
+          bgColor?: string | null
+          createdAt?: string | null
+          ctaLink?: string | null
+          ctaText?: string | null
+          description?: string | null
+          id: string
+          image?: string | null
+          key: string
+          order?: number | null
+          subtitle?: string | null
+          textColor?: string | null
+          title: string
+          updatedAt?: string | null
+        }
+        Update: {
+          active?: boolean | null
+          bgColor?: string | null
+          createdAt?: string | null
+          ctaLink?: string | null
+          ctaText?: string | null
+          description?: string | null
+          id?: string
+          image?: string | null
+          key?: string
+          order?: number | null
+          subtitle?: string | null
+          textColor?: string | null
+          title?: string
+          updatedAt?: string | null
+        }
+        Relationships: []
+      }
       Inspiration: {
         Row: {
           active: boolean
@@ -191,6 +275,45 @@ export type Database = {
           order?: number
           title?: string
           updatedAt?: string
+        }
+        Relationships: []
+      }
+      Module: {
+        Row: {
+          createdAt: string | null
+          description: string | null
+          enabled: boolean | null
+          id: string
+          key: string
+          order: number | null
+          showInHome: boolean | null
+          showInNav: boolean | null
+          title: string
+          updatedAt: string | null
+        }
+        Insert: {
+          createdAt?: string | null
+          description?: string | null
+          enabled?: boolean | null
+          id: string
+          key: string
+          order?: number | null
+          showInHome?: boolean | null
+          showInNav?: boolean | null
+          title: string
+          updatedAt?: string | null
+        }
+        Update: {
+          createdAt?: string | null
+          description?: string | null
+          enabled?: boolean | null
+          id?: string
+          key?: string
+          order?: number | null
+          showInHome?: boolean | null
+          showInNav?: boolean | null
+          title?: string
+          updatedAt?: string | null
         }
         Relationships: []
       }
@@ -233,6 +356,45 @@ export type Database = {
         }
         Relationships: []
       }
+      Page: {
+        Row: {
+          content: Json | null
+          createdAt: string | null
+          id: string
+          order: number | null
+          published: boolean | null
+          seoDescription: string | null
+          seoTitle: string | null
+          slug: string
+          title: string
+          updatedAt: string | null
+        }
+        Insert: {
+          content?: Json | null
+          createdAt?: string | null
+          id: string
+          order?: number | null
+          published?: boolean | null
+          seoDescription?: string | null
+          seoTitle?: string | null
+          slug: string
+          title: string
+          updatedAt?: string | null
+        }
+        Update: {
+          content?: Json | null
+          createdAt?: string | null
+          id?: string
+          order?: number | null
+          published?: boolean | null
+          seoDescription?: string | null
+          seoTitle?: string | null
+          slug?: string
+          title?: string
+          updatedAt?: string | null
+        }
+        Relationships: []
+      }
       PageView: {
         Row: {
           createdAt: string
@@ -260,7 +422,7 @@ export type Database = {
         }
         Relationships: []
       }
-      partner: {
+      Partner: {
         Row: {
           active: boolean | null
           created_at: string
@@ -365,7 +527,58 @@ export type Database = {
         }
         Relationships: []
       }
-      stores: {
+      ProductCategory: {
+        Row: {
+          active: boolean | null
+          coverImage: string | null
+          createdAt: string | null
+          description: string | null
+          gallery: string[] | null
+          icon: string | null
+          id: string
+          name: string
+          order: number | null
+          showInHome: boolean | null
+          showInMenu: boolean | null
+          slug: string
+          updatedAt: string | null
+          whatsappMsg: string | null
+        }
+        Insert: {
+          active?: boolean | null
+          coverImage?: string | null
+          createdAt?: string | null
+          description?: string | null
+          gallery?: string[] | null
+          icon?: string | null
+          id: string
+          name: string
+          order?: number | null
+          showInHome?: boolean | null
+          showInMenu?: boolean | null
+          slug: string
+          updatedAt?: string | null
+          whatsappMsg?: string | null
+        }
+        Update: {
+          active?: boolean | null
+          coverImage?: string | null
+          createdAt?: string | null
+          description?: string | null
+          gallery?: string[] | null
+          icon?: string | null
+          id?: string
+          name?: string
+          order?: number | null
+          showInHome?: boolean | null
+          showInMenu?: boolean | null
+          slug?: string
+          updatedAt?: string | null
+          whatsappMsg?: string | null
+        }
+        Relationships: []
+      }
+      Store: {
         Row: {
           address: string
           city: string
@@ -413,6 +626,36 @@ export type Database = {
           updated_at?: string
           whatsapp?: string | null
           zip_code?: string
+        }
+        Relationships: []
+      }
+      User: {
+        Row: {
+          createdAt: string | null
+          email: string
+          id: string
+          name: string
+          passwordHash: string
+          role: string
+          updatedAt: string | null
+        }
+        Insert: {
+          createdAt?: string | null
+          email: string
+          id: string
+          name: string
+          passwordHash: string
+          role?: string
+          updatedAt?: string | null
+        }
+        Update: {
+          createdAt?: string | null
+          email?: string
+          id?: string
+          name?: string
+          passwordHash?: string
+          role?: string
+          updatedAt?: string | null
         }
         Relationships: []
       }
