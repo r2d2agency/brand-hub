@@ -170,20 +170,27 @@ export async function fixSchema() {
       END $$;
     `);
     console.log("Checking columns in pegue_monte...");
-    await prisma.$executeRawUnsafe(`
-      DO $$ 
-      BEGIN 
-        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='pegue_monte' AND column_name='video_url') THEN
-          ALTER TABLE "pegue_monte" ADD COLUMN "video_url" TEXT;
-        END IF;
-        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='pegue_monte' AND column_name='theme') THEN
-          ALTER TABLE "pegue_monte" ADD COLUMN "theme" TEXT;
-        END IF;
-        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='pegue_monte' AND column_name='store_phones') THEN
-          ALTER TABLE "pegue_monte" ADD COLUMN "store_phones" JSONB DEFAULT '[]'::JSONB;
-        END IF;
-      END $$;
-    `);
+    try {
+      await prisma.$executeRawUnsafe(`
+        DO $$ 
+        BEGIN 
+          -- Check if table exists first
+          IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'pegue_monte') THEN
+            IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_schema = 'public' AND table_name='pegue_monte' AND column_name='video_url') THEN
+              ALTER TABLE public.pegue_monte ADD COLUMN "video_url" TEXT;
+            END IF;
+            IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_schema = 'public' AND table_name='pegue_monte' AND column_name='theme') THEN
+              ALTER TABLE public.pegue_monte ADD COLUMN "theme" TEXT;
+            END IF;
+            IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_schema = 'public' AND table_name='pegue_monte' AND column_name='store_phones') THEN
+              ALTER TABLE public.pegue_monte ADD COLUMN "store_phones" JSONB DEFAULT '[]'::JSONB;
+            END IF;
+          END IF;
+        END $$;
+      `);
+    } catch (e) {
+      console.warn("Could not update pegue_monte schema:", e);
+    }
 
     console.log("Checking table Partner...");
     await prisma.$executeRawUnsafe(`
