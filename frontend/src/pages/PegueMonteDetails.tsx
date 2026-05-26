@@ -22,6 +22,7 @@ export default function PegueMonteDetails() {
   });
 
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
+  const [showStoreSelector, setShowStoreSelector] = useState(false);
 
   const images: string[] = kit ? [kit.coverImage, ...(kit.gallery || [])].filter(Boolean) : [];
 
@@ -48,9 +49,21 @@ export default function PegueMonteDetails() {
     };
   }, [lightboxIdx, closeLightbox, nextImg, prevImg]);
 
-  const handleWhatsApp = () => {
+  const handleWhatsApp = (phone?: string) => {
     const msg = encodeURIComponent(`Olá! Tenho interesse no kit Pegue e Monte: ${kit?.name}. Gostaria de mais informações.`);
-    window.open(`https://wa.me/${branding?.whatsappPhone?.replace(/\D/g, "") || "5511999999999"}?text=${msg}`, "_blank");
+    const targetPhone = (phone || branding?.whatsappPhone || "5511999999999").replace(/\D/g, "");
+    window.open(`https://wa.me/${targetPhone}?text=${msg}`, "_blank");
+    setShowStoreSelector(false);
+  };
+
+  const onWhatsAppClick = () => {
+    if (kit?.storePhones && kit.storePhones.length > 1) {
+      setShowStoreSelector(true);
+    } else if (kit?.storePhones && kit.storePhones.length === 1) {
+      handleWhatsApp(kit.storePhones[0].phone);
+    } else {
+      handleWhatsApp();
+    }
   };
 
   if (isLoading) {
@@ -235,7 +248,7 @@ export default function PegueMonteDetails() {
               </div>
 
               <button
-                onClick={handleWhatsApp}
+                onClick={onWhatsAppClick}
                 className="w-full flex items-center justify-center gap-2 rounded-xl bg-white py-2.5 text-xs font-black uppercase tracking-[0.1em] text-blue-900 hover:bg-red-600 hover:text-white transition-all active:scale-[0.97] group"
               >
                 <MessageCircle size={14} className="group-hover:rotate-12 transition-transform" />
@@ -308,6 +321,59 @@ export default function PegueMonteDetails() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Store Selection Modal */}
+      <AnimatePresence>
+        {showStoreSelector && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[110] bg-blue-900/40 backdrop-blur-sm flex items-center justify-center p-4"
+            onClick={() => setShowStoreSelector(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              className="bg-white w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl"
+              onClick={e => e.stopPropagation()}
+            >
+              <div className="bg-blue-900 p-6 text-white text-center">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-white/10 mb-4">
+                  <MessageCircle size={24} />
+                </div>
+                <h3 className="text-lg font-black uppercase tracking-widest">Escolha a Loja</h3>
+                <p className="text-blue-200 text-xs mt-1">Selecione para qual unidade deseja enviar mensagem</p>
+              </div>
+              
+              <div className="p-4 space-y-2">
+                {kit?.storePhones?.map((sp: any, idx: number) => (
+                  <button
+                    key={idx}
+                    onClick={() => handleWhatsApp(sp.phone)}
+                    className="w-full flex items-center justify-between p-4 rounded-2xl border border-slate-100 bg-slate-50 hover:bg-white hover:border-blue-900/20 hover:shadow-lg hover:shadow-blue-900/5 transition-all group"
+                  >
+                    <div className="text-left">
+                      <div className="text-sm font-black text-blue-900 uppercase tracking-wide">{sp.name}</div>
+                      <div className="text-[10px] text-slate-400 font-medium">{sp.phone}</div>
+                    </div>
+                    <ChevronRight size={16} className="text-slate-300 group-hover:text-blue-900 transition-colors" />
+                  </button>
+                ))}
+              </div>
+
+              <button 
+                onClick={() => setShowStoreSelector(false)}
+                className="w-full p-4 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-slate-600 transition-colors"
+              >
+                Cancelar
+              </button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
+
