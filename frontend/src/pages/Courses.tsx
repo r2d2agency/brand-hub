@@ -516,12 +516,6 @@ export default function CoursesPage() {
                     </a>
                   );
                 })()}
-                  rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-3 rounded-2xl bg-green-500 py-4 text-sm font-black uppercase tracking-widest text-white hover:bg-green-600 transition-all shadow-xl shadow-green-500/20 active:scale-95"
-                >
-                  <MessageCircle size={20} />
-                  Quero me inscrever
-                </a>
               </div>
             </motion.div>
           </div>
