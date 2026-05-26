@@ -248,6 +248,8 @@ export default function PegueMonteAdmin() {
                       <p className="text-[10px] text-slate-400 italic">Nenhuma loja específica configurada. Usará o WhatsApp padrão.</p>
                     )}
                   </div>
+                </div>
+
 
 
                 <GalleryUpload
