@@ -169,18 +169,18 @@ export async function fixSchema() {
         END IF;
       END $$;
     `);
-    console.log("Checking columns in PegueMonte...");
+    console.log("Checking columns in pegue_monte...");
     await prisma.$executeRawUnsafe(`
       DO $$ 
       BEGIN 
-        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='PegueMonte' AND column_name='videoUrl') THEN
-          ALTER TABLE "PegueMonte" ADD COLUMN "videoUrl" TEXT;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='pegue_monte' AND column_name='video_url') THEN
+          ALTER TABLE "pegue_monte" ADD COLUMN "video_url" TEXT;
         END IF;
-        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='PegueMonte' AND column_name='theme') THEN
-          ALTER TABLE "PegueMonte" ADD COLUMN "theme" TEXT;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='pegue_monte' AND column_name='theme') THEN
+          ALTER TABLE "pegue_monte" ADD COLUMN "theme" TEXT;
         END IF;
-        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='PegueMonte' AND column_name='storePhones') THEN
-          ALTER TABLE "PegueMonte" ADD COLUMN "storePhones" JSONB DEFAULT '[]'::JSONB;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='pegue_monte' AND column_name='store_phones') THEN
+          ALTER TABLE "pegue_monte" ADD COLUMN "store_phones" JSONB DEFAULT '[]'::JSONB;
         END IF;
       END $$;
     `);
