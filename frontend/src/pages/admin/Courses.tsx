@@ -15,6 +15,8 @@ interface CourseForm {
   time: string;
   location: string;
   instructor: string;
+  registrationStart: string;
+  registrationEnd: string;
   status: "SOON" | "OPEN" | "CLOSED";
   whatsappMsg: string;
   active: boolean;
@@ -30,7 +32,9 @@ const EMPTY_FORM: CourseForm = {
   time: "",
   location: "",
   instructor: "",
-  status: "OPEN",
+  registrationStart: "",
+  registrationEnd: "",
+  status: "SOON",
   whatsappMsg: "",
   active: true,
   showInHome: true,
