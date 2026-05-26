@@ -27,8 +27,20 @@ export default function CoursesPage() {
   });
 
   const filtered = courses.filter((c: any) => {
+    const now = new Date();
+    const start = c.registrationStart ? new Date(c.registrationStart) : null;
+    const end = c.registrationEnd ? new Date(c.registrationEnd) : null;
+    
+    // Auto status
+    let status = c.status;
+    if (start && end) {
+      if (now < start) status = "SOON";
+      else if (now >= start && now <= end) status = "OPEN";
+      else status = "CLOSED";
+    }
+
     if (filter === "ALL") return c.active;
-    return c.active && c.status === filter;
+    return c.active && status === filter;
   });
 
   const statusLabel: Record<string, string> = {
