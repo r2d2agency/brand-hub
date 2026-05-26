@@ -195,24 +195,24 @@ export default function PegueMonteAdmin() {
                   />
                 </div>
                 
-                <div className=\"space-y-3\">
-                  <div className=\"flex items-center justify-between\">
-                    <label className=\"text-xs font-black uppercase tracking-widest text-slate-500\">Lojas e WhatsApps</label>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <label className="text-xs font-black uppercase tracking-widest text-slate-500">Lojas e WhatsApps</label>
                     <button 
                       onClick={() => {
                         const current = kit.storePhones || [];
                         updateKit(kit.id, { storePhones: [...current, { name: '', phone: '' }] });
                       }}
-                      className=\"flex items-center gap-1 text-[10px] font-black uppercase tracking-widest text-blue-900 hover:text-red-600 transition-colors\"
+                      className="flex items-center gap-1 text-[10px] font-black uppercase tracking-widest text-blue-900 hover:text-red-600 transition-colors"
                     >
                       <Plus size={12} />
                       Adicionar Loja
                     </button>
                   </div>
                   
-                  <div className=\"grid gap-2\">
+                  <div className="grid gap-2">
                     {(kit.storePhones || []).map((sp, idx) => (
-                      <div key={idx} className=\"flex items-center gap-2\">
+                      <div key={idx} className="flex items-center gap-2">
                         <input 
                           value={sp.name}
                           onChange={e => {
@@ -220,8 +220,8 @@ export default function PegueMonteAdmin() {
                             newPhones[idx].name = e.target.value;
                             updateKit(kit.id, { storePhones: newPhones });
                           }}
-                          placeholder=\"Nome da Loja (ex: Loja A)\"
-                          className=\"flex-1 rounded-xl border border-slate-200 px-3 py-2 text-xs focus:border-blue-900 focus:outline-none\" 
+                          placeholder="Nome da Loja (ex: Loja A)"
+                          className="flex-1 rounded-xl border border-slate-200 px-3 py-2 text-xs focus:border-blue-900 focus:outline-none" 
                         />
                         <input 
                           value={sp.phone}
@@ -230,24 +230,25 @@ export default function PegueMonteAdmin() {
                             newPhones[idx].phone = e.target.value;
                             updateKit(kit.id, { storePhones: newPhones });
                           }}
-                          placeholder=\"WhatsApp (ex: 5511...)\"
-                          className=\"flex-1 rounded-xl border border-slate-200 px-3 py-2 text-xs focus:border-blue-900 focus:outline-none\" 
+                          placeholder="WhatsApp (ex: 5511...)"
+                          className="flex-1 rounded-xl border border-slate-200 px-3 py-2 text-xs focus:border-blue-900 focus:outline-none" 
                         />
                         <button 
                           onClick={() => {
                             const newPhones = (kit.storePhones || []).filter((_, i) => i !== idx);
                             updateKit(kit.id, { storePhones: newPhones });
                           }}
-                          className=\"p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors\"
+                          className="p-2 text-red-500 hover:bg-red-50 rounded-lg transition-colors"
                         >
                           <Trash2 size={14} />
                         </button>
                       </div>
                     ))}
                     {(kit.storePhones || []).length === 0 && (
-                      <p className=\"text-[10px] text-slate-400 italic\">Nenhuma loja específica configurada. Usará o WhatsApp padrão.</p>
+                      <p className="text-[10px] text-slate-400 italic">Nenhuma loja específica configurada. Usará o WhatsApp padrão.</p>
                     )}
                   </div>
+
 
                 <GalleryUpload
                   value={kit.gallery || []}
