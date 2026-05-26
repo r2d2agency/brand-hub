@@ -158,7 +158,7 @@ export type Database = {
         }
         Relationships: []
       }
-      courses: {
+      Course: {
         Row: {
           active: boolean
           cover_image: string | null
@@ -566,7 +566,7 @@ export type Database = {
         }
         Relationships: []
       }
-      pegue_monte: {
+      PegueMonte: {
         Row: {
           active: boolean | null
           cover_image: string | null
