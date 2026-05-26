@@ -22,6 +22,7 @@ export default function PegueMonteDetails() {
   });
 
   const [lightboxIdx, setLightboxIdx] = useState<number | null>(null);
+  const [showStoreSelector, setShowStoreSelector] = useState(false);
 
   const images: string[] = kit ? [kit.coverImage, ...(kit.gallery || [])].filter(Boolean) : [];
 
