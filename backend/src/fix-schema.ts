@@ -228,27 +228,27 @@ export async function fixSchema() {
       `);
     }
 
-    console.log("Checking columns in Course...");
+    console.log("Checking columns in courses...");
     await prisma.$executeRawUnsafe(`
       DO $$
       BEGIN
-        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='Course' AND column_name='gallery') THEN
-          ALTER TABLE "Course" ADD COLUMN "gallery" TEXT[] DEFAULT ARRAY[]::TEXT[];
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='courses' AND column_name='gallery') THEN
+          ALTER TABLE "courses" ADD COLUMN "gallery" TEXT[] DEFAULT ARRAY[]::TEXT[];
         END IF;
-        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='Course' AND column_name='showInHome') THEN
-          ALTER TABLE "Course" ADD COLUMN "showInHome" BOOLEAN DEFAULT true;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='courses' AND column_name='show_in_home') THEN
+          ALTER TABLE "courses" ADD COLUMN "show_in_home" BOOLEAN DEFAULT true;
         END IF;
-        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='Course' AND column_name='time') THEN
-          ALTER TABLE "Course" ADD COLUMN "time" TEXT;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='courses' AND column_name='time') THEN
+          ALTER TABLE "courses" ADD COLUMN "time" TEXT;
         END IF;
-        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='Course' AND column_name='whatsappMsg') THEN
-          ALTER TABLE "Course" ADD COLUMN "whatsappMsg" TEXT;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='courses' AND column_name='whatsapp_msg') THEN
+          ALTER TABLE "courses" ADD COLUMN "whatsapp_msg" TEXT;
         END IF;
-        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='Course' AND column_name='registrationStart') THEN
-          ALTER TABLE "Course" ADD COLUMN "registrationStart" TIMESTAMP WITH TIME ZONE;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='courses' AND column_name='registration_start') THEN
+          ALTER TABLE "courses" ADD COLUMN "registration_start" TIMESTAMP WITH TIME ZONE;
         END IF;
-        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='Course' AND column_name='registrationEnd') THEN
-          ALTER TABLE "Course" ADD COLUMN "registrationEnd" TIMESTAMP WITH TIME ZONE;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='courses' AND column_name='registration_end') THEN
+          ALTER TABLE "courses" ADD COLUMN "registration_end" TIMESTAMP WITH TIME ZONE;
         END IF;
       END $$;
     `);
