@@ -179,6 +179,9 @@ export async function fixSchema() {
         IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='PegueMonte' AND column_name='theme') THEN
           ALTER TABLE "PegueMonte" ADD COLUMN "theme" TEXT;
         END IF;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='PegueMonte' AND column_name='storePhones') THEN
+          ALTER TABLE "PegueMonte" ADD COLUMN "storePhones" JSONB DEFAULT '[]'::JSONB;
+        END IF;
       END $$;
     `);
 
