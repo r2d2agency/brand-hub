@@ -241,6 +241,12 @@ export async function fixSchema() {
         IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='Course' AND column_name='whatsappMsg') THEN
           ALTER TABLE "Course" ADD COLUMN "whatsappMsg" TEXT;
         END IF;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='Course' AND column_name='registrationStart') THEN
+          ALTER TABLE "Course" ADD COLUMN "registrationStart" TIMESTAMP(3);
+        END IF;
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='Course' AND column_name='registrationEnd') THEN
+          ALTER TABLE "Course" ADD COLUMN "registrationEnd" TIMESTAMP(3);
+        END IF;
       END $$;
     `);
 

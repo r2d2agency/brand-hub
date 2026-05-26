@@ -95,6 +95,42 @@ export type Database = {
         }
         Relationships: []
       }
+      Inspiration: {
+        Row: {
+          active: boolean
+          createdAt: string
+          gallery: string[] | null
+          id: string
+          image: string
+          link: string | null
+          order: number
+          title: string
+          updatedAt: string
+        }
+        Insert: {
+          active?: boolean
+          createdAt?: string
+          gallery?: string[] | null
+          id: string
+          image: string
+          link?: string | null
+          order?: number
+          title: string
+          updatedAt?: string
+        }
+        Update: {
+          active?: boolean
+          createdAt?: string
+          gallery?: string[] | null
+          id?: string
+          image?: string
+          link?: string | null
+          order?: number
+          title?: string
+          updatedAt?: string
+        }
+        Relationships: []
+      }
       NewsVideo: {
         Row: {
           active: boolean

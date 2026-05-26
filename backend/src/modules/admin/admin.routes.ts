@@ -208,6 +208,8 @@ const courseSchema = z.object({
   time: z.string().nullish(),
   location: z.string().nullish(),
   instructor: z.string().nullish(),
+  registrationStart: z.string().nullish().transform(v => v ? new Date(v) : null),
+  registrationEnd: z.string().nullish().transform(v => v ? new Date(v) : null),
   status: z.enum(["SOON", "OPEN", "CLOSED"]).optional(),
   whatsappMsg: z.string().nullish(),
   active: z.boolean().optional(),

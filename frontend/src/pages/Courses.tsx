@@ -27,8 +27,20 @@ export default function CoursesPage() {
   });
 
   const filtered = courses.filter((c: any) => {
+    const now = new Date();
+    const start = c.registrationStart ? new Date(c.registrationStart) : null;
+    const end = c.registrationEnd ? new Date(c.registrationEnd) : null;
+    
+    // Auto status
+    let status = c.status;
+    if (start && end) {
+      if (now < start) status = "SOON";
+      else if (now >= start && now <= end) status = "OPEN";
+      else status = "CLOSED";
+    }
+
     if (filter === "ALL") return c.active;
-    return c.active && c.status === filter;
+    return c.active && status === filter;
   });
 
   const statusLabel: Record<string, string> = {
@@ -175,11 +187,24 @@ export default function CoursesPage() {
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
                         <div className="absolute top-4 left-4">
-                          <span
-                            className={`${statusColor[course.status || "SOON"]} text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg`}
-                          >
-                            {statusLabel[course.status || "SOON"]}
-                          </span>
+                          {(() => {
+                            const now = new Date();
+                            const start = course.registrationStart ? new Date(course.registrationStart) : null;
+                            const end = course.registrationEnd ? new Date(course.registrationEnd) : null;
+                            let status = course.status;
+                            if (start && end) {
+                              if (now < start) status = "SOON";
+                              else if (now >= start && now <= end) status = "OPEN";
+                              else status = "CLOSED";
+                            }
+                            return (
+                              <span
+                                className={`${statusColor[status || "SOON"]} text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg`}
+                              >
+                                {statusLabel[status || "SOON"]}
+                              </span>
+                            );
+                          })()}
                         </div>
                       </div>
 
@@ -304,11 +329,26 @@ export default function CoursesPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-blue-950/80 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6">
-                  <span
-                    className={`inline-block ${statusColor[selectedCourse.status || "SOON"]} text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest mb-3`}
-                  >
-                    {statusLabel[selectedCourse.status || "SOON"]}
-                  </span>
+                  <div className="mb-3">
+                    {(() => {
+                      const now = new Date();
+                      const start = selectedCourse.registrationStart ? new Date(selectedCourse.registrationStart) : null;
+                      const end = selectedCourse.registrationEnd ? new Date(selectedCourse.registrationEnd) : null;
+                      let status = selectedCourse.status;
+                      if (start && end) {
+                        if (now < start) status = "SOON";
+                        else if (now >= start && now <= end) status = "OPEN";
+                        else status = "CLOSED";
+                      }
+                      return (
+                        <span
+                          className={`inline-block ${statusColor[status || "SOON"]} text-white px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest`}
+                        >
+                          {statusLabel[status || "SOON"]}
+                        </span>
+                      );
+                    })()}
+                  </div>
                   <h2 className="text-2xl md:text-3xl font-black text-white leading-tight">
                     {selectedCourse.title}
                   </h2>
@@ -377,6 +417,20 @@ export default function CoursesPage() {
                       </div>
                     </div>
                   )}
+
+                  {selectedCourse.registrationStart && selectedCourse.registrationEnd && (
+                    <div className="flex items-center gap-3 p-4 rounded-2xl bg-red-50 sm:col-span-2 lg:col-span-3">
+                      <Calendar size={20} className="text-red-600" />
+                      <div>
+                        <div className="text-[10px] font-black uppercase tracking-widest text-red-400">
+                          Período de Inscrições
+                        </div>
+                        <div className="text-sm font-bold text-red-700">
+                          {new Date(selectedCourse.registrationStart).toLocaleDateString("pt-BR")} até {new Date(selectedCourse.registrationEnd).toLocaleDateString("pt-BR")}
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {selectedCourse.description && (
@@ -411,18 +465,57 @@ export default function CoursesPage() {
                   )}
 
                 {/* CTA */}
-                <a
-                  href={`https://wa.me/${branding?.whatsappPhone?.replace(/\D/g, "") || "5511999999999"}?text=${encodeURIComponent(
-                    selectedCourse.whatsappMsg ||
-                      `Olá! Tenho interesse no curso: ${selectedCourse.title}`
-                  )}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center gap-3 rounded-2xl bg-green-500 py-4 text-sm font-black uppercase tracking-widest text-white hover:bg-green-600 transition-all shadow-xl shadow-green-500/20 active:scale-95"
-                >
-                  <MessageCircle size={20} />
-                  Quero me inscrever
-                </a>
+                {(() => {
+                  const now = new Date();
+                  const start = selectedCourse.registrationStart ? new Date(selectedCourse.registrationStart) : null;
+                  const end = selectedCourse.registrationEnd ? new Date(selectedCourse.registrationEnd) : null;
+                  let status = selectedCourse.status;
+                  if (start && end) {
+                    if (now < start) status = "SOON";
+                    else if (now >= start && now <= end) status = "OPEN";
+                    else status = "CLOSED";
+                  }
+
+                  if (status === "CLOSED") {
+                    return (
+                      <div className="p-6 rounded-2xl bg-slate-100 text-center">
+                        <p className="text-slate-500 font-bold uppercase tracking-widest text-xs">
+                          Inscrições encerradas para este curso
+                        </p>
+                      </div>
+                    );
+                  }
+
+                  if (status === "SOON") {
+                    return (
+                      <div className="p-6 rounded-2xl bg-amber-50 text-center border border-amber-100">
+                        <p className="text-amber-700 font-bold uppercase tracking-widest text-xs">
+                          Inscrições abrem em breve
+                        </p>
+                        {start && (
+                          <p className="text-amber-600 text-[10px] font-black mt-1">
+                            Aguarde até o dia {start.toLocaleDateString("pt-BR")}
+                          </p>
+                        )}
+                      </div>
+                    );
+                  }
+
+                  return (
+                    <a
+                      href={`https://wa.me/${branding?.whatsappPhone?.replace(/\D/g, "") || "5511999999999"}?text=${encodeURIComponent(
+                        selectedCourse.whatsappMsg ||
+                          `Olá! Tenho interesse no curso: ${selectedCourse.title}`
+                      )}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full flex items-center justify-center gap-3 rounded-2xl bg-green-500 py-5 text-sm font-black uppercase tracking-widest text-white hover:bg-green-600 transition-all shadow-xl shadow-green-500/20 active:scale-95"
+                    >
+                      <MessageCircle size={22} />
+                      Garantir minha vaga
+                    </a>
+                  );
+                })()}
               </div>
             </motion.div>
           </div>

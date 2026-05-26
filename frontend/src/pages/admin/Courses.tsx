@@ -15,6 +15,8 @@ interface CourseForm {
   time: string;
   location: string;
   instructor: string;
+  registrationStart: string;
+  registrationEnd: string;
   status: "SOON" | "OPEN" | "CLOSED";
   whatsappMsg: string;
   active: boolean;
@@ -30,7 +32,9 @@ const EMPTY_FORM: CourseForm = {
   time: "",
   location: "",
   instructor: "",
-  status: "OPEN",
+  registrationStart: "",
+  registrationEnd: "",
+  status: "SOON",
   whatsappMsg: "",
   active: true,
   showInHome: true,
@@ -85,7 +89,9 @@ export default function CoursesAdmin() {
       time: c.time || "",
       location: c.location || "",
       instructor: c.instructor || "",
-      status: c.status || "OPEN",
+      registrationStart: c.registrationStart ? new Date(c.registrationStart).toISOString().slice(0, 10) : "",
+      registrationEnd: c.registrationEnd ? new Date(c.registrationEnd).toISOString().slice(0, 10) : "",
+      status: c.status || "SOON",
       whatsappMsg: c.whatsappMsg || "",
       active: c.active ?? true,
       showInHome: c.showInHome ?? true,
@@ -290,6 +296,26 @@ export default function CoursesAdmin() {
                   <input
                     value={form.location}
                     onChange={e => setForm({ ...form, location: e.target.value })}
+                    className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-blue-900 focus:outline-none"
+                  />
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-black uppercase tracking-widest text-slate-500">Início Inscrições</label>
+                  <input
+                    type="date"
+                    value={form.registrationStart}
+                    onChange={e => setForm({ ...form, registrationStart: e.target.value })}
+                    className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-blue-900 focus:outline-none"
+                  />
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-black uppercase tracking-widest text-slate-500">Fim Inscrições</label>
+                  <input
+                    type="date"
+                    value={form.registrationEnd}
+                    onChange={e => setForm({ ...form, registrationEnd: e.target.value })}
                     className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-blue-900 focus:outline-none"
                   />
                 </div>
