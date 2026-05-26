@@ -214,9 +214,10 @@ export default function PegueMonteAdmin() {
                     {(kit.storePhones || []).map((sp, idx) => (
                       <div key={idx} className="flex items-center gap-2">
                         <input 
-                          value={sp.name}
-                          onChange={e => {
+                          defaultValue={sp.name}
+                          onBlur={e => {
                             const newPhones = [...(kit.storePhones || [])];
+                            if (newPhones[idx].name === e.target.value) return;
                             newPhones[idx].name = e.target.value;
                             updateKit(kit.id, { storePhones: newPhones });
                           }}
@@ -224,9 +225,10 @@ export default function PegueMonteAdmin() {
                           className="flex-1 rounded-xl border border-slate-200 px-3 py-2 text-xs focus:border-blue-900 focus:outline-none" 
                         />
                         <input 
-                          value={sp.phone}
-                          onChange={e => {
+                          defaultValue={sp.phone}
+                          onBlur={e => {
                             const newPhones = [...(kit.storePhones || [])];
+                            if (newPhones[idx].phone === e.target.value) return;
                             newPhones[idx].phone = e.target.value;
                             updateKit(kit.id, { storePhones: newPhones });
                           }}
