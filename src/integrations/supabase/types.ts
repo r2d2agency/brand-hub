@@ -158,66 +158,66 @@ export type Database = {
         }
         Relationships: []
       }
-      Course: {
+      courses: {
         Row: {
           active: boolean
-          coverImage: string | null
-          createdAt: string
+          cover_image: string | null
+          created_at: string
           date: string | null
           description: string | null
           gallery: string[] | null
           id: string
           instructor: string | null
           location: string | null
-          registrationEnd: string | null
-          registrationStart: string | null
-          showInHome: boolean
+          registration_end: string | null
+          registration_start: string | null
+          show_in_home: boolean
           slug: string
           status: Database["public"]["Enums"]["CourseStatus"]
           time: string | null
           title: string
-          updatedAt: string
-          whatsappMsg: string | null
+          updated_at: string
+          whatsapp_msg: string | null
         }
         Insert: {
           active?: boolean
-          coverImage?: string | null
-          createdAt?: string
+          cover_image?: string | null
+          created_at?: string
           date?: string | null
           description?: string | null
           gallery?: string[] | null
           id: string
           instructor?: string | null
           location?: string | null
-          registrationEnd?: string | null
-          registrationStart?: string | null
-          showInHome?: boolean
+          registration_end?: string | null
+          registration_start?: string | null
+          show_in_home?: boolean
           slug: string
           status?: Database["public"]["Enums"]["CourseStatus"]
           time?: string | null
           title: string
-          updatedAt?: string
-          whatsappMsg?: string | null
+          updated_at?: string
+          whatsapp_msg?: string | null
         }
         Update: {
           active?: boolean
-          coverImage?: string | null
-          createdAt?: string
+          cover_image?: string | null
+          created_at?: string
           date?: string | null
           description?: string | null
           gallery?: string[] | null
           id?: string
           instructor?: string | null
           location?: string | null
-          registrationEnd?: string | null
-          registrationStart?: string | null
-          showInHome?: boolean
+          registration_end?: string | null
+          registration_start?: string | null
+          show_in_home?: boolean
           slug?: string
           status?: Database["public"]["Enums"]["CourseStatus"]
           time?: string | null
           title?: string
-          updatedAt?: string
-          whatsappMsg?: string | null
+          updated_at?: string
+          whatsapp_msg?: string | null
         }
         Relationships: []
       }
