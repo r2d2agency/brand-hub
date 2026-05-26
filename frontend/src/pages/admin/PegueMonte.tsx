@@ -26,6 +26,7 @@ interface PegueMonteKit {
   partyType?: string;
   videoUrl?: string;
   items?: string[];
+  storePhones?: { name: string; phone: string }[];
 }
 
 export default function PegueMonteAdmin() {
