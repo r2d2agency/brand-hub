@@ -158,66 +158,66 @@ export type Database = {
         }
         Relationships: []
       }
-      Course: {
+      courses: {
         Row: {
           active: boolean
-          coverImage: string | null
-          createdAt: string
+          cover_image: string | null
+          created_at: string
           date: string | null
           description: string | null
           gallery: string[] | null
           id: string
           instructor: string | null
           location: string | null
-          registrationEnd: string | null
-          registrationStart: string | null
-          showInHome: boolean
+          registration_end: string | null
+          registration_start: string | null
+          show_in_home: boolean
           slug: string
           status: Database["public"]["Enums"]["CourseStatus"]
           time: string | null
           title: string
-          updatedAt: string
-          whatsappMsg: string | null
+          updated_at: string
+          whatsapp_msg: string | null
         }
         Insert: {
           active?: boolean
-          coverImage?: string | null
-          createdAt?: string
+          cover_image?: string | null
+          created_at?: string
           date?: string | null
           description?: string | null
           gallery?: string[] | null
           id: string
           instructor?: string | null
           location?: string | null
-          registrationEnd?: string | null
-          registrationStart?: string | null
-          showInHome?: boolean
+          registration_end?: string | null
+          registration_start?: string | null
+          show_in_home?: boolean
           slug: string
           status?: Database["public"]["Enums"]["CourseStatus"]
           time?: string | null
           title: string
-          updatedAt?: string
-          whatsappMsg?: string | null
+          updated_at?: string
+          whatsapp_msg?: string | null
         }
         Update: {
           active?: boolean
-          coverImage?: string | null
-          createdAt?: string
+          cover_image?: string | null
+          created_at?: string
           date?: string | null
           description?: string | null
           gallery?: string[] | null
           id?: string
           instructor?: string | null
           location?: string | null
-          registrationEnd?: string | null
-          registrationStart?: string | null
-          showInHome?: boolean
+          registration_end?: string | null
+          registration_start?: string | null
+          show_in_home?: boolean
           slug?: string
           status?: Database["public"]["Enums"]["CourseStatus"]
           time?: string | null
           title?: string
-          updatedAt?: string
-          whatsappMsg?: string | null
+          updated_at?: string
+          whatsapp_msg?: string | null
         }
         Relationships: []
       }
@@ -566,11 +566,11 @@ export type Database = {
         }
         Relationships: []
       }
-      PegueMonte: {
+      pegue_monte: {
         Row: {
           active: boolean | null
-          coverImage: string | null
-          createdAt: string
+          cover_image: string | null
+          created_at: string
           description: string | null
           gallery: string[] | null
           highlight: boolean | null
@@ -581,17 +581,17 @@ export type Database = {
           partyType: string | null
           peopleCount: string | null
           slug: string
-          storePhones: Json | null
+          store_phones: Json | null
           theme: string | null
           unit: string | null
-          updatedAt: string
-          videoUrl: string | null
-          whatsappMsg: string | null
+          updated_at: string
+          video_url: string | null
+          whatsapp_msg: string | null
         }
         Insert: {
           active?: boolean | null
-          coverImage?: string | null
-          createdAt?: string
+          cover_image?: string | null
+          created_at?: string
           description?: string | null
           gallery?: string[] | null
           highlight?: boolean | null
@@ -602,17 +602,17 @@ export type Database = {
           partyType?: string | null
           peopleCount?: string | null
           slug: string
-          storePhones?: Json | null
+          store_phones?: Json | null
           theme?: string | null
           unit?: string | null
-          updatedAt?: string
-          videoUrl?: string | null
-          whatsappMsg?: string | null
+          updated_at?: string
+          video_url?: string | null
+          whatsapp_msg?: string | null
         }
         Update: {
           active?: boolean | null
-          coverImage?: string | null
-          createdAt?: string
+          cover_image?: string | null
+          created_at?: string
           description?: string | null
           gallery?: string[] | null
           highlight?: boolean | null
@@ -623,12 +623,12 @@ export type Database = {
           partyType?: string | null
           peopleCount?: string | null
           slug?: string
-          storePhones?: Json | null
+          store_phones?: Json | null
           theme?: string | null
           unit?: string | null
-          updatedAt?: string
-          videoUrl?: string | null
-          whatsappMsg?: string | null
+          updated_at?: string
+          video_url?: string | null
+          whatsapp_msg?: string | null
         }
         Relationships: []
       }

@@ -198,9 +198,11 @@ model PegueMonte {
   whatsappMsg String?
   active      Boolean  @default(true)
   highlight   Boolean  @default(false)
-  storePhones Json?    @default("[]")
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  storePhones Json?    @default("[]") @map("store_phones")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  @@map("pegue_monte")
 }
 
 enum CourseStatus {
@@ -210,24 +212,26 @@ enum CourseStatus {
 }
 
 model Course {
-  id              String       @id @default(cuid())
-  title           String
-  slug            String       @unique
-  description     String?
-  coverImage      String?
-  gallery         String[]     @default([])
-  date            DateTime?
-  time            String?
-  location        String?
-  instructor      String?
-  registrationStart DateTime?
-  registrationEnd   DateTime?
-  status          CourseStatus @default(SOON)
-  whatsappMsg     String?
-  active          Boolean      @default(true)
-  showInHome      Boolean      @default(true)
-  createdAt       DateTime     @default(now())
-  updatedAt       DateTime     @updatedAt
+  id                String       @id @default(cuid())
+  title             String
+  slug              String       @unique
+  description       String?
+  coverImage        String?      @map("cover_image")
+  gallery           String[]     @default([])
+  date              DateTime?
+  time              String?
+  location          String?
+  instructor        String?
+  registrationStart DateTime?    @map("registration_start")
+  registrationEnd   DateTime?    @map("registration_end")
+  status            CourseStatus @default(SOON)
+  whatsappMsg       String?      @map("whatsapp_msg")
+  active            Boolean      @default(true)
+  showInHome        Boolean      @default(true) @map("show_in_home")
+  createdAt         DateTime     @default(now()) @map("created_at")
+  updatedAt         DateTime     @updatedAt @map("updated_at")
+
+  @@map("courses")
 }
 
 model GalleryItem {
