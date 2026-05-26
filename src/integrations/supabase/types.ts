@@ -128,6 +128,36 @@ export type Database = {
         }
         Relationships: []
       }
+      CompanyHistory: {
+        Row: {
+          content: string
+          gallery: string[] | null
+          id: string
+          mainImage: string | null
+          timeline: Json | null
+          title: string
+          updatedAt: string | null
+        }
+        Insert: {
+          content: string
+          gallery?: string[] | null
+          id?: string
+          mainImage?: string | null
+          timeline?: Json | null
+          title?: string
+          updatedAt?: string | null
+        }
+        Update: {
+          content?: string
+          gallery?: string[] | null
+          id?: string
+          mainImage?: string | null
+          timeline?: Json | null
+          title?: string
+          updatedAt?: string | null
+        }
+        Relationships: []
+      }
       Course: {
         Row: {
           active: boolean
@@ -188,6 +218,81 @@ export type Database = {
           title?: string
           updatedAt?: string
           whatsappMsg?: string | null
+        }
+        Relationships: []
+      }
+      FAQ: {
+        Row: {
+          active: boolean | null
+          answer: string
+          category: string | null
+          createdAt: string | null
+          id: string
+          order: number | null
+          question: string
+          updatedAt: string | null
+        }
+        Insert: {
+          active?: boolean | null
+          answer: string
+          category?: string | null
+          createdAt?: string | null
+          id: string
+          order?: number | null
+          question: string
+          updatedAt?: string | null
+        }
+        Update: {
+          active?: boolean | null
+          answer?: string
+          category?: string | null
+          createdAt?: string | null
+          id?: string
+          order?: number | null
+          question?: string
+          updatedAt?: string | null
+        }
+        Relationships: []
+      }
+      GalleryItem: {
+        Row: {
+          active: boolean | null
+          category: string | null
+          createdAt: string | null
+          description: string | null
+          id: string
+          image: string
+          order: number | null
+          showInHome: boolean | null
+          tags: string[] | null
+          title: string
+          updatedAt: string | null
+        }
+        Insert: {
+          active?: boolean | null
+          category?: string | null
+          createdAt?: string | null
+          description?: string | null
+          id: string
+          image: string
+          order?: number | null
+          showInHome?: boolean | null
+          tags?: string[] | null
+          title: string
+          updatedAt?: string | null
+        }
+        Update: {
+          active?: boolean | null
+          category?: string | null
+          createdAt?: string | null
+          description?: string | null
+          id?: string
+          image?: string
+          order?: number | null
+          showInHome?: boolean | null
+          tags?: string[] | null
+          title?: string
+          updatedAt?: string | null
         }
         Relationships: []
       }
@@ -578,6 +683,111 @@ export type Database = {
         }
         Relationships: []
       }
+      Promotion: {
+        Row: {
+          active: boolean | null
+          createdAt: string | null
+          description: string | null
+          id: string
+          image: string
+          oldPrice: string | null
+          order: number | null
+          price: string | null
+          title: string
+          updatedAt: string | null
+          whatsappMsg: string | null
+        }
+        Insert: {
+          active?: boolean | null
+          createdAt?: string | null
+          description?: string | null
+          id: string
+          image: string
+          oldPrice?: string | null
+          order?: number | null
+          price?: string | null
+          title: string
+          updatedAt?: string | null
+          whatsappMsg?: string | null
+        }
+        Update: {
+          active?: boolean | null
+          createdAt?: string | null
+          description?: string | null
+          id?: string
+          image?: string
+          oldPrice?: string | null
+          order?: number | null
+          price?: string | null
+          title?: string
+          updatedAt?: string | null
+          whatsappMsg?: string | null
+        }
+        Relationships: []
+      }
+      SeasonalBanner: {
+        Row: {
+          active: boolean | null
+          buttonLink: string | null
+          buttonText: string | null
+          createdAt: string | null
+          endDate: string | null
+          fontFamily: string | null
+          fontSize: string | null
+          id: string
+          imageDesktop: string
+          imageMobile: string | null
+          isDefault: boolean | null
+          order: number | null
+          startDate: string | null
+          subtitle: string | null
+          title: string
+          transitionTime: number | null
+          transitionType: string | null
+          updatedAt: string | null
+        }
+        Insert: {
+          active?: boolean | null
+          buttonLink?: string | null
+          buttonText?: string | null
+          createdAt?: string | null
+          endDate?: string | null
+          fontFamily?: string | null
+          fontSize?: string | null
+          id: string
+          imageDesktop: string
+          imageMobile?: string | null
+          isDefault?: boolean | null
+          order?: number | null
+          startDate?: string | null
+          subtitle?: string | null
+          title: string
+          transitionTime?: number | null
+          transitionType?: string | null
+          updatedAt?: string | null
+        }
+        Update: {
+          active?: boolean | null
+          buttonLink?: string | null
+          buttonText?: string | null
+          createdAt?: string | null
+          endDate?: string | null
+          fontFamily?: string | null
+          fontSize?: string | null
+          id?: string
+          imageDesktop?: string
+          imageMobile?: string | null
+          isDefault?: boolean | null
+          order?: number | null
+          startDate?: string | null
+          subtitle?: string | null
+          title?: string
+          transitionTime?: number | null
+          transitionType?: string | null
+          updatedAt?: string | null
+        }
+        Relationships: []
+      }
       Store: {
         Row: {
           address: string
@@ -629,6 +839,42 @@ export type Database = {
         }
         Relationships: []
       }
+      Testimonial: {
+        Row: {
+          active: boolean | null
+          createdAt: string | null
+          id: string
+          image: string | null
+          name: string
+          order: number | null
+          source: string | null
+          text: string
+          updatedAt: string | null
+        }
+        Insert: {
+          active?: boolean | null
+          createdAt?: string | null
+          id: string
+          image?: string | null
+          name: string
+          order?: number | null
+          source?: string | null
+          text: string
+          updatedAt?: string | null
+        }
+        Update: {
+          active?: boolean | null
+          createdAt?: string | null
+          id?: string
+          image?: string | null
+          name?: string
+          order?: number | null
+          source?: string | null
+          text?: string
+          updatedAt?: string | null
+        }
+        Relationships: []
+      }
       User: {
         Row: {
           createdAt: string | null
@@ -656,6 +902,30 @@ export type Database = {
           passwordHash?: string
           role?: string
           updatedAt?: string | null
+        }
+        Relationships: []
+      }
+      WhatsAppClick: {
+        Row: {
+          createdAt: string | null
+          id: string
+          origin: string | null
+          relatedId: string | null
+          type: string
+        }
+        Insert: {
+          createdAt?: string | null
+          id: string
+          origin?: string | null
+          relatedId?: string | null
+          type: string
+        }
+        Update: {
+          createdAt?: string | null
+          id?: string
+          origin?: string | null
+          relatedId?: string | null
+          type?: string
         }
         Relationships: []
       }
