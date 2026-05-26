@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2022",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "jsx": "react-jsx",
@@ -14,12 +18,23 @@
     "noEmit": true,
     "allowImportingTsExtensions": true,
     "allowJs": true,
-    "baseUrl": ".",
     "paths": {
-      "@/*": ["./frontend/src/*", "./src/*"]
+      "@/*": [
+        "./frontend/src/*",
+        "./src/*"
+      ]
     },
     "types": []
   },
-  "include": ["frontend/src", "src", "global.d.ts"],
-  "exclude": ["node_modules", "backend", "**/dist", "**/build"]
+  "include": [
+    "frontend/src",
+    "src",
+    "global.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "backend",
+    "**/dist",
+    "**/build"
+  ]
 }
