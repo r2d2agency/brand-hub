@@ -299,6 +299,26 @@ export default function CoursesAdmin() {
                     className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-blue-900 focus:outline-none"
                   />
                 </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-black uppercase tracking-widest text-slate-500">Início Inscrições</label>
+                  <input
+                    type="date"
+                    value={form.registrationStart}
+                    onChange={e => setForm({ ...form, registrationStart: e.target.value })}
+                    className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-blue-900 focus:outline-none"
+                  />
+                </div>
+
+                <div className="space-y-1.5">
+                  <label className="text-xs font-black uppercase tracking-widest text-slate-500">Fim Inscrições</label>
+                  <input
+                    type="date"
+                    value={form.registrationEnd}
+                    onChange={e => setForm({ ...form, registrationEnd: e.target.value })}
+                    className="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:border-blue-900 focus:outline-none"
+                  />
+                </div>
               </div>
 
               <div className="space-y-1.5">
