@@ -329,43 +329,43 @@ export default function PegueMonteDetails() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className=\"fixed inset-0 z-[110] bg-blue-900/40 backdrop-blur-sm flex items-center justify-center p-4\"
+            className="fixed inset-0 z-[110] bg-blue-900/40 backdrop-blur-sm flex items-center justify-center p-4"
             onClick={() => setShowStoreSelector(false)}
           >
             <motion.div
               initial={{ scale: 0.9, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              className=\"bg-white w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl\"
+              className="bg-white w-full max-w-sm rounded-3xl overflow-hidden shadow-2xl"
               onClick={e => e.stopPropagation()}
             >
-              <div className=\"bg-blue-900 p-6 text-white text-center\">
-                <div className=\"inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-white/10 mb-4\">
+              <div className="bg-blue-900 p-6 text-white text-center">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-white/10 mb-4">
                   <MessageCircle size={24} />
                 </div>
-                <h3 className=\"text-lg font-black uppercase tracking-widest\">Escolha a Loja</h3>
-                <p className=\"text-blue-200 text-xs mt-1\">Selecione para qual unidade deseja enviar mensagem</p>
+                <h3 className="text-lg font-black uppercase tracking-widest">Escolha a Loja</h3>
+                <p className="text-blue-200 text-xs mt-1">Selecione para qual unidade deseja enviar mensagem</p>
               </div>
               
-              <div className=\"p-4 space-y-2\">
+              <div className="p-4 space-y-2">
                 {kit?.storePhones?.map((sp: any, idx: number) => (
                   <button
                     key={idx}
                     onClick={() => handleWhatsApp(sp.phone)}
-                    className=\"w-full flex items-center justify-between p-4 rounded-2xl border border-slate-100 bg-slate-50 hover:bg-white hover:border-blue-900/20 hover:shadow-lg hover:shadow-blue-900/5 transition-all group\"
+                    className="w-full flex items-center justify-between p-4 rounded-2xl border border-slate-100 bg-slate-50 hover:bg-white hover:border-blue-900/20 hover:shadow-lg hover:shadow-blue-900/5 transition-all group"
                   >
-                    <div className=\"text-left\">
-                      <div className=\"text-sm font-black text-blue-900 uppercase tracking-wide\">{sp.name}</div>
-                      <div className=\"text-[10px] text-slate-400 font-medium\">{sp.phone}</div>
+                    <div className="text-left">
+                      <div className="text-sm font-black text-blue-900 uppercase tracking-wide">{sp.name}</div>
+                      <div className="text-[10px] text-slate-400 font-medium">{sp.phone}</div>
                     </div>
-                    <ChevronRight size={16} className=\"text-slate-300 group-hover:text-blue-900 transition-colors\" />
+                    <ChevronRight size={16} className="text-slate-300 group-hover:text-blue-900 transition-colors" />
                   </button>
                 ))}
               </div>
 
               <button 
                 onClick={() => setShowStoreSelector(false)}
-                className=\"w-full p-4 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-slate-600 transition-colors\"
+                className="w-full p-4 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-slate-600 transition-colors"
               >
                 Cancelar
               </button>
@@ -376,3 +376,4 @@ export default function PegueMonteDetails() {
     </div>
   );
 }
+
