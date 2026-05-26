@@ -296,6 +296,7 @@ export async function fixSchema() {
         "id" TEXT NOT NULL,
         "title" TEXT NOT NULL,
         "image" TEXT NOT NULL,
+        "gallery" TEXT[] DEFAULT ARRAY[]::TEXT[],
         "link" TEXT,
         "order" INTEGER NOT NULL DEFAULT 0,
         "active" BOOLEAN NOT NULL DEFAULT true,
@@ -303,6 +304,14 @@ export async function fixSchema() {
         "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
         CONSTRAINT "Inspiration_pkey" PRIMARY KEY ("id")
       );
+    `);
+    await prisma.$executeRawUnsafe(`
+      DO $$
+      BEGIN
+        IF NOT EXISTS (SELECT 1 FROM information_schema.columns WHERE table_name='Inspiration' AND column_name='gallery') THEN
+          ALTER TABLE "Inspiration" ADD COLUMN "gallery" TEXT[] DEFAULT ARRAY[]::TEXT[];
+        END IF;
+      END $$;
     `);
 
     // ====== NEW: HomeBanner table (Cursos/Sobre destaque) ======

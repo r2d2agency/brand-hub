@@ -156,6 +156,7 @@ model Inspiration {
   id        String   @id @default(cuid())
   title     String
   image     String
+  gallery   String[] @default([])
   link      String?
   order     Int      @default(0)
   active    Boolean  @default(true)
